@@ -1,15 +1,8 @@
 # JVM
-- **binding**
-    - **early** - at compile time
-        - for static methods and all fields
-        - `invokestatic`
-    - **late** - at runtime
-        - for instance methods
-        - `invokevirtual`
 
 ## Sources
 - 📙 [Optimizing Java: Practical Techniques for Improving JVM Application Performance](https://www.amazon.com/Optimizing-Java-Techniques-Application-Performance/dp/1492025798) (440 pages)
-- [A Comprehensive Introduction to Java Virtual Machine (JVM)](https://www.udemy.com/course/a-comprehensive-introduction-to-java-virtual-machine-jvm/) (~4 hours, Udemy)
+- 🎥 [A Comprehensive Introduction to Java Virtual Machine (JVM)](https://www.udemy.com/course/a-comprehensive-introduction-to-java-virtual-machine-jvm/) (~4 hours, Udemy)
 - 🎥 [Memory footprint of a Java process by Andrei Pangin](https://youtu.be/c755fFv1Rnk) (YouTube)
 - [How JVM Works – JVM Architecture?](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/) (GeeksForGeeks)
 - [Understanding Java Compilation: From Bytecodes to Machine Code in the JVM](https://www.azul.com/blog/understanding-java-compilation-from-bytecodes-to-machine-code/) (Azul blog series)
@@ -24,6 +17,14 @@
 ## Compilation
 - source code (`.java`) --> bytecode (`.class`) --> JVM interpreter + JIT for hot methods
 - JVM supports 256 opcodes (202 in use)
+
+### Binding
+- **early** - at compile time
+    - for static methods and all fields
+    - `invokestatic`
+- **late** - at runtime
+    - for instance methods
+    - `invokevirtual`
 
 ## Class loading
 - dynamic (at runtime)
@@ -98,7 +99,6 @@
     - string pool - interned strings
         - `jcmd PID VM.stringtable`
 - **internal** - `Unsafe.allocateMemory`
-  - 
 
 ### Method area
 - used to be in **PermGen**, from Java 8 it's **metaspace** (located on _native_ heap)

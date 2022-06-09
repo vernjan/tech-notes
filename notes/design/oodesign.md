@@ -1,10 +1,5 @@
 # Object-Oriented Design
 
-## Sources
-- 🚧 [Grokking the Object Oriented Design Interview](https://www.educative.io/courses/grokking-the-object-oriented-design-interview)
-- 📙 Cracking the Coding Interview - Object-Oriented Design
-- [Design patterns](https://refactoring.guru/design-patterns) (Refactoring.guru)
-
 ## Core concepts
 - **encapsulation** - hiding data, objects keep their state private, accessed through a set of public functions
 - **abstraction** - hiding all implementation details, the goal is to reduce the system complexity (natural extensions to encapsulation)
@@ -58,10 +53,3 @@
 ![](_img/uml-activity-diagram.png)
 
 **Source**: Grokking the Object Oriented Design Interview (Educative)
-
-## Classic problems
-- library management system
-- parking lot
-- ATM
-- coffee machine
-- chess

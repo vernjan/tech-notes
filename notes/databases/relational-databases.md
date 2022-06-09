@@ -1,7 +1,5 @@
 # Databases
 
-## TODO SQL crash course, DB design crash course
-
 ## Sources
 - [High-Performance Java Persistence](https://vladmihalcea.com/books/high-performance-java-persistence/) (~461 pages)
 - [An Introduction to Transaction Isolation Levels](https://fauna.com/blog/introduction-to-transaction-isolation-levels) (Fauna blog)

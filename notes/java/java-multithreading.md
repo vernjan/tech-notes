@@ -12,8 +12,7 @@
 
 ## Sources
 - 📙 [Java Concurrency in Practice](https://www.amazon.com/Java-Concurrency-Practice-Brian-Goetz/dp/0321349601) (432 pages)
-- [Java Multithreading, Concurrency & Performance Optimization](https://www.udemy.com/course/java-multithreading-concurrency-performance-optimization/) (~4 hours, Udemy)
-- 🚧 [Java Multithreading for Senior Engineering Interviews](https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews) (~15 hours, Educative)
+- 🎥 [Java Multithreading, Concurrency & Performance Optimization](https://www.udemy.com/course/java-multithreading-concurrency-performance-optimization/) (~4 hours, Udemy)
 - [Oracle - The Java Tutorials: Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
 - [Synchronization in Java, Part 1: Race conditions, locks, and conditions](https://blogs.oracle.com/javamagazine/post/java-thread-synchronization-raceconditions-locks-conditions) (Oracle blog)
 - [JSR 133 (Java Memory Model) FAQ](https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html)
@@ -46,10 +45,7 @@
     - **compilers can reorder instructions for maximum throughput**
 - only **volatile long and double are atomic**
 
-TODO - implement dining philosophers
-
 ## Safe publication
-- TODO Watch on YT
 - > Safe publication makes all the values written before the publication visible to all readers that observed the published object.
 - It is acceptable for one thread to modify a data object for a while and then to share it with other threads, synchronizing only the act of sharing the object reference. Other threads can then read the object without further
   synchronization, so long as it isn't modified again. Such objects are said to be **effectively immutable**. Transferring such an object reference from one thread to others is called **safe publication**. There are many ways to safely
@@ -116,8 +112,6 @@ TODO - implement dining philosophers
     - unlike locks, can be called by any thread (that's the difference between a mutex and binary semaphore)
 - usage - restrict number of threads
 - establishes _happens-before_ relationship (actions before `acquire` are visible to actions after `release`)
-
-## TODO ForkJoinPool, Executors, CompletableFuture
 
 ### Lock
 - more granular control, use only if required

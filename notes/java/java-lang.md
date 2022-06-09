@@ -1,11 +1,11 @@
 # Java Language
 
 ## Sources
+- 📙 Effective Java by Joshua Bloch
 - [Jagged Array in Java](https://www.geeksforgeeks.org/jagged-array-in-java/) (GeeksForGeeks)
 - [Cglib, Javassist, JDK dynamic proxy](https://programmer.group/cglib-javassist-jdk-dynamic-proxy.html) (Programmer Group)
 - [Method Overloading with Autoboxing and Widening in Java](https://www.geeksforgeeks.org/method-overloading-autoboxing-widening-java/) (GeeksForGeeks)
-- [How to make the most of Java enums](https://blogs.oracle.com/javamagazine/post/how-to-make-the-most-of-java-enums)
-- Effective Java by Joshua Bloch
+- [How to make the most of Java enums](https://blogs.oracle.com/javamagazine/post/how-to-make-the-most-of-java-enums) (Oracle blog)
 
 ## Generics
 - **invariant** - default
@@ -15,7 +15,7 @@
   Number number = l.get(0);
   l.add(null); // nothing else
   ```
-- **contravariant** (CD - consumer _supports_, e.g. adding values to collection)
+- **contravariant** (CS - consumer _supports_, e.g. adding values to collection)
   ```
   List<? super Number> l = new ArrayList<Object>();
   Object object = l.get(0); // always object
@@ -23,9 +23,9 @@
   ```
 
 ### Arrays and generics
-- don't combine - arrays are _covariant_ and _reified_
+- don't combine - arrays are _covariant_ and _reified_ (type parameter is preserved at runtime)
     - **covariant** - `Object[] objects = new String[10]; // ok compile`
-    - **reified** - type safety is checked at runtime (generics at compile time)
+    - **reified** - type safety is checked at runtime (generics are not reified, type is erased at compile time)
 
 ## Arrays
 - `Array.equals` compares just the array refs (`arr1 == arr2`)
@@ -187,10 +187,10 @@ class ProxyExample {
 - if the String is known at compile time, it's created in the String pool
 
 ## String concatenation
-- `"a" + "b"` - a new StringBuilder is created behind the scenes
+- `"a" + "b"` - a new StringBuilder is created behind the scenes by the compiler
 
 ## Reference types
-- see https://www.geeksforgeeks.org/types-references-java/
+- see [Types of References in Java](https://www.geeksforgeeks.org/types-references-java/) (GeeksForGeeks)
 - **strong** - standard reference
 - **weak** - eligible for gc if only referenced by weak references (`WeakHashMap`)
 

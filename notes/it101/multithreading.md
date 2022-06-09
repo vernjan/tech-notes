@@ -2,7 +2,6 @@
 
 ## Sources
 - [Java Multithreading for Senior Engineering Interviews](https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews) (Educative course)
-- [System Design — Other Topics](https://medium.com/must-know-computer-science/system-design-other-topics-b93b22828608)
 
 ## Thread vs. process
 - processes have separate address spaces

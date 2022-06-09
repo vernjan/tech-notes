@@ -44,7 +44,7 @@
     - `List.of()`, `List.copyOf()` - unmodifiable, cannot contain null
 - `ArrayList` - dynamic array, automatic capacity handling
 - `LinkedList` - doubly-linked, implements `Deque`
-    - see [methods](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html)
+    - see [LinkedList methods](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html) (Javadoc)
 
 ## Set
 - unique elements, may or may not be ordered

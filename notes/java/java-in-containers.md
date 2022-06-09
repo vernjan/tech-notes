@@ -1,4 +1,4 @@
-# Java in Docker
+# Java in Containers
 - newer Java - better support
     - understands `docker --cpu 2`
 - JVM ergonomics - auto-tuning based on the runtime environment (gc, heap size, compiler)
@@ -10,5 +10,5 @@
     - use multi-stage builds
 
 ## Sources
-- [](https://www.merikan.com/2019/04/jvm-in-a-container/)
-
+- [JVM in a Container](https://www.merikan.com/2019/04/jvm-in-a-container/) (Merikan blog)
+- [Java 17: What’s new in OpenJDK's container awareness](https://developers.redhat.com/articles/2022/04/19/java-17-whats-new-openjdks-container-awareness?utm_source=pocket_mylist) (RedHat)

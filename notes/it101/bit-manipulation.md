@@ -1,16 +1,9 @@
 # Bit Manipulation
 
 ## Sources
-- 📙 Cracking the Coding Interview - Bit Manipulation
 - [Bit Manipulation in Java – Bitwise and Bit Shift operations](https://www.vojtechruzicka.com/bit-manipulation-java-bitwise-bit-shift-operations/) (Vojtech Ruzicka's blog)
 - [A quick guide to bitwise operators in Java](https://www.educative.io/blog/bit-manipulation-in-java) (Educative blog)
 - [Binary bit manipulation and CAN bus hardware interfaces in Java](https://blogs.oracle.com/javamagazine/post/java-bitwise-biginteger-bitset-canbus) (Oracle blog)
-- ⌛ [Master Bit Manipulation for Coding Interviews](https://www.educative.io/courses/bit-manipulation) (~3 hours, Educative)
-
-## Arithmetic operations
-- pretty much the same for decimal numbers (recall elementary school math)
-- `+` https://www.wikihow.com/Add-Binary-Numbers (carry)
-- `-` https://www.wikihow.com/Subtract-Binary-Numbers (borrow)
 
 ## Bitwise operators
 - `~` NOT (negation)
@@ -42,7 +35,7 @@
 ```
 
 ### Unsigned (logical) right shift `>>>`
-- shift bits to the right, pads from the left with `0s` 
+- shift bits to the right, pads from the left with `0s`
 ```
  8 >>> 1 is 4
 -8 >>> 1 is 2147483644
@@ -57,13 +50,18 @@
 -8 << 1 is 
 ```
 
+## Arithmetic operations
+- pretty much the same as for decimal numbers (recall elementary school math)
+- `+` https://www.wikihow.com/Add-Binary-Numbers (carry)
+- `-` https://www.wikihow.com/Subtract-Binary-Numbers (borrow)
+
 ## Two's complement
 - positive numbers start with 0, negative numbers start with 1
 - given 4-bit numbers (i.e. `from -8 to 7`), the _pairs_ (only the first bit differs) are `0 and -8`, `1 and -7`, ...
   ![](_img/2s-complement.png)
 - `positive + ABS(negative) = 2^n` - therefore **two's complement**
 - quick conversion between negative and positive numbers (in both directions):
-  - **negate (flip) all bits and add 1**
+    - **negate (flip) all bits and add 1**
 
 ### Common numbers (8-bit example)
 - `00000000` is 0
@@ -81,7 +79,6 @@
 | 0s then 1s       | `11110000`      | `(-1 << (i + 1))` | `-1` in binary is `11111111` |
 | 1s then 0s       | `00001111`      | `(1 << i) - 1`    |                              |
 | arbitrary        | `00001010`      | `NUM`, `0xNUM`    | `0xFF`                       |
-
 
 ### Operations with bit mask
 
