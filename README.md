@@ -7,3 +7,4 @@
 - [Software](notes/software/README.md)
 - [Operating systems](notes/operating-systems.md)
 - [Math](notes/math.md)
+- [CTFs](notes/ctf/README.md)
