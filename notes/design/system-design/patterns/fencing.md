@@ -1,0 +1,3 @@
+# Fencing
+- disabling a potentially malicious node (for example a former leader to prevent split brain)
+    - power off, reset, revoke access, ...

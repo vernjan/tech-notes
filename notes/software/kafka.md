@@ -1,0 +1,53 @@
+# Kafka
+- distributed, durable (stored on disk), fault-tolerant, and highly scalable (dynamic, no downtime)
+- accept streams of messages, store them reliably and deliver the messages to consumers
+- uses [write-ahead log](../design/system-design/patterns/write-ahead-log.md)
+- can be used for collecting big data and real-time analysis (building data pipelines)
+    - metrics (collect, aggregate)
+    - logs
+    - stream processing
+    - storage
+    - fan out (publish - subscribe)
+    - product recommendations, website tracking
+- doesn't hold message in RAM, writes to disk
+    - WAL - sequential access is fast (OS uses **read-ahead** and **write-behind** techniques)
+- started at LinkedIn
+
+## Sources
+- [Apache Kafka Startup Guide: System Design Architectures](https://medium.com/swlh/apache-kafka-startup-guide-system-design-architectures-notification-system-web-activity-tracker-6dcaf0cf8a7)
+- [Beginner Kafka tutorial: Get started with distributed systems](https://www.educative.io/blog/beginner-kafka-tutorial)
+
+## Design
+- **broker** - Kafka server - stores the messages, makes them available for consumers
+    - broker is **dumb** - consumers keep track of messages they want to read (message offset numbers)
+        - they can go back in history, join later, skip messages, ...
+        - messages are not removed after consumption
+        - broker is stateless
+    - communicate over TCP
+- **record** - Kafka message - key, value, timestamp, metadata
+    - immutable
+- **topic** - category (SQL analogy: topic = table, record = row)
+    - one publisher can publish to many topics and one consumer can read from many topics
+    - **partitioned**
+        - immutable, ordered sequence of records
+        - partition is bound to a single broker - storage limit (of course can be **replicated** over many brokers)
+    - ordering of messages is maintained at the partition level, not across the topic
+    - message unique ID - `topic + partition + offset number`
+- **cluster** - one or many brokers + ZooKeeper
+- **stream** - process data between topics
+- **connector** - reusable producer or consumer (MongoDB, MySQL, Cassandra, ...)
+- **ZooKeeper** - distributed key-value store and is used for coordination and storing configurations
+    - coordination interface between the Kafka brokers, producers, and consumers
+    - stores basic metadata, such as information about brokers, topics, partitions, partition leader/followers, consumer offsets, ...
+    - How producer knows who is the partition leader?
+        - producer asks a random broker
+        - broker gets the information from ZooKeeper and returns it to the producer
+        - producer connects to the leader
+- **leader** - per partition, responsible for writes **and reads**
+    - see [high-water mark](../design/system-design/patterns/high-water-mark.md)
+- **follower** - replicates data (fault tolerance)
+- **consumer group** - consumers in a single group never consume messages from a single topic partition in parallel
+    - if we want to consume messages in parallel (per topic partition), we need to have multiple consumer groups
+    - topic partitions are a unit of parallelism
+- **controller broker** - a broker elected for administration tasks (adding/removing topics, monitoring failures, ...)
+- **epoch number** - generation clock, see [split brain](../design/system-design/patterns/split-brain.md)
