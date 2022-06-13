@@ -5,6 +5,6 @@
 - [Databases](notes/databases/README.md)
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
-- [Operating systems](notes/operating-systems.md)
+- [Operating systems](notes/operating-systems/README.md)
 - [Math](notes/math.md)
 - [CTFs](notes/ctf/README.md)

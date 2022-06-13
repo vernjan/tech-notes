@@ -1,7 +1,4 @@
-# Operating Systems
-
-## Source
-- 🎥 [Introduction to Operating Systems](https://learn.udacity.com/courses/ud923) (Udacity)
+# P1L2: Introduction to Operating Systems
 
 ## Core principles
 - a layer between user applications and hardware
