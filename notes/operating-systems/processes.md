@@ -29,6 +29,8 @@
 ## Process lifecycle
 ![](_img/process-lifecycle.png)
 
+**Source**: Introduction to Operating Systems (Udacity)
+
 ## Process creation
 - initial (root) process(es)
 - parent-child hierarchy

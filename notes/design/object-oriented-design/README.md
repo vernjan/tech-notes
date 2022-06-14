@@ -1,7 +1,5 @@
 # Object-Oriented Design
-
-## Design patterns
-- [Refactoring.guru](https://refactoring.guru/design-patterns)
+- [Design patterns](design-patterns.md)
 
 ## Core concepts
 - **encapsulation** - hiding data, objects keep their state private, accessed through a set of public functions
