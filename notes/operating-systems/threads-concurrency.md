@@ -32,3 +32,6 @@
         - while waiting, the mutex is released
         - the mutex is reacquired once the waiting is over
     - **signal** on a condition variable
+
+### Readers-writers
+- allow multiple readers but only a single writer
