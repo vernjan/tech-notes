@@ -24,6 +24,7 @@
     - locked?
     - owner
     - blocked_threads
+- basic building block for more advanced synchronization constructs
 
 ### Producer-consumer
 - can be done with just mutexes but it's wasteful
@@ -35,3 +36,36 @@
 
 ### Readers-writers
 - allow multiple readers but only a single writer
+
+## Critical section
+```
+lock(mutex) {
+    while(!predicate) {
+        wait(cond) // mutex is released while waiting (and reacquired just before the wait exits) 
+    }
+    do_something() // the critical section
+} // unlock
+signal(any_cond) // in general, signal can be called without holding the mutex (not in Java though)
+```
+
+## Deadlocks
+- prevention - avoid cycles in locks dependency graph
+- sometimes prevention is too costly - detect deadlocks and recover
+
+## Kernel-level vs. user-level threads
+- **one-to-one model** - one user-level thread maps to one kernel-level thread
+  - expensive (switching from user to kernel mode)
+  - OS might have limits on kernel-level threads
+- **many-to-one model**
+  - thread management is implemented in user space
+  - portable - no dependency on kernel detail
+  - IO operation can block the whole process
+- **many-to-many model** - best of both worlds
+
+## Patterns
+- **boss & workers**
+  - boss accepts new tasks (must be fast)
+    - delegate between workers,
+    - or pushes into a queue
+- **pipeline** - task _steps_ are processed by individual threads
+
