@@ -9,7 +9,7 @@
 - program counter
 - stack & stack pointer
 - registers
-- attributes (for example priority)
+- attributes (for example priority or stack size)
 
 ## Synchronization mechanism
 - **mutual exclusion** (mutex)
@@ -69,3 +69,12 @@ signal(any_cond) // in general, signal can be called without holding the mutex (
     - or pushes into a queue
 - **pipeline** - task _steps_ are processed by individual threads
 
+## Pthreads (POSIX thread)
+- see [Pthreads](https://en.wikipedia.org/wiki/Pthreads) on Wiki
+- standard API for working with threads
+- includes
+  - thread management (create, join, ..)
+  - mutexes
+  - condition variables
+  - synchronization
+- `trylock` - lock if mutex is free, otherwise return immediately
