@@ -19,3 +19,15 @@
     - `open (file)`, `mmap (memory)`, `send (socket)`, ..
 - traps
 - signals
+
+# POSIX (Portable Operating System Interface)
+- [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799/) for maintaining compatibility between operating systems
+- defines both the system and user-level API
+    - processes
+    - signals
+    - pthread
+    - shell utilities
+    - file system layout
+    - shell
+    - environment variables
+    - ...

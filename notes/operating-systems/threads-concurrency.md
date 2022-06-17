@@ -54,27 +54,28 @@ signal(any_cond) // in general, signal can be called without holding the mutex (
 
 ## Kernel-level vs. user-level threads
 - **one-to-one model** - one user-level thread maps to one kernel-level thread
-  - expensive (switching from user to kernel mode)
-  - OS might have limits on kernel-level threads
+    - expensive (switching from user to kernel mode)
+    - OS might have limits on kernel-level threads
+    - Linux NPTL (Native Posix threads library)
 - **many-to-one model**
-  - thread management is implemented in user space
-  - portable - no dependency on kernel detail
-  - IO operation can block the whole process
+    - thread management is implemented in user space
+    - portable - no dependency on kernel detail
+    - IO operation can block the whole process
 - **many-to-many model** - best of both worlds
 
 ## Patterns
 - **boss & workers**
-  - boss accepts new tasks (must be fast)
-    - delegate between workers,
-    - or pushes into a queue
+    - boss accepts new tasks (must be fast)
+        - delegate between workers,
+        - or pushes into a queue
 - **pipeline** - task _steps_ are processed by individual threads
 
 ## Pthreads (POSIX thread)
 - see [Pthreads](https://en.wikipedia.org/wiki/Pthreads) on Wiki
 - standard API for working with threads
 - includes
-  - thread management (create, join, ..)
-  - mutexes
-  - condition variables
-  - synchronization
+    - thread management (create, join, ..)
+    - mutexes
+    - condition variables
+    - synchronization
 - `trylock` - lock if mutex is free, otherwise return immediately
