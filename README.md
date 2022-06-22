@@ -2,7 +2,7 @@
 
 - [IT 101](notes/it101/README.md)
 - [Java](notes/java/README.md)
-- [Python](notes/python.md)
+- [Python](notes/python/README.md)
 - [Databases](notes/databases/README.md)
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
