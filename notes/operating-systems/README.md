@@ -4,6 +4,7 @@
 - [Processes and Process Management](processes.md)
 - [Threads and Concurrency](threads-concurrency.md)
 - [Signals & Interrupts](signals-interrupts.md)
+- [Scheduling](scheduling.md)
 - [Memory Management](memory-management.md)
 
 ## Source

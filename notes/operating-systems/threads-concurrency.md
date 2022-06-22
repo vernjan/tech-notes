@@ -79,3 +79,10 @@ signal(any_cond) // in general, signal can be called without holding the mutex (
     - condition variables
     - synchronization
 - `trylock` - lock if mutex is free, otherwise return immediately
+
+## Models
+- **multi-process** - easy to program, isolated but with big overhead
+- **multi-thread**
+    - master-less workers - "1 request = 1 worker"
+    - boss & workers - 1 thread to receive connections, n threads to process them
+- single-thread (event loop) - requires asynchronous I/O

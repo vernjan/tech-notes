@@ -1,6 +1,7 @@
 # Python
 - interpreted, dynamically typed, garbage collected
 - `snake_case` convention
+- `pass` keyword - do nothing
 
 ## Data types
 - numbers
@@ -93,3 +94,13 @@ map(lambda i: i * i, nums)
 filter(lambda i: i < 3, nums)
 ```
 - use `list()` to convert the result to list
+
+## Loops
+```
+for i in range(1, 10, 2):
+    print(i)
+
+for i in ["a", "b", "c"]:
+    print(i)
+
+```

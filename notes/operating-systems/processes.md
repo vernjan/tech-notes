@@ -38,7 +38,7 @@
 - **fork**
     - duplicates the parent process (copies the parent's PCB) but with new process ID
     - both parent and child continues with the next instruction after fork
-        - in code, call to _fork_ returns 0 in the new child process and child's PID in the parent process
+        - in code, call to _fork_ returns 0 in the new child process, and child's PID in the parent process
 - **exec**
     - loads a new program (replaces the current) and starts from the first instruction
 - the typical pattern is to first call _fork_, then _exec_
