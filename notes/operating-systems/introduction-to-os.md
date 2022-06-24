@@ -1,4 +1,4 @@
-# P1L2: Introduction to Operating Systems
+# Introduction to Operating Systems
 
 ## Core principles
 - a layer between user applications and hardware
@@ -15,7 +15,7 @@
 ## User vs. kernel mode
 - supported on the HW level (CPU flag)
 - switching modes is costly (save & restore states, flushing caches)
-- OS exposes **system calls**
+- OS exposes **[system calls](https://man7.org/linux/man-pages/dir_section_2.html)**
     - `open (file)`, `mmap (memory)`, `send (socket)`, ..
 - traps
 - signals

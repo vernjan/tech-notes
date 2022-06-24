@@ -11,7 +11,7 @@
 - [Difference between fork() and exec()](https://www.geeksforgeeks.org/difference-fork-exec/) (GeeksForGeeks)
 - [Differences between fork and exec](https://stackoverflow.com/questions/1653340/differences-between-fork-and-exec) (Stack Overflow)
 
-## Process control block
+## Process control block (PCB)
 - OS keeps track of ... for each process
     - registries
         - PC - program counter
@@ -49,9 +49,3 @@
     1. _preempt_ - interrupt and save the current context
     2. _schedule_ - OS run the CPU scheduler
     3. _dispatch_ - dispatch a process and switch into its context
-
-## Inter process communication (IPC)
-- transfer data into/between address spaces
-- techniques
-    - **message passing** through a shared buffer (system calls send/recv)
-    - **shared memory** - virtual addresses from different processes point to the same physical memory

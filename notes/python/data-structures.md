@@ -52,6 +52,7 @@
 - iteration - `for name, age in dict.items():`
 - contains key - `"foo" in my_dict`
 - list keys - `list(my_dict)`
+- removing a key - `del phonebook["John"]`
 
 ### Dictionary comprehension
 ```

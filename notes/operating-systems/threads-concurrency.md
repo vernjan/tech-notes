@@ -16,16 +16,6 @@
 - **waiting** for a condition
 - **waking up** other threads
 
-### Mutex
-- only one thread at a time is allowed to hold the mutex, others have to wait
-    - there is no order guarantee who will acquire the mutex next
-- protects a _critical section_
-- **attributes**
-    - locked?
-    - owner
-    - blocked_threads
-- basic building block for more advanced synchronization constructs
-
 ### Producer-consumer
 - can be done with just mutexes but it's wasteful
 - to be effective, we need some kind of signalling between threads
@@ -86,3 +76,62 @@ signal(any_cond) // in general, signal can be called without holding the mutex (
     - master-less workers - "1 request = 1 worker"
     - boss & workers - 1 thread to receive connections, n threads to process them
 - single-thread (event loop) - requires asynchronous I/O
+
+## Synchronization primitives
+
+### Spinlock
+- "wait in a loop" - burns CPU cycles
+- require hardware support - **atomic instructions**
+    - `test_and_set`, `compare_and_swap`, ...
+    - bypass caches and goes directly into memory (slow)
+- implements (randomized) _delay_ and "double locking" to be more effective
+
+### Mutex
+- only one thread at a time is allowed to hold the mutex, others have to wait
+    - there is no order guarantee who will acquire the mutex next
+- protects a _critical section_
+- **attributes**
+    - locked?
+    - owner
+    - blocked_threads
+- basic building block for more advanced synchronization constructs
+
+## Synchronization constructs
+- mutexes and condition variables are basic building blocks
+    - error-prone, lack expressive power
+
+### Semaphores
+- initialized with an integer
+- incoming thread decrements the integer and enters the block
+- if the integer is 0, it has to wait until another thread leaves the block and increments the integer again
+- good for limiting the number of threads in a critical sections
+
+### Read/write locks
+- **read** - shared access, never modify data
+- **write** - exclusive access
+
+### Monitors
+- takes care of explicit locking and unlocking
+- for example Java's `synchronized`
+
+### Barriers
+- inverse of semaphores - block until N thread is ready
+
+## Cache coherency
+- **cache-coherent** (CC) - hardware makes sure all caches are in sync
+    - **techniques**
+        - write and update (different caches)
+        - write and invalidate
+- **non-cache-coherent** (NCC) - software has to make sure of that
+
+### Caches
+- **L1 cache**
+    - built into CPU
+    - fastest but smallest
+    - per core
+- **L2 cache**
+    - bigger than L1 but slower
+    - still per core
+- **L3 cache**
+    - biggest but slowest
+    - per CPU (shared among cores)

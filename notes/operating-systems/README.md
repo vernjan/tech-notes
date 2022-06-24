@@ -6,6 +6,7 @@
 - [Signals and Interrupts](signals-interrupts.md)
 - [Scheduling](scheduling.md)
 - [Memory Management](memory-management.md)
+- [Inter-process Communication](ipc.md)
 
 ## Source
 - 🎥 [Introduction to Operating Systems](https://learn.udacity.com/courses/ud923) (Udacity)
