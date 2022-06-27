@@ -18,29 +18,6 @@
 - sorting - `list.sort()`
 - last element - `list[-1]`
 
-### List comprehension
-- creates new list from a loop
-```
-[expresion for LOOP if CONDITION (optional)]
-```
-
-- simple example
-    ```
-    nums = [1, 2, 3]
-    nums_double = [n * 2 for n in nums] // 2, 4, 6
-    ```
-- with condition
-    ```
-    nums = [1, 2, 3]
-    nums_double = [n * 2 for n in nums if n != 2] // 2, 6
-    ```
-- multiple loops
-  ```
-  list1 = [..]
-  list2 = [..]
-  sum_list = [(n1, n2) for n1 in list1 for n2 in list2 if n1 + n2 > 100]
-  ```
-
 ## Tuple
 - `tuple = (1, "a", ("John", 33))`
 - similar to list but immutable
@@ -53,12 +30,6 @@
 - contains key - `"foo" in my_dict`
 - list keys - `list(my_dict)`
 - removing a key - `del phonebook["John"]`
-
-### Dictionary comprehension
-```
-houses = {1: "Gryffindor", 2: "Slytherin", 3: "Hufflepuff", 4: "Ravenclaw"}
-new_houses = {n**2: house + "!" for (n, house) in houses.items()
-```
 
 ## Set
 - `set = {1, "a"}`

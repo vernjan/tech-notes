@@ -68,6 +68,15 @@ for i in ["a", "b", "c"]:
     - executed once the condition is no longer true
     - skipped on break
 
+## Exception handling
+- see [Built-in Exceptions](https://docs.python.org/3/library/exceptions.html)
+```
+try:
+    something()
+except FooError:
+    handle()
+```
+
 ## Modules
 - `import MODULE [as ALIAS]`
 - `from MODULE import CLASS` - just a single class
