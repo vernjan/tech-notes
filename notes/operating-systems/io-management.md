@@ -30,4 +30,31 @@
 - kernel file system
     - where is the file (physically)
     - permissions check
-- POSIX API - many implementations 
+- POSIX API - many implementations
+
+## Virtual file system (VFS)
+- transparent layer which abstracts
+    - multiple disks
+    - networks disks
+    - different file systems implementations
+- sits between the kernel and a concrete file system (i.e. concrete file systems implement a kernel API)
+- **file descriptor** - how OS sees a file (remember that almost everything is a file in Linux)
+    - directory is also a file
+- **inode** - persistent representation of a file
+    - index of all file data blocks
+        - direct pointers
+        - indirect pointers - point to block of pointers
+        - double indirect pointers - point to block of pointers of pointers
+            - allows to handle large files
+    - **metadata** - filename, size (block count), owner, permissions
+        - **timestamps**
+            - **access**
+            - **change** - changes to inode (rename, update permissions, ..)
+            - **modify** - modify data
+- **dentry** - directory entry
+- block types
+    - data blocks
+    - inode blocks
+    - free blocks
+- **superblock** maps (using multiple bitmaps) which block is data/inode/free
+- `stat FILE` - show detailed file info

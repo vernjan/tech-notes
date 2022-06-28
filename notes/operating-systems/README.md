@@ -8,6 +8,7 @@
 - [Memory Management](memory-management.md)
 - [Inter-process Communication](ipc.md)
 - [I/O Management](io-management.md)
+- [Virtualization](virtualization.md)
 
 ## Source
 - 🎥 [Introduction to Operating Systems](https://learn.udacity.com/courses/ud923) (Udacity)

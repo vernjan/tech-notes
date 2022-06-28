@@ -110,3 +110,34 @@ def start(**options):
 start(debug=True, verbose=5)
 start(debug=True)
 ```
+
+## Serialization
+
+### JSON
+```
+import json
+obj = json.loads(str)
+str = json.dumps(obj)
+```
+
+### Pickle
+- Python proprietary format
+```
+import pickle
+obj = pickle.loads(str)
+str = pickle.dumps(obj)
+```
+
+## Functional programming
+- module `functools`
+    - higher-order functions and operations on callable objects
+    - partial functions - `partial(func, args*)`
+- module `itertools` - a bit like streams in Java
+
+## Code introspection
+- `dir()` - names in the current scope
+- `dir(obj)` - object attributes
+- `type(obj)`
+- `hasattr(obj, name)` - has attribute
+- `help(func)` - function
+- `issubclass`, `isinstance`
