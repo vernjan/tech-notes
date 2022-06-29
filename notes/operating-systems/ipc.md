@@ -22,3 +22,29 @@
 - generally faster - once established, kernel is not directly involved
 - programmer is responsible for the protocol and communication
 
+## Remote Procedure Calls
+- high-level form of IPC
+- many steps are repeated (create and init sockets, allocate buffers, copy data, ...)
+- goal of RPC is to simplify cross-address or cross-machine communication
+    - high-level interface
+    - error handling
+    - hides implementation details of cross-machine communication
+    - type checking
+    - data conversion
+- **binding** - which servers and how to connect
+    - **registry** - contains available services and versions
+- not so popular today (CORBA, Java RMI, SunRPC)
+    - heavy weight
+    - blocking calls
+
+![](_img/ud923-p4l1-structure-of-rpc.png)
+**Source**: https://s3.amazonaws.com/content.udacity-data.com/courses/ud923/notes/ud923-p4l1-structure-of-rpc.png
+
+### IDL - Interface Definition Language
+- describes the protocol (interface)
+    - procedure names + arguments and return types
+    - version number
+- language agnostic (XDR) or specific (Java RMI)
+- client and server can be implemented in different languages
+- generating stubs
+- **marshaling** - serialize data for network transfer (encode and copy into buffers)
