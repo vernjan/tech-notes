@@ -43,8 +43,12 @@
 ### IDL - Interface Definition Language
 - describes the protocol (interface)
     - procedure names + arguments and return types
+    - data types
     - version number
-- language agnostic (XDR) or specific (Java RMI)
+- language agnostic (XDR - `.x` files) or specific (Java RMI)
 - client and server can be implemented in different languages
-- generating stubs
+- automatic generation of stubs from IDL
+    - data types, client & server stub, (un)marshalling routines
 - **marshaling** - serialize data for network transfer (encode and copy into buffers)
+- **network transfer**
+    - transport header (TCP/UDP), RPC header (service ID, version, request/response ID), actual data

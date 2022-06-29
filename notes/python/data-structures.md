@@ -1,6 +1,7 @@
 # Data Structures
 - [Python docs](https://docs.python.org/3/tutorial/datastructures.html)
 - mutable (except _tuple_)
+- no generics, contains just pointers to objects
 
 ## List
 - `list = [1, "a", ["nested", "list"]]`

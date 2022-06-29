@@ -141,3 +141,7 @@ str = pickle.dumps(obj)
 - `hasattr(obj, name)` - has attribute
 - `help(func)` - function
 - `issubclass`, `isinstance`
+
+## Dunder methods
+- names begin and end with double-underscores (`__name__`)
+- to allow user-defined classes to modify how they are handled by native operations including length, comparison, in arithmetic operations and type conversion

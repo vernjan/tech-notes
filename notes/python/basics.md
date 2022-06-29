@@ -1,6 +1,13 @@
 # Python Basics
 - interpreted, dynamically typed, garbage collected
-- object oriented - everything is object
+    - **duck typing**
+        - "If it walks like a duck, and it quacks like a duck, then it must be a duck"
+        - object is of a given type if it has all methods and properties required by that type
+- **object-oriented**
+    - everything is object, no primitives
+    - dynamic classes - easy to add/remove fields or methods at runtime
+- **CPython** - reference implementation
+    - Jython, Iron Python, ...
 - `snake_case` convention
 - `.pyc` - compiled python file (bytecode)
     - imported modules get compiled
@@ -19,12 +26,26 @@
     - complex numbers
 - **strings**
     - `"Hell" in "Hello"` - contains
-    - `"Hello %s! % "world!"` - formatting using `%` operator
-        - `%s`, `%d`, `%f`
-        - `%.2f` - decimal numbers
-        - `%x`, `%X` - hexadecimal (lower/upper)
 - **booleans**
 - `None`
+
+### Strings formatting
+- `%` operator
+  ```
+  "Hello %s!" % "world!"
+  "Hello %s %d times!" % ("world", 5) 
+  ```  
+- **format** method
+  ```
+  "Foo is {0} {1} {0}".format(8, 2)
+  "Foo is {foo}".format(foo=8)
+  ```
+- **patterns**
+    - `%s` - string
+    - `%d` - integer
+    - `%f` - float
+    - `%.2f` - decimal numbers
+    - `%x`, `%X` - hexadecimal (lower/upper)
 
 ## Operators
 - `**` - exponent
@@ -36,6 +57,7 @@
 - `!=` - not equal to
 - `is` - equal to (identity)
 - `is not` - not equal to (identity)
+- multi-comparators: `if (a < b < c): ...`
 
 ## Slicing
 - `[start:end:step]`
