@@ -7,29 +7,25 @@
     - everything is object, no primitives
     - dynamic classes - easy to add/remove fields or methods at runtime
 - **CPython** - reference implementation
-    - Jython, Iron Python, ...
+    - Jython (Java), IronPython (.NET), ...
 - `snake_case` convention
 - `.pyc` - compiled python file (bytecode)
     - imported modules get compiled
+
+## Keywords
 - `pass` keyword - do nothing
 - `del` object - variable, class, function, dictionary entry, ...
-- repeat sequence operator `*`
-    - strings - `"A" * 5` -> `"AAAAA"`
-    - lists
-        - `[0] * 5` -> `[0, 0, 0, 0, 0]`
-        - `[0, 1] * 3` -> `[0, 1, 0, 1, 0, 1]`
 
 ## Data types
-- **numbers**
-    - integers - variable size
-    - floats
-    - complex numbers
-- **strings**
-    - `"Hell" in "Hello"` - contains
-- **booleans**
-- `None`
+![](_img/python3-types.png)
 
-### Strings formatting
+**Source**: Wikipedia.org
+
+- **integral**
+    - integer (`int`) - variable size
+    - booleans (`bool`) - `True/False`, `0/1`
+
+## Strings formatting
 - `%` operator
   ```
   "Hello %s!" % "world!"
@@ -52,6 +48,18 @@
 - `/` - float division
 - `//` - floor division
 
+### Sequence operators
+- slicing - `[start:end:step]`
+    - `[:8]` - from 0 to 8 (exclusive)
+    - `[8::2]` - every second from 8th to the end
+    - `[8:2:-1]` - slice in reverse
+    - `[::-1]` - revert string
+- repeat sequence operator `*`
+    - strings - `"A" * 5` -> `"AAAAA"`
+    - lists
+        - `[0] * 5` -> `[0, 0, 0, 0, 0]`
+        - `[0, 1] * 3` -> `[0, 1, 0, 1, 0, 1]`
+
 ## Comparators
 - `==` - equal to
 - `!=` - not equal to
@@ -59,19 +67,12 @@
 - `is not` - not equal to (identity)
 - multi-comparators: `if (a < b < c): ...`
 
-## Slicing
-- `[start:end:step]`
-    - `[:8]` - from 0 to 8 (exclusive)
-    - `[8::2]` - every second from 8th to the end
-    - `[8:2:-1]` - slice in reverse
-    - `[::-1]` - revert string
-
 ## Conditions
 - **ternary operator** - `myVar = "Child" if age < 18 else "Adult"`
 - `if - elif - else`
 - empty objects are considered `False` (`[]`, `""`, ..)
 
-## User input
+## User input from CLI
 ```
 word = input("Give me a word:")
 print(word.upper())
@@ -99,6 +100,9 @@ except FooError:
     handle()
 ```
 
+## `with`
+- similar to Java's `try-with-resources`
+
 ## Modules
 - `import MODULE [as ALIAS]`
 - `from MODULE import CLASS` - just a single class
@@ -115,8 +119,7 @@ except FooError:
 - imports can be anywhere in the code - **dynamic imports**
   ```
   if visual_mode:
-    import draw_visual as draw
+      import draw_visual as draw
   else:
-    import draw_textual as draw
+      import draw_textual as draw
   ```
-  

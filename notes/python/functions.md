@@ -1,37 +1,10 @@
 # Functions
-
-## Built-in functions
-- `print(*objects, sep=' ', end='/n')`
-- `type(object)`
-- `len(s)` - length of string or collection
-- `map(function, iterable)`
-- `filter(function, iterable)`
-- `id(object)` - object's identity ("hashcode")
-- `round`
-
-### Type conversions
-- `chr(i)` - Unicode code point to String character
-- `ord(s)` - String character to Unicode code point
-- `str(o)` - object to String
-- `int(x, base=10)` - number or String to int
-- `bool()`
-- `float()`
-
-### map, filter, reduce, zip
-- use `list(..)` to convert the result to list
 ```
-nums = [1, 2, 3, 4, 5]
-map(lambda i: i * i, nums)
-map(round, circle_areas, range(1, 7)) # 2 arguments for round !!!
-filter(lambda i: i < 3, nums)
-reduce()
-zip()
+def function_name(vars...):
+    body
+    [return foo]
 ```
 
-### User-defined functions
-```
-def function_name(vars...)
-```
 ## Lambdas
 ```
 lambda parameters: expression
@@ -39,7 +12,7 @@ lambda parameters: expression
 - single line only
 - always expressions
 
-### Functions as arguments
+## Functions as arguments
 - functions are first class citizens
 ```
 def calc(operation, op1, op2):
@@ -86,5 +59,4 @@ def auditable(old_function):
 @auditable
 def foo():
     print("FOOOO")
-  
 ```
