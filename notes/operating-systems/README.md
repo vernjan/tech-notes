@@ -9,6 +9,7 @@
 - [Inter-process Communication](ipc.md)
 - [I/O Management](io-management.md)
 - [Virtualization](virtualization.md)
+- [Distributed File System](dfs.md)
 
 ## Source
 - 🎥 [Introduction to Operating Systems](https://learn.udacity.com/courses/ud923) (Udacity)
