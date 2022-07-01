@@ -1,15 +1,16 @@
 # Operating Systems
 
-- [Introduction to Operating Systems](introduction-to-os.md)
-- [Processes and Process Management](processes.md)
-- [Threads and Concurrency](threads-concurrency.md)
-- [Signals and Interrupts](signals-interrupts.md)
+- [Introduction to Operating systems](introduction-to-os.md)
+- [Processes](processes.md)
+- [Threads](threads.md)
+- [Concurrency](concurrency.md)
+- [Signals and interrupts](signals-interrupts.md)
 - [Scheduling](scheduling.md)
-- [Memory Management](memory-management.md)
-- [Inter-process Communication](ipc.md)
-- [I/O Management](io-management.md)
+- [Memory management](memory-management.md)
+- [Inter-process communication](ipc.md)
+- [I/O management](io-management.md)
 - [Virtualization](virtualization.md)
-- [Distributed File System](dfs.md)
+- [Distributed file system](dfs.md)
 
 ## Source
 - 🎥 [Introduction to Operating Systems](https://learn.udacity.com/courses/ud923) (Udacity)

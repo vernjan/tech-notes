@@ -1,6 +1,7 @@
 # Inter-Process Communication
-- transfer data between address spaces
+- transfer data between address spaces (local or remote)
 - shell command `ipcs`
+- **techniques** - message passing or shared memory
 
 ## Message passing
 - OS maintains the channel and provides the interfaces for send/recv via system calls
@@ -13,7 +14,7 @@
 ### Message queues
 - **sockets**
     - ports
-    - also works between machines (TCP/IP)
+    - local or between machines (TCP/IP)
     - syscalls `socket()`, `send()`, `recv()`
 
 ## Shared memory IPC
@@ -31,7 +32,7 @@
     - hides implementation details of cross-machine communication
     - type checking
     - data conversion
-- **binding** - which servers and how to connect
+- **binding** - to which servers and how to connect
     - **registry** - contains available services and versions
 - not so popular today (CORBA, Java RMI, SunRPC)
     - heavy weight

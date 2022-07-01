@@ -1,17 +1,18 @@
 # Signals & Interrupts
 
-## Interrupts (traps)
-- external events (from network, disk IO, ..) to CPU
+## Interrupts
+- external event/signal from a hardware device (disk, network interface, ..) to CPU
 - defined on hardware level
 - handled by OS
 - (temporarily) suspend the current execution and trigger _interrupt handler_
 
-## Signals
-- events from processes or OS to other processes (SIGKILL, SIGSEGV, ..)
+## Signals & Traps
+- event/signal from a process or OS to other process (`SIGKILL`, `SIGSEGV`, ..)
 - form of inter-process communication (IPC)
 - `kill` - utility for sending signals
 - processes register signal handlers (default handlers exist)
-- defined by [POSIX](https://en.wikipedia.org/wiki/Signal_(IPC)#POSIX_signals)
+    - synchronous - user code is suspended
+- signals defined by [POSIX](https://en.wikipedia.org/wiki/Signal_(IPC)#POSIX_signals)
     - SIGINT - `ctrl + c`
     - SIGKILL
     - SIGSEGV

@@ -204,11 +204,19 @@
 - see [quorum](system-design/patterns/quorum.md), [hinted handoff](system-design/patterns/hinted-handoff.md) and [read repair](system-design/patterns/read-repair.md)
 
 #### Consistency models
+- see https://en.wikipedia.org/wiki/Consistency_model
 - **strong**
     - reads always return the latest writes (client never sees stale data)
     - not ideal for HA
     - low performance
+    - **strict** - total order is preserved, impractical
+    - **sequential** - total order not required, however all clients must see the same order
+    - **casual** - preserve order of somehow connected operations (respect causality)
 - **weak**
+    - need to use **synchronization operations** - `sync`
+        - to make changes visible
+            - modifying node has to call `sync` after the changes (make them visible)
+            - reading node has to call `sync` to see the changes
     - **eventual**
         - given enough time, all updates are propagated and replicas are consistent
         - high performance, high availability

@@ -1,5 +1,4 @@
 # Memory Management
-
 - processes use **virtual memory**
     - maps into physical memory (RAM, swap, ..)
 
@@ -16,18 +15,17 @@
     - **translation look-aside buffer** (TLB) - cache
 - lazy allocation of physical memory (_on first touch_)
 - multiple processes can share the same portions of physical memory
-    - **copy on write** (COW) - lazy copying, at first just point to the same physical memory and make a real
-      copy only if there is a write request
+    - **copy on write** (COW) - lazy copying
+        - at first, _point_ to the same physical memory and make a real copy only if there is a write request
 
 ### Page tables
 - per process (i.e. must be context switched - updating `CR3` register on x86)
 - hold just the first page, rest can be computed using offsets
-    - for example just the start of an array
 - typical page size is 4 kB
     - large pages - 2 MB
     - huge pages - 1 GB
 - **hierarchical** - a flat structure would use too much space (especially on 64-bit)
-- page pinning - the page can't be swapped out of the main memory
+- **page pinning** - the page can't be swapped out of the main memory
 
 ### Page table entry
 - **structure**
@@ -37,15 +35,16 @@
         - dirty (for caching)
         - R/W permission
         - user/kernel mode access
-- used by MMU (translation, access control)
-    - **MMU generates traps (interrupts) for kernel**
-    - for example handling page faults
-        - allocate page
-        - SIGSEGV
+
+## MMU - Memory Management Unit
+- part of CPU
+- generates **interrupts for kernel**
+    - for example handling page faults - allocate page (if allowed) or `SIGSEGV`
 
 ## Memory allocation
 - determines virtual memory to physical memory mapping
-- **kernel level** - static process state
+- **kernel level**
     - buddy and slab allocator
-- **user level** - dynamic process state (heap)
+- **user level**
+    - heap
     - malloc/free

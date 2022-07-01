@@ -1,24 +1,28 @@
 # Processes and Process Management
 - **process** - instance of an executing program
 - **address space** - process is mapped into memory
-    - addresses are _virtual_ (decoupled from physical memory - see TODO)
+    - addresses are _virtual_ (decoupled from physical memory)
     - static parts
         - text and code
     - dynamic parts
         - stack and heap
+- internally represented as [task_struct](https://docs.huihoo.com/doxygen/linux/kernel/3.7/structtask__struct.html)
+- **PID** - process ID
+- **PPID** - parent process ID
 
 ## Sources
 - [Difference between fork() and exec()](https://www.geeksforgeeks.org/difference-fork-exec/) (GeeksForGeeks)
 - [Differences between fork and exec](https://stackoverflow.com/questions/1653340/differences-between-fork-and-exec) (Stack Overflow)
 
 ## Process control block (PCB)
-- OS keeps track of ... for each process
-    - registries
+- for each process, OS keeps track of
+    - CPU registers
         - PC - program counter
         - stack pointer
     - memory mappings (virtual to physical)
     - list of open files
 - PCB is updated everytime a process gives up the CPU (a _context switch_)
+- nowadays, PCB is more granular and split into smaller blocks to better support _threads_
 
 ## Context switch
 - switching the CPU between processes
@@ -32,20 +36,14 @@
 **Source**: Introduction to Operating Systems (Udacity)
 
 ## Process creation
-- initial (root) process(es)
 - parent-child hierarchy
-- parent of all processes (UNIX) - **init** (process 1)
-- **fork**
+- **init** (ID 1) - parent of all UNIX processes
+- **fork** (`clone`)
     - duplicates the parent process (copies the parent's PCB) but with new process ID
+    - memory is copied lazily (not until the first write)
+        - Copy on Write (COW)
     - both parent and child continues with the next instruction after fork
-        - in code, call to _fork_ returns 0 in the new child process, and child's PID in the parent process
-- **exec**
+        - in code, call to _fork_ returns 0 in the new child process, while child's PID in the parent process
+- **exec** (`execve`)
     - loads a new program (replaces the current) and starts from the first instruction
 - the typical pattern is to first call _fork_, then _exec_
-
-## CPU scheduler
-- picks one _ready_ process to run, and for how long
-- OS must
-    1. _preempt_ - interrupt and save the current context
-    2. _schedule_ - OS run the CPU scheduler
-    3. _dispatch_ - dispatch a process and switch into its context
