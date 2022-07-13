@@ -46,12 +46,13 @@
 - immutable, `frozenset(..)`
 
 ## Mappings - Dictionaries
-- `dict = {"John": 33, "Jane": 28}`, or `dict(John=33, Jane=28)`
+- `my_dict = {"John": 33, "Jane": 28}`, or `my_dict = dict(John=33, Jane=28)`
 - unordered
-- iteration - `for name, age in dict.items():`
-- contains key - `"foo" in my_dict`
+- iteration - `for name, age in my_dict.items():`
+- adding new entry - `my_dict["Harry"] = 55`
+- contains a key - `"foo" in my_dict`
+- removing a key - `del my_dict["John"]`
 - list keys - `list(my_dict)`
-- removing a key - `del phonebook["John"]`
 
 ## Conversions
 - `list(..)`
