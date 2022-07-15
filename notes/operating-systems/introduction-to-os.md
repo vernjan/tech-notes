@@ -22,7 +22,12 @@
 - interrupts
 - signals & traps
 
-# POSIX (Portable Operating System Interface)
+## Standards
+- [POSIX.1-2008](http://pubs.opengroup.org/onlinepubs/9699919799/)
+- [Filesystem Hierarchy Standard (FHS) Version 3.0](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
+- [Linux Standard Base (LSB) Version 5.0 (2015)](https://refspecs.linuxfoundation.org/lsb.shtml)
+
+### POSIX (Portable Operating System Interface)
 - [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799/) for maintaining compatibility between operating systems
 - defines both the system and user-level API
     - processes
