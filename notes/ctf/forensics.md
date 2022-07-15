@@ -2,8 +2,12 @@
 
 ## Unknown file
 - `file [file]`
+- `stats FILE` - show detailed file info
 - `strings -n 8 [file]`
 - `xxd [file]`
+
+## Text extraction
+- `strings -t x` - print offsets in hex
 
 ## Zip
 - see [ZIP (file format)](https://en.wikipedia.org/wiki/Zip_(file_format)#Structure) (Wiki)

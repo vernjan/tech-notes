@@ -7,6 +7,7 @@
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
 - [Operating systems](notes/operating-systems/README.md)
-- [Linux](notes/linux.md)
+    - [Linux](notes/operating-systems/linux/README.md)
+    - [Windows 10](notes/operating-systems/win10/README.md)
 - [Math](notes/math.md)
 - [CTFs](notes/ctf/README.md)
