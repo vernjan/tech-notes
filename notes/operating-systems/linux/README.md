@@ -22,3 +22,13 @@
 - hard link is just a different name (same _inode_) while sof link is a new reference (alternative path) to the original file
 - hard links are limited to same partitions
 - removing a hard link causes no issues - inode has a counter of hard links, and it's not deleted until it reaches 0
+
+## Partitions & mounts
+- limited to 4 primary partitions - _extended_ partition as a workaround (servers as a container for more partitions)
+- `fdisk` - manage all around partitions
+    - `fdisk -l` - list all partitions
+    - `fdisk /dev/sdx` - manage partitions on the given disk
+- `mkfs -v -t ext4 /dev/dsx` - make filesystem
+- `mount` - list all mounts
+    - `mount -v -t ext4 /dev/sdx /mnt/foo`
+- `/etc/fstab` - permanent mounts

@@ -6,6 +6,7 @@
 - **object-oriented**
     - everything is object, no primitives
     - dynamic classes - easy to add/remove fields or methods at runtime
+- compiles from top to bottom (define classes before using objects)
 - **CPython** - reference implementation
     - Jython (Java), IronPython (.NET), ...
 - `snake_case` convention
