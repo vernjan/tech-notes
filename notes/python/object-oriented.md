@@ -33,3 +33,16 @@ class MyChild(MyParent1, ...):
         super().__init__(...)
         ...
 ```
+
+## Abstract base class
+- not natively supported, import from `abc` module
+```
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):  # Shape is a child class of ABC
+    @abstractmethod
+    def area(self):
+        pass
+
+```

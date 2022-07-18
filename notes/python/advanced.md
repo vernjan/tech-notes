@@ -151,3 +151,12 @@ str = pickle.dumps(obj)
 ## Dunder methods
 - names begin and end with double-underscores (`__name__`)
 - to allow user-defined classes to modify how they are handled by native operations including length, comparison, in arithmetic operations and type conversion
+
+## Operator overloading
+- implement one of the predefined methods, for example
+    - `__plus__(self, other)`
+    - `__sub__(self, other)`
+    - `__and__(self, other)`
+    - `__lt__(self, other)`
+    - `__gt__(self, other)`
+    - ...
