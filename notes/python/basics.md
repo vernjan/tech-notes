@@ -103,6 +103,11 @@ except FooError:
 ## `with`
 - similar to Java's `try-with-resources`
 
+## Access modifiers
+- properties and methods are **public by default**
+- to make them private, use naming pattern `__foo`
+- even private members can be accessed using `_ClassName__foo`
+
 ## Modules
 - `import MODULE [as ALIAS]`
 - `from MODULE import CLASS` - just a single class
