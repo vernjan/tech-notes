@@ -32,3 +32,7 @@
 - `mount` - list all mounts
     - `mount -v -t ext4 /dev/sdx /mnt/foo`
 - `/etc/fstab` - permanent mounts
+
+## Login shell
+- **non-login shell** - does not read, and execute, the contents of `/etc/profile` or `.bash_profile files`,
+  but rather reads, and executes, the `.bashrc` file instead.

@@ -10,6 +10,11 @@
 - `range([start], stop, [step])`
 - `reversed(seq)` - reverse a sequence
 - `sorted(seq)`
+- `eval(expr, globals, locals)` - evaluate Python expression
+   ```
+   x = 100
+   res = eval("x * 2")
+   ```
 
 ## Predicates
 - `all(iterable)`
