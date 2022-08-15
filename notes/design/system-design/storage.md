@@ -9,6 +9,7 @@
 - **block storage** - sequence of bytes, most low level
     - common API - **SCSI**
     - transports - SAS (serial attached SCSI), FCP, iSCSI
+    - API - `read/write(disk, offset, data)`
 - **file storage** - manages data as a file hierarchy (on top of a block storage)
     - access via Samba, NFS
 - **object/blob** - manages data as objects
@@ -54,6 +55,7 @@
     - hosts have usually 2 HBAs
     - network has at least 2 switches
     - storage array has multiple ports and disks in RAID
+- data deduplication, encryption
 
 ## SCSI, NVMe
 
@@ -73,6 +75,9 @@
 - supports **exceptions and errors**
 
 ### NVMe (non-volatile memory express)
+- communication protocol - modern alternative to AHCI (SCSI)
+- built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
+    - uses parallel access (impossible for rotating disks)
 
 ## HDD, SSD
 - **HDD**
@@ -84,3 +89,16 @@
     - limited number of overwrites
     - random access - possibly parallel
     - consume less power
+
+## M.2
+- physical slot (connector)
+- replaces `mSATA`
+- can also be used for WiFi, BT, NFC, ..
+- supports PCIe, SATA III, USB 3.0
+- **PCIe + NVMe** - fastest connections for SSDs
+
+## RAID
+- `0` - join disks together - increased capacity but no redundancy
+- `1` - mirroring, requires double capacity
+- `5` - single parity, at least 3 disks, 1 can fail
+- `6` - double parity, at least 4 disks, 2 can fail

@@ -28,6 +28,7 @@
 
 ## Windows management
 - `WinKey + M` - minimize all windows
+- `WinKey + Home` - minimize all other windows
 - `WinKey + arrows` - position window
 - `WinKey + shift + UP` - stretch window to the top and bottom of the screen
 
@@ -44,6 +45,8 @@
 - `ctrl + arrows + space` - select multiple items
 - `alt + LEFT/RIGHT` - navigate back/forward
 - `alt + enter` - file properties
+- `tab` & `shift + tab` - jump between explorer components
+- `alt + d` - go to address bar
 
 ## Taskbar
 - `shift + click` - open new instance

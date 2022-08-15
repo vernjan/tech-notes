@@ -9,7 +9,7 @@
 - **paravirtualization** - guest OS is modified to run faster with a hypervisor
 
 ## Models
-- **bare-metal** (hypervisor based)
+- **bare-metal / native** (hypervisor based)
     - type 1
     - Citrix XenServer, VMWare ESX, Microsoft Hyper-V
 - **hosted**
