@@ -61,6 +61,7 @@
 
 ### SCSI (small computer system interface)
 - block storage API
+- client-server protocol5
 - **commands** - read/write, copy, zero, ...
 - **command structure**
     - initiator ID
@@ -78,6 +79,7 @@
 - communication protocol - modern alternative to AHCI (SCSI)
 - built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
     - uses parallel access (impossible for rotating disks)
+- supports PCIe
 
 ## HDD, SSD
 - **HDD**
