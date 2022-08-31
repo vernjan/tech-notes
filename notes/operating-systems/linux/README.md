@@ -26,6 +26,7 @@
 
 ## Partitions & mounts
 - limited to 4 primary partitions - _extended_ partition as a workaround (servers as a container for more partitions)
+- `lsblk` - list all devices
 - `fdisk` - manage all around partitions
     - `fdisk -l` - list all partitions
     - `fdisk /dev/sdx` - manage partitions on the given disk
