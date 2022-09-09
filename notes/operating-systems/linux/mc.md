@@ -1,6 +1,7 @@
 # Midnight Commander
 
 ## Sources
+
 http://www.trembath.co.za/mctutorial.html#anchor16
 
 - `F10` - exit
@@ -13,15 +14,26 @@ http://www.trembath.co.za/mctutorial.html#anchor16
 - `ctrl + \` - bookmarks
 - `alt + c` - quick cd
 - `alt + h` - show history
+- `alt + i` - synchronize tabs (same dirs)
 - `alt + t` - cycle through different views
 - `alt + .` - toggle hidden files
 - `alt + ?` - global search
+- `alt + y/u` - navigate back and forth in dir history
+- `alt + p/n` - navigate back and forth in command history
+- `alt + a/enter` - copy full path / file name to console
 
 ---
-- `ctrl + x, d` - compare
-- `ctrl + x, c` - chmod
 
-## File selection
-- `+` - select files
-- `\` - unselect files
-- `*` - reverse selection
+- `ctrl + x, c` - **c**hmod
+- `ctrl + x, d` - compare **d**irs
+- `ctrl + x, s` - **s**ymlink
+- `ctrl + x, o` - **o**wner
+- `ctrl + x, q` - **q**uick view - see the file content
+- `ctrl + x, i` - **i**nfo - permissions, timestamps
+- `ctrl + space` - dir size
+
+## Group selection
+
+- `+` - select groups (files)
+- `\` - unselect group
+- `*` - invert selection

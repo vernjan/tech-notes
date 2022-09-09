@@ -2,7 +2,9 @@
 
 - [Linux commands](linux-commands.md)
 - [Terminal shortcuts](terminal-shortcuts.md)
+- [Terminator shortcuts](terminator-shortcuts.md)
 - [Midnight Commander](mc.md)
+- [Zsh](zsh.md)
 
 ## Source
 - [Explanation of “Everything is a File” and Types of Files in Linux](https://www.tecmint.com/explanation-of-everything-is-a-file-and-types-of-files-in-linux/) (Tecmint blog)
