@@ -1,0 +1,24 @@
+[global_config]
+  geometry_hinting = True
+  window_state = maximise
+  title_at_bottom = True
+  title_hide_sizetext = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#ffffff"
+    cursor_color = "#aaaaaa"
+    font = JetBrains Mono 13
+    foreground_color = "#000000"
+    scrollback_lines = 10000
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]

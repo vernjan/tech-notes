@@ -1,7 +1,6 @@
 # Vim
 - `:help [TOPIC]` - show help
 - `ctrl+g` - show status bar (filename, total number of lines, ...)
-- my [.vimrc](vimrc.md)
 
 ## Modes
 https://www.freecodecamp.org/news/vim-editor-modes-explained/
