@@ -26,11 +26,13 @@
   ```
   list.insert(index, obj)
   list.remove(obj)
-  list.append(obj) // push
+  list.append(obj) # push
   list.pop()
+  list[:3] = [] # remove first 3 elements
   ```
 - contains - `in`, `not in`
 - sorting - `list.sort()`
+- re-assign sublist - `letters[2:5] = ['C', 'D', 'E']`
 
 ### Byte arrays
 

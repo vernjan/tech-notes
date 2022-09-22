@@ -1,4 +1,5 @@
 # Python Basics
+
 - interpreted, dynamically typed, garbage collected
     - **duck typing**
         - "If it walks like a duck, and it quacks like a duck, then it must be a duck"
@@ -14,19 +15,32 @@
     - imported modules get compiled
 
 ## Keywords
+
 - `pass` keyword - do nothing
 - `del` object - variable, class, function, dictionary entry, ...
 
 ## Data types
+
 ![](_img/python3-types.png)
 
 **Source**: Wikipedia.org
 
-- **integral**
-    - integer (`int`) - variable size
-    - booleans (`bool`) - `True/False`, `0/1`
+### Numbers
+
+- **integer** (`int`) - variable size
+- **boolean** (`bool`) - `True/False`, `0/1`
+- **float** (`float`) - `1.0`
+
+### Strings
+
+- single or double quotes - no real difference
+    - `"I don't know."` vs. `'She said "No!"'`
+- **raw strings** - `r"C:\foo\name"` - `\n` is not interpreted
+- **multiline strings** - `'''` or `"""`
+    - `\` - don't add new line
 
 ## Strings formatting
+
 - `%` operator
   ```
   "Hello %s!" % "world!"
@@ -45,11 +59,14 @@
     - `%x`, `%X` - hexadecimal (lower/upper)
 
 ## Operators
+
 - `**` - exponent
-- `/` - float division
-- `//` - floor division
+- `/` - float division - returns `float`
+- `//` - _floor_ division - returns `int`
+- `%` - modulo (remainder)
 
 ### Sequence operators
+
 - slicing - `[start:end:step]`
     - `[:8]` - from 0 to 8 (exclusive)
     - `[8::2]` - every second from 8th to the end
@@ -62,6 +79,7 @@
         - `[0, 1] * 3` -> `[0, 1, 0, 1, 0, 1]`
 
 ## Comparators
+
 - `==` - equal to
 - `!=` - not equal to
 - `is` - equal to (identity)
@@ -69,17 +87,20 @@
 - multi-comparators: `if (a < b < c): ...`
 
 ## Conditions
+
 - **ternary operator** - `myVar = "Child" if age < 18 else "Adult"`
 - `if - elif - else`
 - empty objects are considered `False` (`[]`, `""`, ..)
 
 ## User input from CLI
+
 ```
 word = input("Give me a word:")
 print(word.upper())
 ```
 
 ## Loops
+
 ```
 for i in range(1, 10, 2):
     print(i)
@@ -93,7 +114,9 @@ for i in ["a", "b", "c"]:
     - skipped on break
 
 ## Exception handling
+
 - see [Built-in Exceptions](https://docs.python.org/3/library/exceptions.html)
+
 ```
 try:
     something()
@@ -102,22 +125,27 @@ except FooError:
 ```
 
 ## `with`
+
 - similar to Java's `try-with-resources`
 
 ## Access modifiers
+
 - properties and methods are **public by default**
 - to make them private, use naming pattern `__foo`
 - even private members can be accessed using `_ClassName__foo`
 
 ## Modules
+
 - `import MODULE [as ALIAS]`
 - `from MODULE import CLASS` - just a single class
 - **[PSL](https://docs.python.org/3/library/)** - Python Standard Library
     - datetime, math, random, ...
 - **[PyPI](https://pypi.org/)** (Python Package Index)
     - Request, NumPy, Django, ...
+- running Python module as a script `python -m MODULE [args]`
 
 ### Custom modules
+
 - **file.py** = module
 - import using `import`
 - module is initialized the first time it gets loaded (think `static` blocks in Java)
