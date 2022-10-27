@@ -13,6 +13,7 @@
     - `-r nsa64.rule.txt` - rules (such as append a number at the end)
 
 ### Brute-force with mask (`[a-z0-9]{8}`)
+- see https://hashcat.net/wiki/doku.php?id=mask_attack
 - `hashcat -m 10 -a 3 -1 ?l?d ?1?1?1?1?1?1?1?1 hashes.txt`
     - `-a 3` is brute-force attack mode
     - `-1 ?l?d`  defines custom charset

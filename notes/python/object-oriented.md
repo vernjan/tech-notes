@@ -1,14 +1,18 @@
 # Object-Oriented Python
+
 - methods and properties can be added to object dynamically
 
 ## Class
+
 ```
 class Car:
     pass
 ```
 
 ## Initializers (constructors)
+
 - special name `__init__`
+
 ```
 def __init__(self, number):
     self.number = number
@@ -17,12 +21,14 @@ def __init__(self, number):
 ## Properties
 
 ### Class properties
+
 ```
 class Car:
     instance_counter = 0
 ```            
 
 ### Instance properties
+
 ```
 class Car:
     def __init__(self, name):
@@ -30,12 +36,17 @@ class Car:
 ```
 
 ## Methods
+
 - **can't explicitly overloaded** - the latest definition will override the previous one
 - implicit overloading - using **default values**
+- **overriding** - is supported, parameters are not part of the method definition
+    - see https://stackoverflow.com/questions/6034662/python-method-overriding-does-signature-matter
 
 ### Instance methods
+
 - access to instance (and class) properties
 - name convention for 1st param - `self`
+
 ```python
 class Car:
 
@@ -44,6 +55,7 @@ class Car:
 ```
 
 ### Class methods
+
 - access to class properties
 - use annotation `@classmethod`
 - name convention for 1st param - `cls`
@@ -58,8 +70,10 @@ class Car:
 ```
 
 ### Static methods
+
 - no access to any properties (util methods)
 - use annotation `@staticmethod`
+
 ```python
 class Car:
 
@@ -69,6 +83,7 @@ class Car:
 ```
 
 ## Example
+
 ```python
 class Car:
     counter = 0
@@ -96,9 +111,8 @@ car2.print_status()
 print(Car.counter)
 ```
 
-
-
 ## Inheritance
+
 - multiple inheritance is allowed
 - `super()` (with parenthesis) to refer to the parent class/object
     - unlike Java, call to _super_ doesn't have to be on the first line in a constructor
@@ -111,7 +125,9 @@ class MyChild(MyParent1, ...):
 ```
 
 ## Abstract base class
+
 - not natively supported, import from `abc` module
+
 ```
 from abc import ABC, abstractmethod
 
