@@ -3,6 +3,7 @@
 ## Hashcat
 - https://hashcat.net/wiki/doku.php?id=hashcat
 - cracking single hash `hashcat HASH`
+- `w [1-4]` - workload, the higher the more resources allowed, default is 2
 
 ### Dictionary attack
 - `hashcat -m 10 -a 0 hashes.txt rockyou.txt`
