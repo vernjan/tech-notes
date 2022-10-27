@@ -2,6 +2,7 @@
 
 ## Hashcat
 - https://hashcat.net/wiki/doku.php?id=hashcat
+- cracking single hash `hashcat HASH`
 
 ### Dictionary attack
 - `hashcat -m 10 -a 0 hashes.txt rockyou.txt`
@@ -11,6 +12,11 @@
 ### Dictionary attack with rules
 - `hashcat -m 10 -a 0 hashes.txt rockyou.txt -r nsa64.rule.txt`
     - `-r nsa64.rule.txt` - rules (such as append a number at the end)
+
+### Hybrid attack (dictionary + prepends/appends)
+- see https://hashcat.net/wiki/doku.php?id=hybrid_attack
+- `hashcat 32644235283BC5561CC7FE4FFFADDAEE -m 1000 -a 6 mydict.txt ?a?a?a?a`
+    - append 4 characters
 
 ### Brute-force with mask (`[a-z0-9]{8}`)
 - see https://hashcat.net/wiki/doku.php?id=mask_attack
