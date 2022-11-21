@@ -11,12 +11,12 @@
 ## Models
 - **bare-metal / native** (hypervisor based)
     - type 1
-    - Citrix XenServer, VMWare ESX, Microsoft Hyper-V
+    - Citrix XenServer, VMWare ESX, Microsoft Hyper-V, Linux KVM
 - **hosted**
     - type 2
     - instead of the standard hypervisor there is a host OS with "hypervisor" module
     - host OS owns all hardware
-    - KVM, VirtualBox, VMWare Player
+    - VirtualBox, VMWare Player
 
 ## Hardware protection levels
 - x86 - 4 rings
