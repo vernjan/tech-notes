@@ -6,3 +6,4 @@
 - [Functions, lambdas and closures](functions.md)
 - [Object-oriented Python](object-oriented.md)
 - [Advanced topics](advanced.md)
+- [Managing dependencies](managing-dependencies.md)

@@ -1,4 +1,4 @@
-# Advanced Python
+# Advanced Topics
 
 ## Multi-assignments & Sequence unpacking
 ```
