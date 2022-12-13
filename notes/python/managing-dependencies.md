@@ -22,7 +22,7 @@
 ## venv
 
 ```
-$ python3.x -m venv venv`
+$ python3.x -m venv venv
 $ source venv/bin/activate
 $ (venv) ..
 ```

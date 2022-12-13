@@ -11,6 +11,7 @@
 - [Partitioning](partitioning.md)
 - [Scaling](scaling.md)
 - [Storage](storage.md)
+- [Storage - VMware](storage-vmware.md)
 - [Stream processing](stream-processing.md)
 - [System design patterns](patterns/README.md)
 
