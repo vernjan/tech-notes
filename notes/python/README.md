@@ -7,3 +7,4 @@
 - [Object-oriented Python](object-oriented.md)
 - [Advanced topics](advanced.md)
 - [Managing dependencies](managing-dependencies.md)
+- [Snippets](snippets.md)

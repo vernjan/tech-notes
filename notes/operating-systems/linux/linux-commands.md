@@ -34,9 +34,3 @@
 $ iptables -I INPUT 5 -p tcp --dport 8969 -j ACCEPT
 $ iptables -nL --line-numbers
 ```
-
-## Show dependant Python packages
-
-```
-$ python3.8 -m pip list | cut -d' ' -f1 | while read pkg; echo $pkg; do apt-cache rdepends --installed $pkg; done
-```
