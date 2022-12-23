@@ -214,13 +214,27 @@
         - provider ID (Pure Storage `24a937`)
         - volume ID
 
+| SCSI | NVMe         |
+|------|--------------|
+| LU   | namespace    |
+| LUN  | namespace ID |
+| IQN  | NQN          |
+| ALUA | ANA          |
+
 ### NVMe-oF (over Fabrics)
 
-- **FC-NVMe** - over fibre channel, high performance, secure
-- **NVMe-TCP** - over standard TCP/IP network (no RDMA), higher latencies, easy to use, scalable
+- **Asymmetric Namespace Access** (ANA) - NVMe standard
+    - multi-pathing
+    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal way to access a given namespace
+    - SCSI's equivalent is ALUA
 - **RDMA** - remote direct memory access
     - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
+    - RNIC - RDMA capable NIC
+- **implementations**
+    - **FC-NVMe** - over fibre channel, high performance, secure
     - **RoCE2** - **RDMA over Converged Ethernet** - use your existing network
+    - **NVMe-TCP** - over standard TCP/IP network (no RDMA), higher latencies, easy to use, scalable
 
 Best performance if storage also uses NVMe to access the data:
 ![img.png](_img/nvme-of.png)
+
