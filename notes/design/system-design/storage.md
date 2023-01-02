@@ -21,7 +21,7 @@
 
 ### M.2
 
-- physical slot (connector)
+- physical slot (form factor, "connector")
 - replaces `mSATA`
 - can also be used for WiFi, BT, NFC, ..
 - supports PCIe, SATA III, USB 3.0
@@ -186,27 +186,59 @@
 
 - communication protocol (command set) - modern alternative to SCSI
 - built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
-- uses **parallel access**
-    - each core has a dedicated queue for each SSD (up to 64k parallel queues, each queue up to 64k commands)
-    - impossible for rotating disks, SAS has serial access
+- support both local (PCIe) and remote (FC, TCP, RoCE, ..) devices
 - has **lower latency** than SCSI - fewer layers, reduced command set
     - <3 microseconds
-- support both local (PCIe) and remote (FC, RoCE, ..) devices
-- **NQN** - NVMe Qualified Name (`nqn.2014-08.com.vendor:nvme:nvm-subsystem-sn-d78432`)
-    - uniquely identifies (and authenticates) NVMe peers
-    - 1 NQN per ESXi host, 1 NQN per array
-- NVMe encapsulates commands/responses into **capsules**
-- **namespaces**
+- **form factor** - physical connector
+
+### Technical glossary
+
+- **controller** - physical device, typical SSD has one NVMe controller
+    - connection is between a host and controller
+    - dual-ported SSD exist
+    - one host can, of course, has many SSDs (and thus many controllers)
+- **host** - client
+    - host NQN - globally unique
+    - host ID - unique within the host (VM, pod, container, application, ...)
+- **namespace**
     - NVMe uses namespace IDs while SCSI uses LUN IDs
     - divides the SSD into logical units - to host it appears as a separate SSD disk
         - namespace has a file system
     - each namespace may have its own IO queue
         - enables efficient split of large disks
+    - supports _thin provisioning_
+    - **NSID** - namespace identifier used by a controller to provide access to a namespace
     - **namespace vs. partition**
         - controller level - host level
         - dedicated queues - single queue
         - parallel access - serial access
         - supports vSAN - doesn't support vSAN
+- **queues**
+    - enable parallel access (impossible for rotating disks, SAS has serial access)
+    - queue pair (submission and completion queue)
+        - many submission queues can map onto a single completion queue
+    - each core can have multiple dedicated I/O queues
+        - up to 64k parallel queues, each queue up to 64k commands
+    - exactly one admin queue pair per controller
+
+  ![](_img/nvme-qeues.png)
+
+- **command set**
+    - NVMe encapsulates commands/responses into **capsules**
+    - admin commands (exactly one admin queue)
+        - create/delete submissions/completion queue
+        - get/set features
+        - abort
+        - identify
+        - get log page
+        - async event requests
+    - IO commands (up to 64k queues)
+        - read/write
+        - flush
+
+- **NQN** - NVMe Qualified Name (`nqn.2014-08.com.vendor:nvme:nvm-subsystem-sn-d78432`)
+    - uniquely identifies (and authenticates) NVMe peers
+    - 1 NQN per ESXi host, 1 NQN per array
 - **NGUID** - Namespace Globally Unique Identifier
     - for every volume on an array (`eui.003b7b308d98f94224a9375e00018816`)
     - made of 3 parts:
@@ -223,18 +255,42 @@
 
 ### NVMe-oF (over Fabrics)
 
+- replaces PCIe transport with fabrics
+- **discovery** - return names and addresses of NVMe subsystems
+- **subsystem** - typically a storage array
+    - one or more physical fabric interfaces (ports)
+    - one or more controllers (attached to ports)
+    - one or more NVM storage mediums
+    - namespaces can be shared across controllers and hosts
+    - allows IO multi-pathing
+
+  ![](_img/nvme-subsystem-vmware.png)
+
+  **Source**: https://blogs.vmware.com/virtualblocks/2018/08/20/nvme-over-fabrics-part-two/
+
+- **controller** (NVMe-oF context)
+    - controller is associated with exactly one host at a time
+    - NVMe controllers in storage arrays are dynamic (virtual) - created/removed based on the connected hosts
 - **Asymmetric Namespace Access** (ANA) - NVMe standard
-    - multi-pathing
-    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal way to access a given namespace
+    - for multi-pathing
+    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal way to access
+      a given namespace
     - SCSI's equivalent is ALUA
+- **namespace sharing**
+    - two or more hosts can access a namespace using different NVMe controllers
 - **RDMA** - remote direct memory access
     - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
     - RNIC - RDMA capable NIC
+    - RoCE, InfiniBand, iWARP
 - **implementations**
     - **FC-NVMe** - over fibre channel, high performance, secure
-    - **RoCE2** - **RDMA over Converged Ethernet** - use your existing network
+    - **RoCE2** - **RDMA over Converged Ethernet**
     - **NVMe-TCP** - over standard TCP/IP network (no RDMA), higher latencies, easy to use, scalable
 
 Best performance if storage also uses NVMe to access the data:
+
 ![img.png](_img/nvme-of.png)
+
+- front-end NVMe - host
+- back-end NVMe - storage array
 

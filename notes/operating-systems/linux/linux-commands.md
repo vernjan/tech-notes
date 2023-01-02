@@ -11,7 +11,7 @@
     - `df PATH` - filesystem for the given path
     - `-h` - human-readable
 - `stat`
-- `debugs` - debugging/inspecting filesystem internals
+- `debugfs` - debugging/inspecting filesystem internals
     - `open FS_NAME`
 
 ## dpkg
