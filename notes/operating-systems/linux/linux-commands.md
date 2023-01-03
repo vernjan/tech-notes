@@ -1,6 +1,6 @@
 # Linux Commands
 
-## Files
+## File systems & Files
 
 - `du -sh *` - **disk usage**
     - `-s` - summary of this dir
@@ -27,6 +27,14 @@
 ## ss
 
 - `-plt` - process, listen, full TCP
+
+## xargs
+
+- `ls | xargs -I@ echo Hello @`
+
+## Globbing
+
+- `echo my_file{001..100}.txt` - 100 files with leading zeros
 
 ## Modify system firewall
 

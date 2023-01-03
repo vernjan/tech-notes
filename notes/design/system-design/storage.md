@@ -125,6 +125,7 @@
 - **WWN** - world-wide name
     - 8 bytes (e.g. `21:00:00:0E:1E:25:A6:D0`)
     - **WWNN** - world-wide node name
+        - unique per HBA (i.e. not per ESXi host)
     - **WWPN** - world-wide port name
         - single HBA can have multiple ports
         - similar to Ethernet MAC address
@@ -186,7 +187,7 @@
 
 - communication protocol (command set) - modern alternative to SCSI
 - built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
-- support both local (PCIe) and remote (FC, TCP, RoCE, ..) devices
+- support both direct local (direct attach over PCIe) and remote (over fabrics - FC, TCP, RoCE, ..) devices
 - has **lower latency** than SCSI - fewer layers, reduced command set
     - <3 microseconds
 - **form factor** - physical connector
@@ -198,16 +199,20 @@
     - dual-ported SSD exist
     - one host can, of course, has many SSDs (and thus many controllers)
 - **host** - client
-    - host NQN - globally unique
+    - host NQN - globally unique, usually one NQN per host (except for VMware's vVol and VMFS)
+        - multiple NICs on the same host have the same NQN
     - host ID - unique within the host (VM, pod, container, application, ...)
 - **namespace**
     - NVMe uses namespace IDs while SCSI uses LUN IDs
     - divides the SSD into logical units - to host it appears as a separate SSD disk
         - namespace has a file system
+        - ESXi sees as a _storage device_
     - each namespace may have its own IO queue
         - enables efficient split of large disks
     - supports _thin provisioning_
     - **NSID** - namespace identifier used by a controller to provide access to a namespace
+        - unique within an NVMe controller (for example `94494`)
+    - **namespace UUID** - namespace global unique identifier (for example `eui.00dd27a1822c4a4824a937cc00012443`)
     - **namespace vs. partition**
         - controller level - host level
         - dedicated queues - single queue
@@ -255,9 +260,16 @@
 
 ### NVMe-oF (over Fabrics)
 
-- replaces PCIe transport with fabrics
+- replaces PCIe transport with fabrics (remote access)
+    - **RDMA** - remote direct memory access
+        - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
+        - RNIC - RDMA capable NIC
+        - **RoCE2** - **RDMA over Converged Ethernet**, InfiniBand, iWARP
+    - **FC-NVMe** - over Fibre Channel, high performance, secure, costly
+    - **NVMe-TCP** - over standard TCP/IP network, a bit higher latencies but easy to use, available and scalable
 - **discovery** - return names and addresses of NVMe subsystems
-- **subsystem** - typically a storage array
+- **NVMe subsystem** - typically a storage array
+    - identified by NQN
     - one or more physical fabric interfaces (ports)
     - one or more controllers (attached to ports)
     - one or more NVM storage mediums
@@ -268,24 +280,21 @@
 
   **Source**: https://blogs.vmware.com/virtualblocks/2018/08/20/nvme-over-fabrics-part-two/
 
-- **controller** (NVMe-oF context)
-    - controller is associated with exactly one host at a time
-    - NVMe controllers in storage arrays are dynamic (virtual) - created/removed based on the connected hosts
 - **Asymmetric Namespace Access** (ANA) - NVMe standard
     - for multi-pathing
     - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal way to access
       a given namespace
     - SCSI's equivalent is ALUA
+- **NVMe controller**
+    - represents **a path** between a host and array
+        - ESXi view: host HBA -> array port
+        - array view: host NQN
+            - dynamic (virtual) - created/removed based on the connected hosts
+    - controller is associated with
+        - exactly one host
+        - multiple namespaces
 - **namespace sharing**
     - two or more hosts can access a namespace using different NVMe controllers
-- **RDMA** - remote direct memory access
-    - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
-    - RNIC - RDMA capable NIC
-    - RoCE, InfiniBand, iWARP
-- **implementations**
-    - **FC-NVMe** - over fibre channel, high performance, secure
-    - **RoCE2** - **RDMA over Converged Ethernet**
-    - **NVMe-TCP** - over standard TCP/IP network (no RDMA), higher latencies, easy to use, scalable
 
 Best performance if storage also uses NVMe to access the data:
 
