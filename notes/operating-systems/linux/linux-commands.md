@@ -32,6 +32,10 @@
 
 - `ls | xargs -I@ echo Hello @`
 
+## find
+
+- `find ~ -type f -name itertools.py`
+
 ## Globbing
 
 - `echo my_file{001..100}.txt` - 100 files with leading zeros
