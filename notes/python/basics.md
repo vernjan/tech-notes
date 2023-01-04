@@ -13,6 +13,11 @@
 - `snake_case` convention
 - `.pyc` - compiled python file (bytecode)
     - imported modules get compiled
+- **[PSL](https://docs.python.org/3/library/)** - Python Standard Library
+    - datetime, math, random, ...
+- **[PyPI](https://pypi.org/)** (Python Package Index)
+    - Request, NumPy, Django, ...
+- running Python module as a script `python -m MODULE [args]`
 
 ## Keywords
 
@@ -133,27 +138,3 @@ except FooError:
 - properties and methods are **public by default**
 - to make them private, use naming pattern `__foo`
 - even private members can be accessed using `_ClassName__foo`
-
-## Modules
-
-- `import MODULE [as ALIAS]`
-- `from MODULE import CLASS` - just a single class
-- **[PSL](https://docs.python.org/3/library/)** - Python Standard Library
-    - datetime, math, random, ...
-- **[PyPI](https://pypi.org/)** (Python Package Index)
-    - Request, NumPy, Django, ...
-- running Python module as a script `python -m MODULE [args]`
-
-### Custom modules
-
-- **file.py** = module
-- import using `import`
-- module is initialized the first time it gets loaded (think `static` blocks in Java)
-- static imports - `from my_lib import the_function`
-- imports can be anywhere in the code - **dynamic imports**
-  ```
-  if visual_mode:
-      import draw_visual as draw
-  else:
-      import draw_textual as draw
-  ```
