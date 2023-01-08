@@ -175,13 +175,16 @@
     - host B: `array1:254`, array: `hostB:254`
 - can change in time (after restart)
 
-### IQN
+### iSCSI
 
-- qualified name (unique identifier) used by iSCSI
-- host has IQN - `iqn.1998-01.com.vmware:init87-5-74dd7f3f`
-- array has IQN - `iqn.2010-06.com.purestorage:flasharray.1e9f64c2c529d632:10.14.226.107:3260`
+- SCSI over IP
+- default port 3260
+- **IQN** - qualified name (unique identifier)
+    - host has IQN - `iqn.1998-01.com.vmware:init87-5-74dd7f3f`
+    - array has IQN - `iqn.2010-06.com.purestorage:flasharray.1e9f64c2c529d632:10.14.226.107:3260`
 - volume connection on an array is identified by `host IQN + LUN`
     - LUN represents a slot (1-255) the array reserves for a host
+    - conversely, on host it's identified as `array IQN + LUN`
 
 ## NVMe (Non-Volatile Memory express)
 
@@ -265,7 +268,7 @@
         - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
         - RNIC - RDMA capable NIC
         - **RoCE2** - **RDMA over Converged Ethernet**, InfiniBand, iWARP
-    - **FC-NVMe** - over Fibre Channel, high performance, secure, costly
+    - **FC-NVMe** - over Fibre Channel, high performance, secure, costly (special hardware)
     - **NVMe-TCP** - over standard TCP/IP network, a bit higher latencies but easy to use, available and scalable
 - **discovery** - return names and addresses of NVMe subsystems
 - **NVMe subsystem** - typically a storage array

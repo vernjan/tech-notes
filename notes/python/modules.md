@@ -1,8 +1,8 @@
-# Modules & Packages
+# Modules
 
 ## Modules
 
-- module is typically a Python file (e.g. `my_mod.py`) on **sys.path**:
+- module is a Python file (e.g. `my_mod.py`) on **sys.path**:
     - directory from which the input script was run, or the current directory if the interpreter is being run interactively
     - list of directories contained in the `PYTHONPATH` environment variable, if it is set
     - An installation-dependent list of directories configured at the time Python is installed
@@ -16,7 +16,8 @@
 
 ## Packages
 
-- `_init_.py` - loaded when importing a folder
+- folder with Python files (modules)
+- `__init__.py` - invoked when importing the package or a module from the package
 
 ### Import
 
@@ -48,7 +49,10 @@
   dir()  # .., x
   ```
 
-#### from MODULE import *
+#### from MODULE/PACKAGE import *
 
-- directly imports all the names from the given module except for names starting with `_`
+- **module** - directly imports all the names from the given module except for names starting with `_`
+    - similar to packages, what's imported can be changed by defining `__all__` variable
+- **package** - by default does nothing
+    - define `__all__` in `__init__.py` and define what `*` should import
 - risk of overwriting already defined names
