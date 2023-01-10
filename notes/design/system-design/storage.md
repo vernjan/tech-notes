@@ -21,7 +21,7 @@
 
 ### M.2
 
-- physical slot (form factor, "connector")
+- form factor ("connector")
 - replaces `mSATA`
 - can also be used for WiFi, BT, NFC, ..
 - supports PCIe, SATA III, USB 3.0
@@ -131,6 +131,19 @@
         - similar to Ethernet MAC address
         - burnt-in by the manufacturer
         - globally unique
+
+## InfiniBand
+
+- similar to Fibre Channel
+- networking communications standard used in high-performance computing
+    - very high throughput and very low latency
+- used by supercomputers (connected clusters)
+- supports RDMA
+    - RoCE is RDMA over Converged Ethernet (no InfiniBand involved)
+
+![](_img/infiniband.png)
+
+**Source**: RoCEv2 Specification
 
 ## Storage protocols - AHCI, SCSI, NVMe
 
@@ -265,9 +278,13 @@
 
 - replaces PCIe transport with fabrics (remote access)
     - **RDMA** - remote direct memory access
-        - direct mapping of the client's memory to the server (host) memory, server CPU and OS are bypassed
-        - RNIC - RDMA capable NIC
-        - **RoCE2** - **RDMA over Converged Ethernet**, InfiniBand, iWARP
+        - way of exchanging information between two computers’ main memory in a network without involving the
+          processor, cache, or OS of either computer
+        - RNIC - RDMA capable NIC (hardware offloading of TCP/IP)
+        - transports
+            - **RoCE** - **RDMA over Converged Ethernet**
+            - InfiniBand
+            - iWARP
     - **FC-NVMe** - over Fibre Channel, high performance, secure, costly (special hardware)
     - **NVMe-TCP** - over standard TCP/IP network, a bit higher latencies but easy to use, available and scalable
 - **discovery** - return names and addresses of NVMe subsystems
