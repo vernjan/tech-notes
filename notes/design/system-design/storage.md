@@ -176,6 +176,7 @@
 - **task management** - each logical unit keeps a task queue
     - `TASK_ABORT` - abort task(s) by _tag_
     - `LUN_RESET` - abort all tasks
+- ALU (Administrative Logical Unit) - multi-pathing
 
 ### LUN
 
@@ -287,7 +288,8 @@
             - iWARP
     - **FC-NVMe** - over Fibre Channel, high performance, secure, costly (special hardware)
     - **NVMe-TCP** - over standard TCP/IP network, a bit higher latencies but easy to use, available and scalable
-- **discovery** - return names and addresses of NVMe subsystems
+- **discovery service** - return names and addresses of NVMe subsystems
+    - runs on an address and is identified by NQN (as are all subsystems)
 - **NVMe subsystem** - typically a storage array
     - identified by NQN
     - one or more physical fabric interfaces (ports)

@@ -63,6 +63,14 @@
     - `%.2f` - decimal numbers
     - `%x`, `%X` - hexadecimal (lower/upper)
 
+## Variables
+
+- multi-assignments
+    - `a = b = 5` - single value
+    - `a, b = 1, 2` - multi value
+- swaps
+  - `a, b = b, a`
+
 ## Operators
 
 - `**` - exponent
