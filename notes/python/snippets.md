@@ -12,3 +12,9 @@ $ python3.8 -m pip list | cut -d' ' -f1 | while read pkg; echo $pkg; do apt-cach
 $ curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 $ python2 get-pip.py
 ```
+
+### Create virtual env for Python 2
+
+```
+$ virtualenv -p $(which python2) venv
+```

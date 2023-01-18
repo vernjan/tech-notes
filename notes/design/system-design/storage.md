@@ -69,8 +69,8 @@
 
 ### SAN (storage area network)
 
-- **tldr** - network of storages with unified access and central management
-- high-speed network that interconnects and exposes a shared pool of storage devices
+- specialized high-speed network that connects host servers to high-performance storage subsystems
+    - HBAs, cables, switches, arrays + protocols
 - layers
     - **host layer** - servers running the workloads (such as DBs or VMs)
         - they have dedicated network adapters for SAN network - **HBAs** - host bus adapter
@@ -178,6 +178,10 @@
     - `LUN_RESET` - abort all tasks
 - ALU (Administrative Logical Unit) - multi-pathing
 
+![](_img/scsi-protocols.png)
+
+**Source**: wikipedia.org
+
 ### LUN
 
 - logical unit number
@@ -211,14 +215,16 @@
 
 ### Technical glossary
 
-- **controller** - physical device, typical SSD has one NVMe controller
-    - connection is between a host and controller
+- **controller**
+    - interface ("path") between a host and an NVM subsystem
+    - in case of PC, we typically have as many controllers as SSD disks
     - dual-ported SSD exist
-    - one host can, of course, has many SSDs (and thus many controllers)
 - **host** - client
-    - host NQN - globally unique, usually one NQN per host (except for VMware's vVol and VMFS)
+    - **host NQN** - globally unique, usually one NQN per host (except for VMware's vVol and VMFS)
         - multiple NICs on the same host have the same NQN
-    - host ID - unique within the host (VM, pod, container, application, ...)
+    - **host ID**
+        - > Controllers in an NVM subsystem that have the same Host Identifier are assumed to be associated with the same
+          host and have the same reservation and registration rights.
 - **namespace**
     - NVMe uses namespace IDs while SCSI uses LUN IDs
     - divides the SSD into logical units - to host it appears as a separate SSD disk
@@ -277,7 +283,7 @@
 
 ### NVMe-oF (over Fabrics)
 
-- replaces PCIe transport with fabrics (remote access)
+- replaces PCIe transport with fabrics (over network)
     - **RDMA** - remote direct memory access
         - way of exchanging information between two computers’ main memory in a network without involving the
           processor, cache, or OS of either computer
@@ -288,9 +294,16 @@
             - iWARP
     - **FC-NVMe** - over Fibre Channel, high performance, secure, costly (special hardware)
     - **NVMe-TCP** - over standard TCP/IP network, a bit higher latencies but easy to use, available and scalable
+
+Best performance if storage also uses NVMe to access the data:
+
+![img.png](_img/nvme-of.png)
+
+#### Glossary
+
 - **discovery service** - return names and addresses of NVMe subsystems
-    - runs on an address and is identified by NQN (as are all subsystems)
-- **NVMe subsystem** - typically a storage array
+    - runs on an address and is identified by NQN (each NVMe subsystem also has a unique NQN)
+- **NVMe subsystem** - typically a storage array (single array can support multiple NVMe subsystems)
     - identified by NQN
     - one or more physical fabric interfaces (ports)
     - one or more controllers (attached to ports)
@@ -302,26 +315,35 @@
 
   **Source**: https://blogs.vmware.com/virtualblocks/2018/08/20/nvme-over-fabrics-part-two/
 
-- **Asymmetric Namespace Access** (ANA) - NVMe standard
-    - for multi-pathing
-    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal way to access
-      a given namespace
-    - SCSI's equivalent is ALUA
+- **host**
+    - entity that interfaces to an NVM subsystem through one or more _controllers_
+    - submits commands to Submission Queues and retrieves command completions from Completion Queues
 - **NVMe controller**
-    - represents **a path** between a host and array
+    - represents **a path** (interface) between a host and NVMe subsystem (i.e. a particular host connection endpoint)
         - ESXi view: host HBA -> array port
         - array view: host NQN
             - dynamic (virtual) - created/removed based on the connected hosts
     - controller is associated with
-        - exactly one host
+        - exactly one host (but a single host can have multiple controllers, for example when having multiple HBAs/NICs)
         - multiple namespaces
+    - single port can be shared by many hosts (controllers)
+- **Asymmetric Namespace Access** (ANA) - NVMe standard
+    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal path to access
+      a given namespace
+        - path = pair of host and array ports
+    - **ANA group** - namespaces that are members of the same ANA Group have the same access characteristic
+      (e.g. speed, reliability)
+        - typically are co-located (same _domain_)
+    - **possible path states**: Optimized, Non-optimized, Inaccessible, Persistent Loss
+    - a host query controllers (= multi-paths), passing the ANA group ID, in order to determine the optimal path for the given namespace
+    - controllers can notify the host about changes in path states (AER - see below)
+        - the host the re-queries the controller (`ANA Log Page`) to obtain the full info
+    - SCSI's equivalent is ALUA
 - **namespace sharing**
-    - two or more hosts can access a namespace using different NVMe controllers
-
-Best performance if storage also uses NVMe to access the data:
-
-![img.png](_img/nvme-of.png)
-
-- front-end NVMe - host
-- back-end NVMe - storage array
+    - multiple NVMe controllers attaching the same namespace
+- **multi-path I/O** refers to two or more completely independent paths between a single host and a namespace
+  while **namespace sharing** refers to the ability for two or more hosts to access a common shared namespace using
+  different NVM Express controllers.
+- **Asynchronous event requests (AER)**
+    - used to notify host of status, error, and health information from the NVMe subsystem
 
