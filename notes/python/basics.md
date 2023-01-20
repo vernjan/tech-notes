@@ -69,7 +69,7 @@
     - `a = b = 5` - single value
     - `a, b = 1, 2` - multi value
 - swaps
-  - `a, b = b, a`
+    - `a, b = b, a`
 
 ## Operators
 
@@ -85,6 +85,7 @@
     - `[8::2]` - every second from 8th to the end
     - `[8:2:-1]` - slice in reverse
     - `[::-1]` - revert string
+    - `[:]` - make copy
 - repeat sequence operator `*`
     - strings - `"A" * 5` -> `"AAAAA"`
     - lists

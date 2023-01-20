@@ -88,6 +88,12 @@
     - storage array has multiple ports and disks in RAID
 - data deduplication, encryption
 
+## Host adapter
+
+- connects computer bus to network or storage (SCSI, FC, ..)
+- integrated to motherboard or a dedicated card (one computer can have many)
+- can offload computing (TCP/IP, iSCSI)
+
 ## Fibre Channel (FC)
 
 - high-speed **data transfer protocol** (lossless)
@@ -121,15 +127,15 @@
 
 ### HBA
 
-- host bus adapter (similar to Ethernet NIC)
+- host bus adapter = FC interface
 - **WWN** - world-wide name
     - 8 bytes (e.g. `21:00:00:0E:1E:25:A6:D0`)
     - **WWNN** - world-wide node name
         - unique per HBA (i.e. not per ESXi host)
     - **WWPN** - world-wide port name
         - single HBA can have multiple ports
-        - similar to Ethernet MAC address
-        - burnt-in by the manufacturer
+        - equivalent of Ethernet MAC address
+        - burnt-in by the manufacturer but usually it can be changed
         - globally unique
 
 ## InfiniBand
@@ -144,6 +150,15 @@
 ![](_img/infiniband.png)
 
 **Source**: RoCEv2 Specification
+
+### HCA
+
+- host channel adapter = Infiniband interface
+
+## Ethernet
+
+- **bonding** - aggregating multiple network interfaces into a single logical _bonded_ interface
+    - modes - hot standby or load balancing
 
 ## Storage protocols - AHCI, SCSI, NVMe
 
