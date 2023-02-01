@@ -46,15 +46,20 @@
 
 ## Strings formatting
 
-- `%` operator
+- `%` operator - not recommended anymore, this is the old way
   ```
   "Hello %s!" % "world!"
   "Hello %s %d times!" % ("world", 5) 
   ```  
-- **format** method
+- **String.format** method
   ```
   "Foo is {0} {1} {0}".format(8, 2)
   "Foo is {foo}".format(foo=8)
+  ```
+- **f-strings** - since Python 3.6 (default choice)
+  ```
+  name = "John"
+  f"Hello {name.upper()}"
   ```
 - **patterns**
     - `%s` - string
