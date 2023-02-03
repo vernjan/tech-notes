@@ -222,72 +222,128 @@
 ## NVMe (Non-Volatile Memory express)
 
 - communication protocol (command set) - modern alternative to SCSI
-- built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
-- support both direct local (direct attach over PCIe) and remote (over fabrics - FC, TCP, RoCE, ..) devices
-- has **lower latency** than SCSI - fewer layers, reduced command set
-    - <3 microseconds
-- **form factor** - physical connector
-
-### Technical glossary
-
-- **controller**
-    - interface ("path") between a host and an NVM subsystem
-    - in case of PC, we typically have as many controllers as SSD disks
-    - dual-ported SSD exist
-- **host** - client
-    - **host NQN** - globally unique, usually one NQN per host (except for VMware's vVol and VMFS)
-        - multiple NICs on the same host have the same NQN
-    - **host ID**
-        - > Controllers in an NVM subsystem that have the same Host Identifier are assumed to be associated with the same
-          host and have the same reservation and registration rights.
-- **namespace**
-    - NVMe uses namespace IDs while SCSI uses LUN IDs
-    - divides the SSD into logical units - to host it appears as a separate SSD disk
-        - namespace has a file system
-        - ESXi sees as a _storage device_
-    - each namespace may have its own IO queue
-        - enables efficient split of large disks
-    - supports _thin provisioning_
-    - **NSID** - namespace identifier used by a controller to provide access to a namespace
-        - unique within an NVMe controller (for example `94494`)
-    - **namespace UUID** - namespace global unique identifier (for example `eui.00dd27a1822c4a4824a937cc00012443`)
-    - **namespace vs. partition**
-        - controller level - host level
-        - dedicated queues - single queue
-        - parallel access - serial access
-        - supports vSAN - doesn't support vSAN
-- **queues**
-    - enable parallel access (impossible for rotating disks, SAS has serial access)
-    - queue pair (submission and completion queue)
-        - many submission queues can map onto a single completion queue
-    - each core can have multiple dedicated I/O queues
-        - up to 64k parallel queues, each queue up to 64k commands
-    - exactly one admin queue pair per controller
-
-  ![](_img/nvme-qeues.png)
-
-- **command set**
-    - NVMe encapsulates commands/responses into **capsules**
-    - admin commands (exactly one admin queue)
+    - **admin commands**
         - create/delete submissions/completion queue
         - get/set features
         - abort
         - identify
         - get log page
         - async event requests
-    - IO commands (up to 64k queues)
+    - **IO commands** (up to 64k queues)
         - read/write
         - flush
+        - zero
+- built for SSDs (flash) - SCSI was designed for HDD and is not effective for fast SSDs
+- support both direct local (direct attach over PCIe) and remote (over fabrics - FC, TCP, RoCE, ..) devices
+- has **lower latency** than SCSI - fewer layers, reduced command set
+    - <3 microseconds
+- **form factor** - physical connector
+- **queues**
+    - enable parallel access (impossible for rotating disks, SAS has serial access)
+    - queue pair (submission and completion queue)
+        - many submission queues can map onto a single completion queue
+    - each core can have **multiple dedicated I/O queues**
+        - up to 64k parallel queues, each queue up to 64k commands
+    - exactly one **admin queue** pair per controller
 
-- **NQN** - NVMe Qualified Name (`nqn.2014-08.com.vendor:nvme:nvm-subsystem-sn-d78432`)
-    - uniquely identifies (and authenticates) NVMe peers
-    - 1 NQN per ESXi host, 1 NQN per array
-- **NGUID** - Namespace Globally Unique Identifier
-    - for every volume on an array (`eui.003b7b308d98f94224a9375e00018816`)
+  ![](_img/nvme-qeues.png)
+
+### Glossary
+
+#### NQN
+
+- NVMe Qualified Name (for example `nqn.2014-08.com.purestorage:nvme:myhost123`)
+- uniquely identifies (and authenticates) NVMe peers
+- one NQN per host, one NQN per NVMe subsystem
+- equivalent to SCSI IQN
+
+#### Discovery service
+
+- host uses the discovery service to discover
+    - list of available NVMe subsystems
+    - multiple paths to an NVMe subsystem
+- discovery service runs on a public address (IP + port of WWN) and is identified by well-known NQN
+  (`nqn.2014-08.org.nvmexpress.discovery`)
+
+#### NVMe subsystem
+
+- self-contained NVMe "backend"
+    - identified by unique NQN
+    - ports, controllers and storage mediums
+
+![](_img/nvme-subsystem-vmware.png)
+
+**Source**: https://blogs.vmware.com/virtualblocks/2018/08/20/nvme-over-fabrics-part-two/
+
+#### NVMe controller
+
+- accepts NVMe commands
+- represents **a path** (interface) between a _host_ and _NVMe subsystem_
+    - typically one controller per physical path from host to target (multi-pathing)
+    - dynamic (virtual) - created/removed based on the number of connections
+        - client creates a controller by calling `nvme connect`
+- controller is associated with
+    - exactly one host (but a single host can have multiple controllers - multi-pathing - host has multiple HBAs/NICs)
+    - 0..n namespaces
+- single array port can be shared by many hosts (and controllers)
+- **classic NVMe** (PCIe) - controller is a physical part of SSD
+
+#### Host
+
+- "NVMe client" - sends NVMe commands to NVMe controllers
+    - more precisely, submits commands to _Submission Queues_ and retrieves command completions from _Completion Queues_
+- **host NQN** - globally unique, usually one NQN per host
+    - multiple NICs on the same host have the same NQN
+- **host ID** - Controllers in an NVM subsystem that have the same Host ID are assumed to be associated
+  with the same host and have the same reservation and registration rights.
+
+#### Namespace
+
+- divides the storage medium (SSD) into **logical units** - to host they appear as separate disks
+    - equivalent to SCSI LU
+    - namespace has a file system
+- each namespace may have its own IO queue - efficient split of large disks
+- supports _thin provisioning_
+- **NSID** - namespace identifier used by a controller to provide access to the namespace
+    - unique within an NVMe controller (for example `94494`)
+    - equivalent to SCSI LUN
+- **NSGUID** - namespace global unique identifier (for example `eui.00dd27a1822c4a4824a937cc00012443`)
     - made of 3 parts:
         - array ID
         - provider ID (Pure Storage `24a937`)
         - volume ID
+- **namespace sharing** - the same namespace can be attached to multiple controllers (and thus multiple hosts)
+
+#### Multi-pathing
+
+- two or more completely independent paths between a single host and a namespace
+    - host may have multiple HBAs, array may have multiple ports
+    - NVMe controller exists for each path
+
+#### Asymmetric Namespace Access (ANA)
+
+- way for the target (array) to inform an initiator (for example ESXi host) of the most optimal path to access
+  a given namespace
+- **ANA group** - namespaces that are members of the same ANA Group have the same access characteristic
+  (e.g. speed, reliability)
+    - in other words, collections of namespaces having the same ANA state
+    - namespace are typically physically co-located
+    - namespaces may enter and exit ANA groups (migrate)
+- **access states**: optimized, non-optimized, inaccessible, persistent loss
+- **workflow**
+    - host query the controllers (multi-pathing) providing the ANA group ID
+    - controllers respond with `ANA group ID: state`
+- controllers can notify the host about changes in path states (using **AER**)
+    - hosts then re-query the controllers (`ANA Log Page`) to obtain the full info
+- equivalent to SCSI ALUA
+
+#### Asynchronous Event Requests (AER)
+
+- used to notify host of status, error, and health information from the NVMe subsystem
+    - host submits AER, controller responds later in time (no timeout)
+- **AEN** - Asynchronous Event Notification
+
+### NVMe vs. SCSI
 
 | SCSI | NVMe         |
 |------|--------------|
@@ -313,52 +369,3 @@
 Best performance if storage also uses NVMe to access the data:
 
 ![img.png](_img/nvme-of.png)
-
-#### Glossary
-
-- **discovery service** - return names and addresses of NVMe subsystems
-    - runs on an address and is identified by NQN (each NVMe subsystem also has a unique NQN)
-- **NVMe subsystem** - typically a storage array (single array can support multiple NVMe subsystems)
-    - identified by NQN
-    - one or more physical fabric interfaces (ports)
-    - one or more controllers (attached to ports)
-    - one or more NVM storage mediums
-    - namespaces can be shared across controllers and hosts
-    - allows IO multi-pathing
-
-  ![](_img/nvme-subsystem-vmware.png)
-
-  **Source**: https://blogs.vmware.com/virtualblocks/2018/08/20/nvme-over-fabrics-part-two/
-
-- **host**
-    - entity that interfaces to an NVM subsystem through one or more _controllers_
-    - submits commands to Submission Queues and retrieves command completions from Completion Queues
-- **NVMe controller**
-    - represents **a path** (interface) between a host and NVMe subsystem (i.e. a particular host connection endpoint)
-        - ESXi view: host HBA -> array port
-        - array view: host NQN
-            - dynamic (virtual) - created/removed based on the connected hosts
-    - controller is associated with
-        - exactly one host (but a single host can have multiple controllers, for example when having multiple HBAs/NICs)
-        - multiple namespaces
-    - single port can be shared by many hosts (controllers)
-- **Asymmetric Namespace Access** (ANA) - NVMe standard
-    - way for the target (array) to inform an initiator (for example ESXi host) of the most optimal path to access
-      a given namespace
-        - path = pair of host and array ports
-    - **ANA group** - namespaces that are members of the same ANA Group have the same access characteristic
-      (e.g. speed, reliability)
-        - typically are co-located (same _domain_)
-    - **possible path states**: Optimized, Non-optimized, Inaccessible, Persistent Loss
-    - a host query controllers (= multi-paths), passing the ANA group ID, in order to determine the optimal path for the given namespace
-    - controllers can notify the host about changes in path states (AER - see below)
-        - the host the re-queries the controller (`ANA Log Page`) to obtain the full info
-    - SCSI's equivalent is ALUA
-- **namespace sharing**
-    - multiple NVMe controllers attaching the same namespace
-- **multi-path I/O** refers to two or more completely independent paths between a single host and a namespace
-  while **namespace sharing** refers to the ability for two or more hosts to access a common shared namespace using
-  different NVM Express controllers.
-- **Asynchronous event requests (AER)**
-    - used to notify host of status, error, and health information from the NVMe subsystem
-
