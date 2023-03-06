@@ -5,7 +5,7 @@
 - module is a Python file (e.g. `my_mod.py`) on **sys.path**:
     - directory from which the input script was run, or the current directory if the interpreter is being run interactively
     - list of directories contained in the `PYTHONPATH` environment variable, if it is set
-    - An installation-dependent list of directories configured at the time Python is installed
+    - installation-dependent list of directories configured at the time Python is installed
 - **module types**
     - written in Python itself
     - built-in module (e.g.`itertools`)
