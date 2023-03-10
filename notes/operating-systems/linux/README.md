@@ -4,6 +4,7 @@
 - [Terminal shortcuts](terminal-shortcuts.md)
 - [Terminator shortcuts](terminator-shortcuts.md)
 - [Midnight Commander](mc.md)
+- [less](less.md)
 - [Zsh](zsh.md)
 
 ## Source
