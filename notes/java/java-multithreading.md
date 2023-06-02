@@ -81,6 +81,9 @@
 - **invoking the start() method on a thread object** happens-before any actions in the started thread
 - **final action in a thread1** happens-before any action in thread2 that detects that thread1 has terminated (`join()`, `isAlive()`)
 - **interrupt by thread1** happens-before the point where thread2 determines it was interrupted (checking `Thread.interrupted()`, catching `InterruptedException`)
+- many objects from java.util.concurrent somehow establishes happens-before relationship
+  - put -> get in concurrent collections
+  - submit -> future.get in executors
 
 ## java.util.concurrent
 
@@ -138,3 +141,20 @@
     - `ConcurrentSkipListMap` - thread-safe alternative for TreeMap
 - `CopyOnWriteArrayList` and `CopyOnWriteArraySet` - good for read heavy scenarios, writes are slow `O(n)`
 
+### Executors
+- `Execturos` - convenient factory methods
+- `Exectuor` - top-level interface
+  - `void executor(Runnable r)`
+  - no assumptions about the implementation - can be sync, async, direct, scheduled, pooled, ..
+  - **memory consistency effects**: Actions in a thread prior to submitting a `Runnable` object to an `Executor` happen-before its execution begins, perhaps in another thread. (Javadoc)
+- `ExecutorService implements Executor` - more methods, can return `Future`, can be shutdown  
+  - `submit`, `invoke`, `await`, `shutdown`
+  - **memory consistency effects**: Actions in a thread prior to the submission of a `Runnable` or `Callable` task to an `ExecutorService` happen-before
+    any actions taken by that task, which in turn happen-before the result is retrieved via `Future.get()`.
+
+![](_img/executor.png)
+
+### Future
+- asynchronous computation, can be cancelled
+- implemented by `FutureTask`
+- **memory consistency effects**: Actions taken by the asynchronous computation happen-before actions following the corresponding `Future.get()` in another thread.

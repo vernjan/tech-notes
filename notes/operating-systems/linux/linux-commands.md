@@ -46,3 +46,9 @@
 $ iptables -I INPUT 5 -p tcp --dport 8969 -j ACCEPT
 $ iptables -nL --line-numbers
 ```
+
+## Port tunnelling
+
+```
+# socat tcp-listen:8969,reuseaddr,fork tcp:vm-jverner:8969
+```
