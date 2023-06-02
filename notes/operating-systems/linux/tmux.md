@@ -11,7 +11,7 @@
 - `BK, D` - detach session
 - `tmux attach-session` - attach last session
 - `tmux attach-session -t name1` - attach named session
-- `ctrl + D` - exit session
+- `BK, X` or `ctrl + D` - exit session
 - `tmux kill-server` - gracefully kill all sessions
 
 ## Windows
@@ -22,4 +22,4 @@
 - `BK, "` - horizontal split
 - `BK, arrows` - move between panes
 - `BK, Q` - show window panes
-- `BK, X` -close pane
+- `BK, X` or `ctrl + D` - close pane
