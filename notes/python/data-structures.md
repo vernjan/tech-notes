@@ -53,6 +53,11 @@
 - union - `set1 | set2`
 - intersection - `set1 & set2`
 - difference - `set1 - set2`
+- `set()` vs `{}`
+  - `set()` converts iterables into individual elements
+    - `set('foo')` --> `{'o', 'f'}`
+  - `{'foo'}` --> `{'foo'}` 
+- `frozenset` - immutable set, can be used as a hash
 
 ### Frozen sets
 
