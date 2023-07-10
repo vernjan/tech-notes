@@ -120,16 +120,40 @@ print(word.upper())
 
 ## Loops
 
+- foreach and while loop only, there is no "classic" for loop
+- foreach loops over `iterable` (`list`, `range`, ...)
+- built-ins
+    - `iter()` - creates iterator from `iterable`
+    - `next(iter)` - fetches next element
+
+```
+for i in ["a", "b", "c"]:
+    print(i)
+    
+itr = iter(["a", "b", "c"])
+next(itr)
+> a
+next(itr)
+> b
+...
+> StopIteration exception
+```
+
+### range(from, to, step)
+
 ```
 for i in range(1, 10, 2):
     print(i)
+> 1, 3, 5, 7, 9 
 
-for i in ["a", "b", "c"]:
-    print(i)
+list(range(1,6))
+> [1, 2, 3, 4, 5]
 ```
 
-- `for/while else` - loops can have `else` block
-    - executed once the condition is no longer true
+### Loop `else`
+
+- `for/while` - loops can have `else` block
+    - executed once the condition is no longer true (think classic if-else)
     - skipped on break
 
 ## Exception handling
