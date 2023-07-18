@@ -3,6 +3,7 @@
 ## Navigation
 - `ctrl + a` - jump to line start
 - `ctrl + e` - jump to line end
+- `ctrl + xx` - jump to line start, jump back to the original position 
 - `ctrl + LEFT/RIGHT` - jump by words
 
 ## Cut & paste
