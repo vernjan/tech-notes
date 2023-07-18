@@ -31,6 +31,7 @@
 ## xargs
 
 - `ls | xargs -I@ echo Hello @`
+- `xargs -I@ echo Hello @ < my_file`
 
 ## find
 
