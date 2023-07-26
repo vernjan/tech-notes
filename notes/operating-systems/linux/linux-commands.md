@@ -53,3 +53,7 @@ $ iptables -nL --line-numbers
 ```
 # socat tcp-listen:8969,reuseaddr,fork tcp:vm-jverner:8969
 ```
+
+## sed
+
+- "grep" between lines - `sed -n '/BEGIN task-2651/,/FINISH task-2651/p' the_file`
