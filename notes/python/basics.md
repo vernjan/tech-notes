@@ -176,3 +176,31 @@ except FooError:
 - properties and methods are **public by default**
 - to make them private, use naming pattern `__foo`
 - even private members can be accessed using `_ClassName__foo`
+
+## args & kwargs
+
+- similar concept to Java's varargs
+
+```python3
+def fun_with_args(a, *args):
+    print(type(args))   # <class 'tuple'>
+    print(args)         # (2, 3)
+
+
+def fun_with_kwargs(a, **kwargs):
+    print(type(kwargs)) # <class 'dict'>
+    print(kwargs)       # {'b': 2, 'c': 3}
+
+
+def call_fun_with_args(*args):
+    fun_with_args(1, *args)     # unwind the args from tuple to "2, 3"
+
+
+def call_fun_with_kwargs(**kwargs):
+    fun_with_kwargs(a=1, **kwargs)  # unwind the kwargs from dict to "b=2, c=3"
+
+
+call_fun_with_args(2, 3)
+call_fun_with_kwargs(b=2, c=3)
+
+```
