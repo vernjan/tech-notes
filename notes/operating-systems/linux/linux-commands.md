@@ -30,8 +30,15 @@
 
 ## xargs
 
-- `ls | xargs -I@ echo Hello @`
-- `xargs -I@ echo Hello @ < my_file`
+- `ls | xargs echo'`
+    - translates to `echo file1 file2 file3`
+    - command is executed once with multiple arguments
+- `ls | xargs -I@ echo @`
+    - translates to `echo file1; echo file2; echo file3`
+    - command is executed multiple times with one argument
+- similar to ^^ but with reading from a file
+    - `xargs echo < my_file`
+    - `xargs -I@ echo @ < my_file`
 
 ## find
 

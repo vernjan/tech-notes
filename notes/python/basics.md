@@ -180,20 +180,22 @@ except FooError:
 ## args & kwargs
 
 - similar concept to Java's varargs
+- `*` - unpacking operator (iterables)
+- `**` - unpacking operator (dicts)
 
 ```python3
 def fun_with_args(a, *args):
-    print(type(args))   # <class 'tuple'>
-    print(args)         # (2, 3)
+    print(type(args))  # <class 'tuple'>
+    print(args)  # (2, 3)
 
 
 def fun_with_kwargs(a, **kwargs):
-    print(type(kwargs)) # <class 'dict'>
-    print(kwargs)       # {'b': 2, 'c': 3}
+    print(type(kwargs))  # <class 'dict'>
+    print(kwargs)  # {'b': 2, 'c': 3}
 
 
 def call_fun_with_args(*args):
-    fun_with_args(1, *args)     # unwind the args from tuple to "2, 3"
+    fun_with_args(1, *args)  # unwind the args from tuple to "2, 3"
 
 
 def call_fun_with_kwargs(**kwargs):
