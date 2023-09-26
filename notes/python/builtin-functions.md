@@ -48,7 +48,8 @@
 - tuple
 
 ## Code introspection
-- `dir([obj])` - names in the current scope, or object attributes
+- `dir([obj])` - names in the current scope, or object attributes (`__dirs__`)
+- `vars([obj])` - attributes and their values (`__dict__`)
 - `help(func)` - function docs
 - `hasattr(obj, name)`,`getattr(object, name)`, `setattr(object, name, value)`
 - `issubclass(class, classinfo)`,
