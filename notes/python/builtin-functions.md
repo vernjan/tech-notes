@@ -57,5 +57,6 @@
 
 ## Streams
 - `map(func, iterable)` - supports multiple iterables -> multiple arguments for the function
+  - accepts `iterable`, returns `iterator` (aka `map object`)
 - `filter(func, iterable)`
 - `zip(*iterables)`

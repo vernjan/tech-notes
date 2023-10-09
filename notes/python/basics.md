@@ -206,3 +206,37 @@ call_fun_with_args(2, 3)
 call_fun_with_kwargs(b=2, c=3)
 
 ```
+
+## Scopes & namespaces
+
+- **namespace** - like a dictionary
+    - `globals()` - global namespace - returns a modifiable dictionary
+    - `locals()` - local namespace - returns a copy, cannot be modified
+- **scopes**
+    - **built-in** - `dir(__builtins__)` - functions, classes, errors, `None`, `True`, `False`, ...
+    - **global** - for main program and any imported modules
+    - **local & enclosing**
+        - each function has its own local scope
+        - if a function is defined in (enclosed by) another function, it has access to the enclosing function's scope
+      ```python
+      a = 1  # global scope
+      def f1():
+          def f2():
+              c = 6
+              print(x, a, b)  # c is local, b is enclosing, a is global, print is built-in
+  
+          b = 5
+          f2()
+
+    - LEGB rule - **L**ocal, **E**nclosing, **G**lobal, **B**uilt-in
+        - search order when looking for a variable name, if not found, then `NameError` is raised
+        - you cannot modify global variables from local scope
+        ```python
+        x = 1
+        def f1():
+            # global x  # uncomment to modify global variable x, similarly use 'nonlocal' for modifying enclosing scope
+            x = 2  # this is a new local temporary assignment, not overrding the global scope
+            print(x)  # 2
+        f1()
+        print(x)  # 1
+        ``` 
