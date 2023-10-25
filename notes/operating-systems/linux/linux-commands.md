@@ -64,3 +64,9 @@ $ iptables -nL --line-numbers
 ## sed
 
 - "grep" between lines - `sed -n '/BEGIN task-2651/,/FINISH task-2651/p' the_file`
+
+## clipboard
+
+- `clipcopy` - copy to clipboard
+  - `foo | clipcopy
+- `clippaste` - paste from clipboard

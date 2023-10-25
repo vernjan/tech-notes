@@ -8,6 +8,7 @@
 - [Databases](notes/databases/README.md)
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
+- [Networks](notes/networks/README.md)
 - [Operating systems](notes/operating-systems/README.md)
     - [Linux](notes/operating-systems/linux/README.md)
     - [Windows 10](notes/operating-systems/win10/README.md)

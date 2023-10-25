@@ -9,13 +9,13 @@
 
 ## Generics
 - **invariant** - default
-- **covariant** (PE - producers _extends_, e.g. reading from collection)
+- **covariant** (PE - producers _extends_, e.g. reading from collection/box)
   ```
   List<? extends Number> l = new ArrayList<Integer>();
   Number number = l.get(0);
   l.add(null); // nothing else
   ```
-- **contravariant** (CS - consumer _supports_, e.g. adding values to collection)
+- **contravariant** (CS - consumer _supers_, e.g. adding values to collection/box)
   ```
   List<? super Number> l = new ArrayList<Object>();
   Object object = l.get(0); // always object
