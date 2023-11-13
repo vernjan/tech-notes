@@ -23,3 +23,4 @@
 - `BK, arrows` - move between panes
 - `BK, Q` - show window panes
 - `BK, X` or `ctrl + D` - close pane
+- `BK, Z` - toggle zoom pane
