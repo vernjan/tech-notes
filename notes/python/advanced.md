@@ -1,21 +1,26 @@
 # Advanced Topics
 
 ## Multi-assignments & Sequence unpacking
+
 ```
 a, b, c = 1, 2, 3
 a, b, c = [1, 2, 3]
 ```
 
 ## Walrus operator `:=`
+
 - Expression is evaluated and then assigned to the variable name. That value will also be returned.
+
 ```
 print(num := 42)
 print("Num is %d" % num)
 ```
 
 ## Generators
+
 - lazily generate iterables
 - execution jumps between iteration and generation
+
 ```
 def my_gen():
     for i in range(3):
@@ -31,6 +36,7 @@ for j in my_gen():
 ```
 
 **Output:**
+
 ```
 Inside generator: 0
 Iterating my generator: 0
@@ -43,6 +49,7 @@ Iterating my generator: END
 ```
 
 ### Fibonacci generator
+
 ```
 def fib():
     a, b = 1, 1
@@ -54,9 +61,11 @@ def fib():
 ```
 
 ## For comprehensions
+
 - a bit similar to streams - iterate, filter, map and always return a new collection
 
 ### List comprehension
+
 ```
 [expresion for x in list [if CONDITION]]
 ```
@@ -79,6 +88,7 @@ def fib():
   ```
 
 ### Dictionary comprehension
+
 ```
 {expresion1: expression2 for (k,v) in dict.items() [if CONDITION]}
 ```
@@ -89,6 +99,7 @@ new_houses = {n**2: house + "!" for (n, house) in houses.items()
 ```
 
 ### Set comprehension
+
 ```
 {expresion for x in set [if CONDITION]}
 ```
@@ -100,7 +111,9 @@ print(set_upper)
 ```
 
 ## Varargs
+
 - use `*`
+
 ```
 def my_map(op, *values):
     return [op(v) for v in values]
@@ -110,8 +123,10 @@ print(my_map(str.upper, "a", "b", "c"))
 ```
 
 ## Dynamic arguments
+
 - use `**`
 - similar to using map, nicer syntax
+
 ```
 def start(**options):
     if options.get("debug"):
@@ -128,6 +143,7 @@ start(debug=True)
 ## Serialization
 
 ### JSON
+
 ```
 import json
 obj = json.loads(str)
@@ -135,7 +151,9 @@ str = json.dumps(obj)
 ```
 
 ### Pickle
+
 - Python proprietary format
+
 ```
 import pickle
 obj = pickle.loads(str)
@@ -143,16 +161,19 @@ str = pickle.dumps(obj)
 ```
 
 ## Functional programming
+
 - module `functools`
     - higher-order functions and operations on callable objects
     - partial functions - `partial(func, args*)`
 - module `itertools` - a bit like streams in Java
 
 ## Dunder methods
+
 - names begin and end with double-underscores (`__name__`)
 - to allow user-defined classes to modify how they are handled by native operations including length, comparison, in arithmetic operations and type conversion
 
 ## Operator overloading
+
 - implement one of the predefined methods, for example
     - `__plus__(self, other)`
     - `__sub__(self, other)`
@@ -160,3 +181,9 @@ str = pickle.dumps(obj)
     - `__lt__(self, other)`
     - `__gt__(self, other)`
     - ...
+
+## Type hints
+
+- `from __future__ import annotations`
+    - Python 3.7+
+    - allows forward references to types which are not yet defined
