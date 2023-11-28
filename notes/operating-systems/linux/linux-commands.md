@@ -68,5 +68,11 @@ $ iptables -nL --line-numbers
 ## clipboard
 
 - `clipcopy` - copy to clipboard
-  - `foo | clipcopy
+    - `foo | clipcopy
 - `clippaste` - paste from clipboard
+
+## tar
+
+- `tar tzvf foo.tar.gz` - list files in archive
+- `tar xzvfO foo.tar.gz ./tag_key.csv` - read file from archive
+    - capital `o` - extract to stdout
