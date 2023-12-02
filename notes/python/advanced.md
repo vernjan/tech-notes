@@ -1,5 +1,9 @@
 # Advanced Topics
 
+## Good Python examples
+
+- https://github.com/realpython/materials/blob/master/python-type-checking/hearts.py
+
 ## Multi-assignments & Sequence unpacking
 
 ```

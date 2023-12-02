@@ -5,6 +5,7 @@
     - [Java](notes/java/README.md)
     - [Python](notes/python/README.md)
     - [C](notes/c/README.md)
+    - [C++](notes/cpp/README.md)
 - [Databases](notes/databases/README.md)
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
