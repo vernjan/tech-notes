@@ -19,3 +19,9 @@
 
 - `array` - OO version of built-in array
 - `vector` - dynamic array (~ArrayList)
+
+## Snippets
+
+- `!!err` is the same as `!(!err)` which means `err != nullptr`
+    - `err` is a pointer
+    - see https://stackoverflow.com/questions/11374810/defining-double-exclamation
