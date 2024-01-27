@@ -57,6 +57,7 @@
 - `class` vs `struct` - class was introduced in C++, very similar to struct, except for visibility rules for its members
     - `class` - default visibility is `private`
     - `struct` - default visibility is `public`
+- `obj->method()` is a shortcut for `(*obj).method()`
 
 ## `struct`
 
