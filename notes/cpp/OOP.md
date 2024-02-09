@@ -10,6 +10,8 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
 - `class` vs `struct` - class was introduced in C++, very similar to struct, except for visibility rules for its members
     - `class` - default visibility is `private`
     - `struct` - default visibility is `public`
+- `obj->method()` is a shortcut for `(*obj).method()`
+- **initialize member list** - `: member1(val1), member2(val2) {}`
 
 ## Unions
 
