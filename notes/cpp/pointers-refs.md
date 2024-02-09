@@ -20,6 +20,7 @@
           std::cout << a << std::endl;
       }
       ```
+- user pointers to avoid copying large objects, the objects must be allocated on the heap
 
 ## Pointers
 
