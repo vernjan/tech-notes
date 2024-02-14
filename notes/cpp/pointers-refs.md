@@ -2,7 +2,7 @@
 
 ## Pass-by-value/reference
 
-- pass-by-value - **copy** of the value is passed to the function, default in C++
+- pass-by-value - **copy** of the value is passed to the function (also applies to return values), default in C++
 - pass-by-reference - **reference** (alias) - use `&` operator (`int &foo`)
     - no copy is made (performance optimization)
     - can change the original value
