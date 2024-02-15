@@ -10,7 +10,8 @@
 
 ## Source
 
-- [Explanation of “Everything is a File” and Types of Files in Linux](https://www.tecmint.com/explanation-of-everything-is-a-file-and-types-of-files-in-linux/) (Tecmint blog)
+- [Explanation of “Everything is a File” and Types of Files in Linux](https://www.tecmint.com/explanation-of-everything-is-a-file-and-types-of-files-in-linux/) (
+  Tecmint blog)
 
 ## File types
 
@@ -47,3 +48,15 @@
 
 - **non-login shell** - does not read, and execute, the contents of `/etc/profile` or `.bash_profile files`,
   but rather reads, and executes, the `.bashrc` file instead.
+
+## sudo
+
+- run commands as another user (usually `root`)
+    - `-u USER` - default is `root
+    - `-i / --login` - switch to root (login shell)
+- user must belong to a group (e.g. `sudo` or `wheel` based on the distro) that has sudo privileges
+- benefits
+    - granular - we can choose which users can run which commands
+    - auditable
+- `/etc/sudoers` - configuration file (use `sudo visudo` to edit it)
+- unlike `su`, `sudo` requires the user's own password, not the target user password
