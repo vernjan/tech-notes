@@ -23,6 +23,7 @@
 ## su
 
 - `su - [user]` - `-` mean to use a _login shell_
+    - better to use `sudo -i [user]` instead - sudo requires user's password, `su` requires target user's password
 
 ## ss
 
