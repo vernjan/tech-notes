@@ -1,6 +1,6 @@
 # Tmux
 - https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/
-- `ctrl + B` - bind key (BK)
+- `ctrl + B` - bind key (BK) - default prefix, I use `ctrl + A` instead
 - `bind key + ?` - help
 
 ## Sessions
