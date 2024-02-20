@@ -19,7 +19,7 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
     - has impact on compiler - `Vector v = {1, 2, 3};`
 - **object construction**
     - constructor - `Point p(1, 1);` (the same as `Point p = Point(1, 1);`)
-    - member initialization - `Point p {1, 1};`
+    - member initialization - `Point p {1, 1};` (works for aggregate types?)
 
 ## Unions
 
@@ -46,6 +46,17 @@ Color col = Color::red;
 - default implementations are provided by the compiler (except for the "ordinary" constructor)
     - `=default` - explicitly request the compiler to generate the default implementation (and no others)
     - `=delete` - explicitly prevent the compiler from generating the default implementation
+- **constructor vs. assignment operator**
+    ```c++
+    A aa(1);
+    A a = aa;  // copy constructor - assigning to uninitialized object, i.e. a new object must be created
+    
+    A aa(1);
+    A a(2);
+    a = aa;  // assignment operator - replacing existing object (clean up target (self) and copy)
+    ```
+
+### Default implementations
 
 ```c++
 class X {
@@ -63,15 +74,39 @@ public:
 
 There are five situations in which an object can be copied or moved:
 
-- As the source of an assignment - `X b = a;`
+- As the source of an assignment
     - uses assignment operator `operator=`
-- As an object initializer - `X a(1);` or `X a = X(1)`
-    - calls a constructor, not an assignment
+- As an object initializer
 - As a function argument - `f(a);`
 - As a function return value - `return a;`
 - As an exception - `throw a;`
 
-### Copy & move constructor
+### Copy & move
+
+- default **copy** is member-wise, pointers are also copied but not the data they point to (shallow copy)
+- we can provide our own copy constructor and assignment operator to perform a deep copy
+    ```c++
+    Vector(const Vector& a);                // copy constructor
+    Vector& operator=(const Vector& a);     // copy assignment
+    ```
+
+- **move** is used to transfer ownership of resources (e.g. memory) from one object to another
+    - it's useful performance optimization
+        ```c++
+        X(X&&);                    // move constructor
+        X& operator=(X&&);         // move assignment: clean up target and move
+    
+        Vector f()
+        {
+            Vector x(1000);
+            Vector y(2000);
+            Vector z(3000);
+            z = x;                 // we get a copy (x might be used later in f())
+            y = std::move(x);      // we get a move (move assignment), std::move gets us an rvalue
+            // ... better not use x here ...
+            return z;              // we get a move (? compiler optimization ?)
+        }
+        ```
 
 ### Converting constructor (`explicit`)
 

@@ -26,6 +26,26 @@
 
 - **pointer** - variable that stores the memory address of another variable
 - `int *p` - pointer to an integer
+- pointer can point to another pointer
+    ```c++
+    double d = 3.14;
+    double* dPtr = &d;
+    double** dPtr2 = &dPtr;
+    double*** dPtr3 = &dPtr2;
+    ```
+
+### Const pointers
+
+```c++
+int* const p = &x;  // p is a const pointer to an int - pointer cannot be reassigned
+const int* p = &x;  // p is a pointer to a const int - value cannot be changed
+const int* const p = &x;  // p is a const pointer to a const int
+```
+
+### Array pointers
+
+- pointer to array of ints - `int *p = arr;`
+- pointer to array of int pointers - `int **p = arr;`
 
 ## References
 
