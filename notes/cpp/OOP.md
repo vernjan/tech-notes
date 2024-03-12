@@ -18,8 +18,22 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
 - `std::initializer_list` - initializer list for constructors (for containers)
     - has impact on compiler - `Vector v = {1, 2, 3};`
 - **object construction**
-    - constructor - `Point p(1, 1);` (the same as `Point p = Point(1, 1);`)
-    - member initialization - `Point p {1, 1};` (works for aggregate types?)
+    - original syntax - calls a constructor (always ?)
+        - `Point p(1, 1);` - **Direct**-initialization
+        - `Point p = Point(1, 1);` (initialization and assignment, involves copy constructor)
+    - modern syntax (C++11) - "list initialization" - initializes an object from braced-init-list
+        - applies to `std::initializer_list`, constructor with matching arguments, aggregates
+        - `Point p {1, 1};` - **Direct-list**-initialization
+        - `Point p = Point{1, 1};` (same as ^^) - **Copy-list**-initialization
+
+### Aggregates
+
+- a bit like Java's `POJO` (Plain Old Java Object)
+- **aggregate** - array or class with
+    - no user-declared constructors
+    - no private or protected non-static data members,
+    - no base classes,
+    - and no virtual functions
 
 ## Unions
 
@@ -134,4 +148,9 @@ public:
 
 ```
 
+## Virtual functions
 
+- **polymorphic** - if the method is not virtual, it's not runtime polymorphic (static binding, like Java overloaded methods)
+- `virtual int star1() const = 0;` =0 means **pure virtual function** and makes the class _abstract_
+    - abstract class cannot be instantiated
+    - derived class must override the pure virtual function

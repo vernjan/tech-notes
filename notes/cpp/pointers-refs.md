@@ -47,6 +47,17 @@ const int* const p = &x;  // p is a const pointer to a const int
 - pointer to array of ints - `int *p = arr;`
 - pointer to array of int pointers - `int **p = arr;`
 
+### Function pointers
+
+```c++
+using void (*)(struct iocb *) aio_callback; // function pointer
+void functionName(struct iocb *arg)) { ... } // function
+
+
+```
+
+aio_callback is a pointer to a function that takes a pointer to a struct iocb and returns void
+
 ## References
 
 - similar to pointers
@@ -58,3 +69,12 @@ const int* const p = &x;  // p is a const pointer to a const int
 
 - **lvalue reference** - `T& t`
 - **rvalue reference** - `T&& t` - performance optimization to avoid unnecessary copies, works with `std:move`
+
+## Smart (Managed) pointers
+
+- C++ 11 Standard
+- `#include <memory>`
+- no need to call `delete`
+- `unique_ptr` - single owner, cannot be copied (only moved with `std::move`), deallocated when out of scope
+- `shared_ptr` - reference counting, can be copied
+- `weak_ptr` - non-owning reference to an object managed by `shared_ptr`

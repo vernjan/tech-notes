@@ -17,8 +17,8 @@
 - `include` ~ `import`
 - `using NAMESPACE` ~ `static import`
 - `const var` ~ `final var`
-- `templates` ~ `generics`
-- `static` ~ `private` - static objects/functions are not exported outside of the CPP file
+- `templates` ~ `generics`, templates can do much more (compile-time code generation)
+- `static` ~ `private` - static objects/functions are not exported outside the CPP file
 
 ## Exception handling
 
@@ -35,6 +35,8 @@
 - global namespace - no prefix, we can even use e.g. `::MyObject`
 - `using namespace std` - imports everything from a given namespace, not really recommended because it pollutes the global namespace
 - `using std::cout, std::string` - selective imports - recommended
+- `using foo = unsigned int` - aliases (types, function pointers, ...)
+    - `using size_t = unsigned int;` - implementation specific, some compilers use `unsigned long` - dynamic!
 - `using` can be used inside functions to limit the scope
 
 ## Features
@@ -107,8 +109,8 @@
 
 ## Templates
 
-- compile-time - code generation
-- classes, functions, constructors, ...
+- templates provide a general mechanism for compile-time programming (code generation)
+- classes, functions, constructors, variables, ...
 
 ```c++
 template<typename T>
@@ -116,6 +118,10 @@ class Vector {
 private:
         T* elem;  // elem points to an array of sz elements of type T
         int sz;
+
+// variable template
+template<typename T>
+constexpr T pi = T(3.1415926535897932385);
 ```
 
 - **value template arguments**
@@ -129,8 +135,9 @@ struct Buffer {
 
 ## Operator overloading
 
+- `operator[]`**subscript operator**
+- `operator=` **assignment operator**
 - `operator()` **application operator**, also called “function call” or just “call”
-- `operator[]` **subscript operator**
 - `operator""` - user-defined literals
 
 ## Lambdas
@@ -141,7 +148,7 @@ struct Buffer {
         - `=` - capture by value (copy)
         - `this` - capture the `this` pointer
         - `a, b` - capture just `a` and `b` by value
-    - ``
+- `mutable` - allows the lambda to modify the captured variables
 
 ## Attributes
 
@@ -149,3 +156,27 @@ struct Buffer {
 - `[[nodiscard]]` - compiler will raise a warning if the function return value is not used
     - applies to pure functions, i.e. when the function has no side effects and calling it without using the returned value makes no sense
 - `[[likely]]` and `[[unlikely]]` - hint to the compiler about the expected branch
+
+## I/O File
+
+- similar to `cout/cin`, uses `<<` and `>>` operators
+
+```c++
+#include <fstream>
+
+// file write
+ofstream myfile;
+myfile.open("example.txt");
+myfile << "Writing this to a file.\n";
+myfile.close();
+
+// file read
+ifstream myfile;
+myfile.open("example.txt");
+string line;
+while (!myfile.eof()) {
+    getline(myfile, line);
+    cout << line << endl;
+}
+
+```
