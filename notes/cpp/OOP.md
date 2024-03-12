@@ -11,29 +11,14 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
     - `class` - default visibility is `private`
     - `struct` - default visibility is `public`
 - `obj->method()` is a shortcut for `(*obj).method()`
-- **member initializer list** - `: member1(val1), member2(val2) {}`
-    - member variables are initialized before the constructor body is executed
-    - can be used to initialize `const` members
-    - members can belong to this or super class
-- `std::initializer_list` - initializer list for constructors (for containers)
-    - has impact on compiler - `Vector v = {1, 2, 3};`
-- **object construction**
-    - original syntax - calls a constructor (always ?)
-        - `Point p(1, 1);` - **Direct**-initialization
-        - `Point p = Point(1, 1);` (initialization and assignment, involves copy constructor)
-    - modern syntax (C++11) - "list initialization" - initializes an object from braced-init-list
-        - applies to `std::initializer_list`, constructor with matching arguments, aggregates
-        - `Point p {1, 1};` - **Direct-list**-initialization
-        - `Point p = Point{1, 1};` (same as ^^) - **Copy-list**-initialization
 
-### Aggregates
+### Member initializer list
 
-- a bit like Java's `POJO` (Plain Old Java Object)
-- **aggregate** - array or class with
-    - no user-declared constructors
-    - no private or protected non-static data members,
-    - no base classes,
-    - and no virtual functions
+- `: member1(val1), member2(val2) {}`
+- member variables are initialized before the constructor body is executed
+- can be used to initialize `const` members
+- members can belong to this or super class
+
 
 ## Unions
 
@@ -121,6 +106,13 @@ There are five situations in which an object can be copied or moved:
             return z;              // we get a move (? compiler optimization ?)
         }
         ```
+
+### Copy constructor
+
+1) When an object of the class is **returned by value**.
+2) When an object of the class is **passed (to a function) by value as an argument**.
+3) When an object **is constructed based on another object** of the same class.
+4) When the compiler generates a temporary object.
 
 ### Converting constructor (`explicit`)
 

@@ -10,7 +10,6 @@
     - static variable, initialized only once, keeps its value between function calls
     - behaves like a global variable but with a limited scope
 - `if` can declare variables - scope limited
-- to if-else
 
 ## Functions
 

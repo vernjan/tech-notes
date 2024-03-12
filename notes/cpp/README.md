@@ -1,9 +1,15 @@
 # C++
 
 - [Functions & variables](functions-vars.md)
+- [Initialization & assignment](initialization-assignment.md)
 - [Pointers & references](pointers-refs.md)
 - [STL](STL.md)
 - [OOP](OOP.md)
+
+## Reference
+
+- [C++](https://en.cppreference.com/w/cpp)
+- [C++ Language](https://en.cppreference.com/w/cpp/language)
 
 ## Basics
 

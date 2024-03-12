@@ -52,8 +52,6 @@ const int* const p = &x;  // p is a const pointer to a const int
 ```c++
 using void (*)(struct iocb *) aio_callback; // function pointer
 void functionName(struct iocb *arg)) { ... } // function
-
-
 ```
 
 aio_callback is a pointer to a function that takes a pointer to a struct iocb and returns void
@@ -61,7 +59,6 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
 ## References
 
 - similar to pointers
-
     - `int x = 5; int &rx = x;` - `rx` is a reference to `x`
     - reference must be initialized when declared and cannot be changed later (cannot point to another variable/memory location)
     - reference cannot point to `nullptr`
