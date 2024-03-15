@@ -11,6 +11,7 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
     - `class` - default visibility is `private`
     - `struct` - default visibility is `public`
 - `obj->method()` is a shortcut for `(*obj).method()`
+- `this` - **pointer** to the object that the method is called on
 
 ### Member initializer list
 
@@ -64,7 +65,7 @@ public:
         X();                            // default constructor
         X(const X&);                    // copy constructor
         X(X&&);                         // move constructor
-        X& operator=(const X&);         // copy assignment: clean up target and copy
+        X& operator=(const X&);         // copy assignment
         X& operator=(X&&);              // move assignment: clean up target and move
         ~X();                           // destructor: clean up
 };
@@ -146,3 +147,14 @@ public:
 - `virtual int star1() const = 0;` =0 means **pure virtual function** and makes the class _abstract_
     - abstract class cannot be instantiated
     - derived class must override the pure virtual function
+
+## Friend classes and functions
+
+- class declares a friend class or function
+- the friend class can access its private data
+```c++
+class A {
+    friend class B;
+    friend void f(A & a);
+};
+```

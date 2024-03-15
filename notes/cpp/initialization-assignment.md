@@ -2,6 +2,8 @@
 
 - also takes place during function calls: **function parameters** and the **function return values** are also initialized
     - (remember - values are copied)
+- no-arg constructors
+    - call like `Point p;` (no parentheses) - with parentheses it's a function declaration
 
 ## Initialization
 
@@ -32,7 +34,7 @@ Point p1(1, 2); // calls ctor
 
 - a bit like Java's `POJO` (Plain Old Java Object)
 - **aggregate** - array or class with
-    - no user-declared constructors
+    - no user-declared constructors (`default` constructor is allowed),
     - no private or protected non-static data members,
     - no base classes,
     - and no virtual functions
