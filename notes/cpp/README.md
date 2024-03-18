@@ -15,6 +15,17 @@
 
 - compatible with C (or at least used to be)
 - basic syntax is quite similar to Java
+- `std::endl` vs `\n` - `std::endl` flushes the buffer, `\n` doesn't
+    - flushing the buffer can be expensive, so use `\n` unless you need to flush the buffer (log statements, ...)
+
+## Types
+
+- modifiers: `signed`, `unsigned`, `short`, `long`, `long long`
+- **examples**:
+    ```c++
+    typedef signed long int __int64_t;
+    typedef unsigned long int __uint64_t;
+    ```
 
 ### Java comparison
 
@@ -25,6 +36,13 @@
 - `const var` ~ `final var`
 - `templates` ~ `generics`, templates can do much more (compile-time code generation)
 - `static` ~ `private` - static objects/functions are not exported outside the CPP file
+- boolean expressions - `0` is `false`, anything else is `true`
+    - `nullptr` is `0`, i.e. `false`
+- C++
+    - `char` is just a 1-byte integer
+        - no `byte` type, use `char`
+        - use `wchar_t` for Unicode
+    - arrays don't know their size, either use `std::array` or hold the size separately
 
 ## Exception handling
 
