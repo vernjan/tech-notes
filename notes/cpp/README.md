@@ -4,6 +4,7 @@
 - [Initialization & assignment](initialization-assignment.md)
 - [Pointers & references](pointers-refs.md)
 - [STL](STL.md)
+- [Containers](containers.md)
 - [OOP](OOP.md)
 
 ## Reference
@@ -43,6 +44,7 @@
         - no `byte` type, use `char`
         - use `wchar_t` for Unicode
     - arrays don't know their size, either use `std::array` or hold the size separately
+    - `[]` no range checks (containers, arrays) - goes into invalid memory
 
 ## Exception handling
 
@@ -75,11 +77,19 @@
     - `if (x)` - `x` is converted to `bool`
         - `0` to false
         - `nullptr` to false
-- `std::string` is mutable
-    - `string s = "aaa"; s[0] = 'b';` works
-    - you can use `const` to make it immutable
+
+## Strings
+
 - `std::string` is a class, not a primitive type
-    - C-style string literal is `const char[N]`, to make it string use suffix `s`
+- is mutable
+- `string s = "aaa"; s[0] = 'b';` works
+    - you can use `const` to make it immutable
+- `<cctype>` - `isalnum, isalpha, is..` util functions
+- `<<` read by word, `getline(&s)` read by line
+- C-style string is an array of characters terminated by a null character
+    - best avoided
+    -
+- `"foo"` literal is `const char[N]`, to make it a string use suffix `s`
 
 ## Type casting
 
@@ -204,3 +214,17 @@ while (!myfile.eof()) {
 }
 
 ```
+
+## Arrays
+
+- `[]` no range checks
+- doesn't know its size, we always need to pass it
+- values are not initialized by default!
+    - we can provide fewer values than then total size, remaining values will be 0
+        - `int counters[10] = {0}` - all zeroes
+        - `int counters[10] = {1}` - 1 and nine 0s
+- just a pointer to the first element
+    - `int arr[10]` can be assigned as `int* ptr = arr`
+- pointer arithmetic
+    - `*ptr = 1` is the same as `arr[0] = 1`
+    - `*(arr + 3)` is the same as `arr[3]`

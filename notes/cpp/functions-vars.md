@@ -14,6 +14,8 @@
 ## Functions
 
 - default is pass by value (copy)
-- function must be declared before used - **function prototypes**
+- function must be declared before used - **function prototypes** (good practice)
     - just header, with no body
 - const methods - cannot modify the object
+- can be defined outside of the class
+- supports default arguments (best defined on prototypes, cannot be defined on both prototype and definition)
