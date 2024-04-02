@@ -18,6 +18,10 @@
 - basic syntax is quite similar to Java
 - `std::endl` vs `\n` - `std::endl` flushes the buffer, `\n` doesn't
     - flushing the buffer can be expensive, so use `\n` unless you need to flush the buffer (log statements, ...)
+- `gcc` - GNU Compiler Collection
+- `g++` - GNU C++ Compiler (C++ frontend for `gcc`, under the hood calls `gcc` with some flags)
+- standard library is installed together with the compiler, located in `/usr/include/c++/VERSION`
+    - `VERSION` is the version of the compiler, not C++ standard
 
 ## Types
 

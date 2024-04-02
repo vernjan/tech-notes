@@ -18,6 +18,7 @@
 
 - folder with Python files (modules)
 - `__init__.py` - invoked when importing the package or a module from the package
+- when invoking a subpackage, parent packages are initialized first
 
 ### Import
 

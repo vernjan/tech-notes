@@ -33,6 +33,9 @@
     double** dPtr2 = &dPtr;
     double*** dPtr3 = &dPtr2;
     ```
+- `delete` frees the memory, doesn't change the pointer value! (must not be called twice)
+- `delete []` - for arrays, no need to delete the individual elements, unless they are pointers
+- **dangling pointers** - points to deleted memory
 
 ### Const pointers
 
