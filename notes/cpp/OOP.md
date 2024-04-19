@@ -12,6 +12,7 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
     - `struct` - default visibility is `public`
 - `obj->method()` is a shortcut for `(*obj).method()`
 - `this` - **pointer** to the object that the method is called on
+- always visible, no public/private/protected keywords for classes
 
 ### Member initializer list
 
@@ -19,7 +20,6 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
 - member variables are initialized before the constructor body is executed
 - can be used to initialize `const` members
 - members can belong to this or super class
-
 
 ## Unions
 
@@ -152,6 +152,7 @@ public:
 
 - class declares a friend class or function
 - the friend class can access its private data
+
 ```c++
 class A {
     friend class B;

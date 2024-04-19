@@ -37,6 +37,8 @@
 - `auto` ~ `var`
 - `nullptr` ~ `null`
 - `include` ~ `import`
+    - `include <something>` - search in system directories (STL)
+    - `include "something"` - search in the current directory
 - `using NAMESPACE` ~ `static import`
 - `const var` ~ `final var`
 - `templates` ~ `generics`, templates can do much more (compile-time code generation)
@@ -218,6 +220,11 @@ while (!myfile.eof()) {
 }
 
 ```
+
+## Compilation
+
+- compile just `cpp` files, not `h` files (they are included in the `cpp` files)
+- `g++ -o main main.cpp util.cpp` - compile and link
 
 ## Arrays
 

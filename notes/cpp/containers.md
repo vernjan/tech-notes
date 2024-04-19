@@ -59,3 +59,11 @@
 ## set & unordered_set
 
 ## deque
+
+## Extra STL containers
+
+- `bitset`
+- `tuple`
+- `pair`
+- `vector<bool>` - store bools as bits
+- `valarray`
