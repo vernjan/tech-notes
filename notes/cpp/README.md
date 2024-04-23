@@ -225,6 +225,11 @@ while (!myfile.eof()) {
 
 - compile just `cpp` files, not `h` files (they are included in the `cpp` files)
 - `g++ -o main main.cpp util.cpp` - compile and link
+- 3 phases
+    - files are (pre)compiled separately, linker links them together
+    - **precompile** - include files, macros, ... output is expanded source code
+    - **compile** - expanded source code to object files (`foo.o`)
+    - **link** - object files to executable
 
 ## Arrays
 
@@ -239,3 +244,11 @@ while (!myfile.eof()) {
 - pointer arithmetic
     - `*ptr = 1` is the same as `arr[0] = 1`
     - `*(arr + 3)` is the same as `arr[3]`
+
+## Compiler / Linker hints
+
+https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method
+
+- **static** - function is only visible in the current file (different meaning in the context of classes - static works like in Java)
+- **inline** - this function will be defined in multiple translation units, don't worry about it
+- **extern** - use this variable/function name in this translation unit but don't complain if it isn't defined

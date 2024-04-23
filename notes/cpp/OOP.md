@@ -159,3 +159,8 @@ class A {
     friend void f(A & a);
 };
 ```
+
+## static in classes
+
+- works similarly to Java
+- just call as `MyClass::staticMethod()` or `MyClass::staticVar`
