@@ -1,8 +1,10 @@
 # Vim
+
 - `:help [TOPIC]` - show help
 - `ctrl+g` - show status bar (filename, total number of lines, ...)
 
 ## Modes
+
 https://www.freecodecamp.org/news/vim-editor-modes-explained/
 
 - [normal](vim-normal.md)
@@ -12,17 +14,20 @@ https://www.freecodecamp.org/news/vim-editor-modes-explained/
 - replace - enter _replace_ mode with `R`
 
 ## Undo & Redo
+
 - `u` - undo single change
 - `U` - undo all changes on the same line
 - `ctrl+r` - redo
 
 ## Copy & Paste
+
 - `p, P` - paste after/before this line
 - `ctrl+r <REGISTER_NAME>` - paste (in _insert_ mode)
 - `y<MOVE>` - copy (yank)
 - `Y, yy` - copy (yank) line
 
 ### Registers
+
 _Whatever is deleted or copied (yanked) goes into registers._
 
 - `:reg` - show registers
@@ -31,6 +36,7 @@ _Whatever is deleted or copied (yanked) goes into registers._
 - `"<CAPITAL_REGISTER_NAME>y` - append into register
 
 ### Types of registers
+
 _Line (l)_ vs. _Character (c)_
 
 - `""` - default register
@@ -44,6 +50,7 @@ _Line (l)_ vs. _Character (c)_
 - `"*` - system clipboard (mouse highlight)
 
 ## Window Management
+
 - `:sp[lit], ctrl+w s` - split horizontally
 - `:vsp[lit], ctrl+w v` - split vertically
 - `ctrl+w q` - close window
@@ -51,6 +58,7 @@ _Line (l)_ vs. _Character (c)_
 - `ctrl+w ctrl+w` - switch to the next window
 
 ## Buffers
+
 - `:e FILENAME` - load (edit) file (creates new buffer)
 - `:ls, :buffers` - list buffers
 - `:b <NUMBER/NAME>` - switch to buffer by number/name
@@ -59,6 +67,7 @@ _Line (l)_ vs. _Character (c)_
 - `:bd` - delete buffer
 
 ## Search
+
 - `/pattern, ?pattern` - search forward/backward (supports _regex_)
     - `/pattern\c` - case in-sensitive
     - `/pattern\C` - case-sensitive
@@ -66,11 +75,13 @@ _Line (l)_ vs. _Character (c)_
 - `/ + enter, ? + enter` - repeat the last search
 
 ### Configuration
+
 - `:set ic` - ignore case
 - `:set hls` - highlight search results
 - `:set is` - incremental search (jump immediately to results)
 
 ## Replace (Substitute)
+
 https://linuxize.com/post/vim-find-replace/
 
 ```
@@ -85,12 +96,14 @@ https://linuxize.com/post/vim-find-replace/
     - `:.,+4s/foo/bar/g` - replace until 4 lines below the current line
 
 ### Flags
+
 - `g` - global - replace all in the given context (line, range, buffer)
 - `c` - ask for confirmation
 - `i` - case in-sensitive
 - `I` - case-sensitive
 
 ## Marks
+
 - `m<NAME>` - create mark on this line
     - `name` - lowercase letter - local mark
     - `NAME` - uppercase letter - global mark
@@ -101,6 +114,7 @@ https://linuxize.com/post/vim-find-replace/
 - `:delm!` - delete all local marks
 
 ## Jumps & Changes
+
 - https://medium.com/breathe-publication/understanding-vims-jump-list-7e1bfc72cdf0
 - https://medium.com/usevim/vim-101-the-jump-and-change-lists-ef15cfb22c30
 
@@ -112,15 +126,18 @@ https://linuxize.com/post/vim-find-replace/
 - `[NUMBER]g;` - go to previous change (close changes list first)
 
 ## Text Objects
+
 https://blog.carbonfive.com/vim-text-objects-the-definitive-guide/
 
 ```
 [NUMBER][COMMAND]a/i[MOTION]
 ```
+
 - `a` - around word (include surrounding whitespace)
 - `i` - inner word (without whitespace)
 
 ### Motions
+
 - `a/iw` - around/inner word
 - `a/is` - around/inner sentence
 - `a/ip` - around/inner paragraph
@@ -128,12 +145,14 @@ https://blog.carbonfive.com/vim-text-objects-the-definitive-guide/
 - `a/i{, [, (` - around/inner `{, [, (`
 
 ## Macros
+
 - `q<NAME>` - record macro
 - `q` - stop recording
 - `@<NAME>` - play macro
 - `@@` - re-run last macro
 
 ## Advanced moves
+
 - `[count]` - repeat the following movement/command
     - `3w` - jump to 3rd word
     - `5j` - jump 5 lines down
@@ -147,3 +166,8 @@ https://blog.carbonfive.com/vim-text-objects-the-definitive-guide/
 - `v.,/foo` - select text from the cursor to `foo`
 - `ciw` - change this word
 - `xp` - swap character
+
+## Multiline inserts
+
+- use **visual block mode** (`ctrl+v` or `ctrl+q`)
+- https://stackoverflow.com/questions/9549729/vim-insert-the-same-characters-across-multiple-lines

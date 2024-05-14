@@ -39,10 +39,21 @@
 
 ### Const pointers
 
+- `int const ..` is the same as `const int ..`
+
 ```c++
-int* const p = &x;  // p is a const pointer to an int - pointer cannot be reassigned
-const int* p = &x;  // p is a pointer to a const int - value cannot be changed
-const int* const p = &x;  // p is a const pointer to a const int
+int *const p = &x;  // p is a const pointer to an int - pointer cannot be reassigned: won't compile p = nullptr;
+const int *p = &x;  // p is a pointer to a const int - value cannot be changed: won't compile *p = 5;
+const int *const p = &x;  // p is a const pointer to a const int
+```
+
+**Double pointer**
+
+```
+const int *const *const p2 = &p;
+// p2 = nullptr;
+// *p2 = &x;
+// **p2 = 0;
 ```
 
 ### Array pointers
