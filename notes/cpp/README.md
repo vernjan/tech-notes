@@ -22,11 +22,26 @@
 - `g++` - GNU C++ Compiler (C++ frontend for `gcc`, under the hood calls `gcc` with some flags)
 - standard library is installed together with the compiler, located in `/usr/include/c++/VERSION`
     - `VERSION` is the version of the compiler, not C++ standard
+    - unlike Java, compilers implement the new standards incrementally -
+      see [C++ compiler support](https://en.cppreference.com/w/cpp/compiler_support)
+
+## Compilation
+
+## Libraries
+
+- **static libraries** - `.a` files
+    - part of the executable
+- **dynamic libraries** - `.so` files (Linux), `.dll` files (Windows)
+    - loaded at runtime
 
 ## Types
 
-- modifiers: `signed`, `unsigned`, `short`, `long`, `long long`
-- **examples**:
+- **`int` modifiers**
+    - `signed`, `unsigned`
+    - `short`
+    - `long`
+    - `long long`
+- **examples**
     ```c++
     typedef signed long int __int64_t;
     typedef unsigned long int __uint64_t;
@@ -226,10 +241,10 @@ while (!myfile.eof()) {
 - compile just `cpp` files, not `h` files (they are included in the `cpp` files)
 - `g++ -o main main.cpp util.cpp` - compile and link
 - 3 phases
-    - files are (pre)compiled separately, linker links them together
-    - **precompile** - include files, macros, ... output is expanded source code
-    - **compile** - expanded source code to object files (`foo.o`)
-    - **link** - object files to executable
+    - files are compiled separately (aka **translation units)**, linker links them together
+    - **preprocess** - process includes files (headers) and macros - one text file (translation unit)
+    - **compile** - compile the preprocessed files (one by one, no dependencies, can be done in parallel) into object files (`foo.o`)
+    - **link** - link object files and static libraries into an executable
 
 ## Arrays
 
