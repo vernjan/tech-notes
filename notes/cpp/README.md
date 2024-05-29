@@ -38,9 +38,9 @@
 
 - **`int` modifiers**
     - `signed`, `unsigned`
-    - `short`
-    - `long`
-    - `long long`
+    - `short` - ~ 2 bytes (depends on the compiler/platform)
+    - `long` - ~ 4 bytes
+    - `long long` ~ 8 bytes
 - **examples**
     ```c++
     typedef signed long int __int64_t;
