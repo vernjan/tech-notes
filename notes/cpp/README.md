@@ -36,16 +36,30 @@
 
 ## Types
 
-- **`int` modifiers**
+### Fundamental types
+
+- **integers**
     - `signed`, `unsigned`
     - `short` - ~ 2 bytes (depends on the compiler/platform)
     - `long` - ~ 4 bytes
     - `long long` ~ 8 bytes
-- **examples**
-    ```c++
-    typedef signed long int __int64_t;
-    typedef unsigned long int __uint64_t;
-    ```
+    - `int64`, `uint64`, ..
+        ```c++
+        typedef signed long int __int64_t;
+        typedef unsigned long int __uint64_t;
+        ```
+- **floating numbers**
+    - float, double, long double
+- **characters**
+    - `signed`, `unsigned`
+    - `char` - 1 byte
+    - `wchar_t` - 2 bytes (unicode) - uses prefix `L`
+    - and more
+- **boolean**
+    - `true` = 1
+    - `false` = 0
+- `std::Byte` - 8 bits
+- `size-t`
 
 ### Java comparison
 
