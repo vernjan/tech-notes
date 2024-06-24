@@ -78,8 +78,24 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
     - reference cannot point to `nullptr`
     - const references - value is read-only
 
+### Lvalues and Rvalues
+
 - **lvalue reference** - `T& t`
-- **rvalue reference** - `T&& t` - performance optimization to avoid unnecessary copies, works with `std:move`
+    - left value = an expressions that yields object reference ("has a memory address/storage")
+        - variable name - `int x = 5;`
+        - array subscript reference - `arr[2] = 5;`
+        - dereferenced pointer - `*p = 5;`
+        - function call that returns a reference - `foo() = 5;`
+        - increment/decrement operators - `x += 5; --x;`
+- **rvalue reference** - `T&& t` - , works with
+    - right value = "not an lvalue" - temporary value, no name, no memory address/storage
+        - literal - `5`
+        - `std::move` - `std::move(x)` - converts `x` to an rvalue
+        - temporary object - `Foo()`
+        - function call that returns a temporary object - `foo()`
+        - cast - `(int) 5`
+
+- An lvalue is converted implicitly to an rvalue when necessary, but an rvalue cannot be implicitly converted to an lvalue.
 
 ## Smart (Managed) pointers
 
