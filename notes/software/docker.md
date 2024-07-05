@@ -10,7 +10,9 @@
     - has isolated network interface
     - shares the kernel with the host
     - shares the same file system layers with all containers
-- rule of thumb - **one process per container**
+- rules of thumb
+    - **one process per container**
+    - **order your `Dockerfile` commands to optimize caching** (what changes goes last)
 - build context - can be reduced with `.dockerignore`
 - if a service can **run without privileges**, use `USER` to change to a non-root user
 - **Jib** (by Google) - builds optimized Docker and OCI images for your Java applications without a Docker daemon
@@ -21,6 +23,7 @@
   freeCodeCamp blog)
 - [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 - [Building on solid ground: reproducible Docker builds for Python](https://pythonspeed.com/articles/reproducible-docker-builds-python/)
+- [Building Docker Images - Best Practices](https://youtu.be/JcGwgNMZc_E?si=RdF_c16NkRcxRgRc)
 
 ## Build cache
 
@@ -32,6 +35,8 @@
     - always run `apt-get update && apt-get ...` in a single command, otherwise `apt-get update` is skipped
 - if an upper directive is not in cache, then all the following commands are not taken from cache either
     - i.e. a new version of Docker base image (`foo:latest` with new SHA) will run `apt-get ...`
+    - i.e. order of commands matter - things that change often goes last, so we don't rebuild everything
+- each command is a separate layer, layers are additive so deleting something in a different command (layer) has no effect
 
 ## Multi-stage builds
 
