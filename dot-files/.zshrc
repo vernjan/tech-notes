@@ -95,7 +95,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias bat="batcat"
+alias alin="apt list --installed"
+alias alup="apt list --upgradable"
+alias aupt="sudo apt update && alup"
+alias aupg="sudo apt upgrade"
+alias vimzshrc="vim ~/.zshrc"
+alias ggrep="git --no-pager log --oneline --grep "
+alias less="less -Ni"
+alias clp="clipcopy"
+alias gloh="glo | head -n10"
+alias glooh="glo origin/$(git_current_branch) | head -n10"
+alias pbr='~/IdeaProjects/purity/pb/bin/remote-pb -r /work/purity pb'
+alias plg='purelogin'
+alias gcfi='gca --fixup'
+alias plg='(op item get okta --fields label=password; sleep 60) | purelogin'
+alias gbh='gb | head -n10'
+alias pur='cd ~/IdeaProjects/purity/'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval "$(op completion zsh)"; compdef _op op
+eval "$(gh copilot alias -- zsh)"

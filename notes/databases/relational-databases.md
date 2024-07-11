@@ -1,15 +1,18 @@
 # Databases
 
 ## Sources
+
 - [High-Performance Java Persistence](https://vladmihalcea.com/books/high-performance-java-persistence/) (~461 pages)
 - [An Introduction to Transaction Isolation Levels](https://fauna.com/blog/introduction-to-transaction-isolation-levels) (Fauna blog)
 
 ## Data
+
 - structured (normalized, relational)
 - semi-structured (JSON, XML)
 - unstructured (text, audio/video, pdf)
 
 ## Object hierarchy
+
 - see https://stackoverflow.com/questions/7022755/whats-the-difference-between-a-catalog-and-a-schema-in-a-relational-database
 - database server
     - databases (or catalogs) - isolated, think different apps
@@ -19,16 +22,19 @@
 - fully qualified query is **database.schema.table**
 
 ## Connection pooling
+
 - see https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
 - PostgreSQL recommends
     - `connections = (core_count * 2) + effective_spindle_count`
     - i.e. approx. 10 connections for 4 cores
 
 ## Random notes
+
 - normalization vs. denormalization
     - denormalization for performance reasons (optimize read time), especially for read-only data
 
 ## Isolation levels
+
 - see https://jepsen.io/consistency
 - specify what data is visible to statements within a transaction
 - the better isolation, the lower performance
@@ -49,6 +55,7 @@
     - _dirty reads_ can occur
 
 ### Anomalies (read phenomena)
+
 0) **lost update**
     - transactions mutually override data - this is never allowed
 1) **dirty reads**
@@ -62,6 +69,7 @@
     - a transaction sees new row(s) inserted by another transaction
 
 ### Hibernate issues
+
 - watch out for N+1 queries
 - watch out for very long queries (we had ~11,000 characters long query in Sapho server)
 - be careful with eager fetching - usually leads to retrieving more data than (always) required
@@ -74,6 +82,7 @@
         - treats symptoms (suppresses `LazyInitializationException`), ignores root cause, the price to pay is performance
 
 ### Auto-commits
+
 - Not good for multiple modifying statements.
     - https://vladmihalcea.com/why-you-should-always-use-hibernate-connection-provider_disables_autocommit-for-resource-local-jpa-transactions/
       https://www.postgresql.org/docs/9.3/static/populate.html#DISABLE-AUTOCOMMIT
@@ -81,11 +90,13 @@
       https://dev.mysql.com/doc/refman/5.7/en/innodb-autocommit-commit-rollback.html
 
 ### Read-only transactions
+
 - switching to read only transactions (https://vladmihalcea.com/spring-read-only-transaction-hibernate-optimization/)
     - no transaction log
     - optimizations in Spring
 
 ## Indexes
+
 - see https://medium.com/must-know-computer-science/system-design-indexes-f6ad3de9925d
 - B tree - auto-balancing
     - fast access
@@ -98,10 +109,12 @@
     - matches how data are physically stored
 
 ## Partitioning vs. replication
+
 - **partitioning** - different data on multiple nodes
 - **replication** - same data on multiple nodes
 
 ## Two-phase locking
+
 - see https://vladmihalcea.com/2pl-two-phase-locking/
 - guarantees **strict serializability**
 - lock types
@@ -112,6 +125,7 @@
     - shrinking - locks are release, no locks are acquired - commit or rollback
 
 ## MVCC (multi-version concurrency control)
+
 - consistent snapshot - enables read-only transactions without any locking
 - every write transaction has associated a **commit timestamp**
 - data are not overwritten but kept together with the commit timestamp
@@ -119,5 +133,11 @@
     - honors happens-before relationship
 
 ## Transactions
+
 - by default, connections are usually auto-committing
 - nested transactions requires **savepoints**
+
+## Views
+
+- **view** - named SQL query / virtual table, data are not stored
+- **materialized view** - physical table with data, needs to be updated periodically

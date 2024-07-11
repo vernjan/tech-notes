@@ -32,10 +32,10 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
 - plain enums (C compatible, "named" integers") and enum classes
 
 ```c++
-// plain enum
+// plain enum - unscpoed
 enum Color { red, blue, green };
 
-// enum class
+// enum class - scoped
 enum class Color { red, blue, green };
 Color col = Color::red;
 ```
@@ -48,12 +48,17 @@ Color col = Color::red;
     - `=delete` - explicitly prevent the compiler from generating the default implementation
 - **constructor vs. assignment operator**
     ```c++
-    A aa(1);
-    A a = aa;  // copy constructor - assigning to uninitialized object, i.e. a new object must be created
+    // constructors - assigning to an uninitialized object, i.e. a new object (this) must be created
+    A source(1);              // constructor
+    A a = source;             // copy constructor 
+    A b = std::move(source);  // move constructor
     
-    A aa(1);
+    // assignments - assigning to an existing object, i.e. the current object (this) is updated
+    A source(1);
     A a(2);
-    a = aa;  // assignment operator - replacing existing object (clean up target (self) and copy)
+    a = source;             // assignment operator
+    A b(3);
+    b = std::move(source);  // move assignment
     ```
 
 ### Default implementations
@@ -66,7 +71,7 @@ public:
         X(const X&);                    // copy constructor
         X(X&&);                         // move constructor
         X& operator=(const X&);         // copy assignment
-        X& operator=(X&&);              // move assignment: clean up target and move
+        X& operator=(X&&);              // move assignment
         ~X();                           // destructor: clean up
 };
 
