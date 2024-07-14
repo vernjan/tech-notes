@@ -14,12 +14,12 @@ Rectangle * r3 = new Rectangle(5, 6);   // heap (pointer)
 - `this` - **pointer** to the object that the method is called on
 - always visible, no public/private/protected keywords for classes
 
-### Member initializer list
+### Aggregates/PODs
 
-- `: member1(val1), member2(val2) {}`
-- member variables are initialized before the constructor body is executed
-- can be used to initialize `const` members
-- members can belong to this or super class
+- struct, class with no constructors, methods, inheritance, virtual functions, private members
+- initialized with braces `{}`
+
+```c++
 
 ## Unions
 
@@ -63,11 +63,15 @@ Color col = Color::red;
 
 ### Default implementations
 
+- **rule of five** - if you need to provide one of the special member functions, you should provide all of them
+
 ```c++
 class X {
 public:
         X(Sometype);                    // "ordinary" constructor: create an object
         X();                            // default constructor
+        
+        // rule of five:
         X(const X&);                    // copy constructor
         X(X&&);                         // move constructor
         X& operator=(const X&);         // copy assignment
@@ -120,6 +124,13 @@ There are five situations in which an object can be copied or moved:
 3) When an object **is constructed based on another object** of the same class.
 4) When the compiler generates a temporary object.
 
+### Member initializer list
+
+- `: member1(val1), member2(val2) {}`
+- member variables are initialized before the constructor body is executed
+- can be used to initialize `const` members
+- members can belong to this or super class
+
 ### Converting constructor (`explicit`)
 
 - constructor that can be called with a single argument
@@ -165,7 +176,7 @@ class A {
 };
 ```
 
-## static in classes
+## `static` in classes
 
 - works similarly to Java
 - just call as `MyClass::staticMethod()` or `MyClass::staticVar`

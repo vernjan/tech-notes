@@ -30,7 +30,7 @@ Point p1(1, 2); // calls ctor
     foo(Point(1, 2));
     ```
 
-### 3) Aggregate initialization
+### 3) Aggregate/POD initialization
 
 - a bit like Java's `POJO` (Plain Old Java Object)
 - **aggregate** - array or class with
@@ -41,6 +41,17 @@ Point p1(1, 2); // calls ctor
 
 ```c++
 Pod p{1, 2};    // Pod is an aggregate
+Pod p{};        // default initialization - all fields are zeroed
+Pod p{1};       // same as {1, 0}
+```
+
+#### Arrays
+
+```c++
+int array_1[]{ 1, 2, 3 };   // Array of length 3; 1, 2, 3
+int array_2[5]{};           // Array of length 5; 0, 0, 0, 0, 0
+int array_3[5]{ 1, 2, 3 };  // Array of length 5; 1, 2, 3, 0, 0
+int array_4[5];             // Array of length 5; uninitialized values
 ```
 
 ### 4) List initialization
