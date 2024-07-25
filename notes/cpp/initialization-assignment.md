@@ -10,6 +10,7 @@
 ### 1) Direct-initialization
 
 ```c++
+Point p1;       // calls no-arg ctor, NEVER USE Point p1(); - it's a function call
 Point p1(1, 2); // calls ctor
 ```
 

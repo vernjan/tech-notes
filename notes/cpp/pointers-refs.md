@@ -6,7 +6,7 @@
     - also applies to return values and variable assignments
     - default in C++
 - pass-by-reference - **reference** (alias) - use `&` operator (`int& foo`)
-    - no copy is made (performance optimization)
+    - no copy is made (which is faster)
     - can change the original value
       ```c++
       void swap(int& a, int& b) {  // a, b arguments must be variables, not literals
@@ -83,6 +83,9 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
 
 ### Lvalues and Rvalues
 
+- every expression is either an lvalue or an rvalue
+    - rvalue can be subdivided into xvalue and pure rvalues
+
 - **lvalue reference** - `T& t`
     - left value = an expressions that yields object reference ("has a memory address/storage")
         - variable name - `int x = 5;`
@@ -90,6 +93,7 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
         - dereferenced pointer - `*p = 5;`
         - function call that returns a reference - `int & foo(); foo() = 5;`
         - increment/decrement operators - `x += 5; --x;`
+        - struct members - `foo.bar = 10`
     - **const lvalue reference** - `const T& t`
         - can bind to rvalues - `const int& x = 5;`
         - can be used to pass temporary objects to functions
@@ -97,6 +101,7 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
         - can be used to pass expressions
 - **rvalue reference** - `T&& t`
     - right value = "not an lvalue" - temporary value, no name, no memory address/storage
+        - the goal of rvalues is to enable move semantics and perfect forwarding
         - literal - `5`
         - expression like - `5 + 1`
         - temporary object - `Foo()`
@@ -105,6 +110,107 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
         - `std::move` - `std::move(x)` - converts `x` to an rvalue
 
 - An lvalue is converted implicitly to an rvalue when necessary, but an rvalue cannot be implicitly converted to an lvalue.
+
+### Move semantics
+
+- my understanding - if a function declares it accepts `&& t`, it's telling the caller that it will cripple the argument by riping out and
+  taking its internals
+- functions and constructors usually comes in pairs ("copy and move"):
+    - `foo(const T &t)` - "slower", lvalue reference
+    - `foo(T &&t)` - "faster", rvalue reference, the idea is to "steal" from the temporary object
+        - `std::move` - converts an lvalue to an rvalue (sometimes we want to change lvalue to rvalue), no other effect at all
+
+### Perfect forwarding
+
+- `std::forward` - forwards the argument as an lvalue or rvalue
+- used in templates to preserve the value category (lvalue or rvalue) of the argument
+- reference collapsing rules - reference to a reference is just a reference:
+    - `T& &`   -> `T&`
+    - `T& &&`  -> `T&`
+    - `T&& &`  -> `T&`
+    - `T&& &&` -> `T&&`
+- outside of templates, works like `std::move` (?)
+
+### Special type deduction for rvalues
+
+```
+template <class T>
+void func(T&& t) {
+}
+```
+
+- This is quite different from "class" templates because class templates are resolved during object declaration
+  while method templates are resolved during method call.
+- Don't let `T&&` fool you here - `t` is not an rvalue reference. When it appears in a **type-deducing context** (
+  templates, `auto`, `decltype`), `T&&` acquires a special meaning. When func is instantiated, `T` depends on whether the argument passed to
+  func is an lvalue or an rvalue. If it's an lvalue of type U, T is deduced to U&. If it's an rvalue, T is deduced to U.
+
+```c++
+#include <iostream>
+#include <utility>
+
+
+struct Bar {
+    int i;
+};
+
+struct Miau {
+    static void YYY(Bar &b) { std::cout << "1"; }
+    static void YYY(const Bar &) { std::cout << "2"; }
+    static void YYY(Bar &&) { std::cout << "3"; }
+    static void YYY(const Bar &&b) { std::cout << "4"; }
+};
+
+template<typename T>
+struct Foo {
+    //static void XXX(T t) { std::cout << "A"; }
+    static void XXX(T &t) {
+        std::cout << "B";
+        Miau::YYY(t);
+        Miau::YYY(std::forward<T>(t));// TODO Is there a reason to ever use forward if not in "type-deducing" context? Should I rather use std::move?
+        Miau::YYY(std::move(t));
+    }
+
+    static void XXX(const T &t) {
+        std::cout << "C";
+        Miau::YYY(t);
+        //        std::remove_const_t<T> t2 = t;
+        Miau::YYY(std::forward<const T>(t));
+        Miau::YYY(std::move(t));// Doesn't affect const qualifier
+    }
+
+    static void XXX(T &&t) {
+        std::cout << "D";
+        Miau::YYY(t);
+        Miau::YYY(std::forward<T>(t));
+        Miau::YYY(std::move(t));
+    }
+
+    template<typename Q>
+    static void ZZZ(Q &&q) {// type-deducing context
+        std::cout << "X";
+        Miau::YYY(q);
+        Miau::YYY(std::forward<Q>(q));
+    }
+};
+
+
+int main() {
+    Bar b1{};
+    const Bar b2{1};
+    Foo<Bar>::XXX(b1);// B
+    std::cout << "\n";
+    Foo<Bar>::XXX(b2);// C
+    std::cout << "\n";
+    Foo<Bar>::XXX(Bar{1});// D
+    std::cout << "\n";
+    Foo<Bar>::ZZZ(b1);// explicit template type: Foo<Bar>::ZZZ<Bar&>(b1);  Q = Bar&;  collapsed with Bar && to just Bar&
+    std::cout << "\n";
+    Foo<Bar>::ZZZ<Bar>(Bar{1});
+    std::cout << "\n";
+}
+
+```
 
 ## Smart (Managed) pointers
 

@@ -281,3 +281,17 @@ https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inli
 - **static** - function is only visible in the current file (different meaning in the context of classes - static works like in Java)
 - **inline** - this function will be defined in multiple translation units, don't worry about it
 - **extern** - use this variable/function name in this translation unit but don't complain if it isn't defined
+
+## Stack
+
+- stack frames are added on top of each other (new stack frame has lower memory address than the previous one)
+- frame consists of in the following order (ascending memory):
+    - parameters
+    - local variables
+    - saved registers `rbp` and `rip`
+- passing arguments between stack frames
+    - **by reference** - pointer to the function argument is passed
+    - **by value**
+        - small objects (like ints) are copied directly into child's stack frame
+        - large objects (like structs) are first copied on **parent's stack** as a new local variable and then a pointer to the copy is
+          passed
