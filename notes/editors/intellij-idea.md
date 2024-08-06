@@ -89,6 +89,7 @@
     - `enter` - insert
     - `tab` - replace
 - `ctrl + shift + enter` - complete statement (`cmd + shift + enter`) ⚡
+- `alt + /` - hippie completion
 
 ### Context info
 - `ctrl + p` - parameter info (`cmd + p`) ⚡
