@@ -71,7 +71,8 @@
 - `using NAMESPACE` ~ `static import`
 - `const var` ~ `final var`
 - `templates` ~ `generics`, templates can do much more (compile-time code generation)
-- `static` ~ `private` - static objects/functions are not exported outside the CPP file
+- `static` ~ `private static` - static objects/functions are not exported outside the CPP file
+- `extern` ~ `public static`
 - boolean expressions - `0` is `false`, anything else is `true`
     - `nullptr` is `0`, i.e. `false`
 - C++
@@ -278,9 +279,13 @@ while (!myfile.eof()) {
 
 https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method
 
-- **static** - function is only visible in the current file (different meaning in the context of classes - static works like in Java)
+- **static**
+    - *internal linkage* - function/variable is only visible in the current file (translation unit)
+    - lifetime is the entire program ("static")
+- **extern**
+    - *external linkage* - for global functions/variables, I'm saying it's defined somewhere else
+    - implies lifetime is the entire program ("static")
 - **inline** - this function will be defined in multiple translation units, don't worry about it
-- **extern** - use this variable/function name in this translation unit but don't complain if it isn't defined
 
 ## Stack
 
