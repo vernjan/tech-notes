@@ -77,3 +77,8 @@ $ iptables -nL --line-numbers
 - `tar tzvf foo.tar.gz` - list files in archive
 - `tar xzvfO foo.tar.gz ./tag_key.csv` - read file from archive
     - capital `o` - extract to stdout
+
+## seq
+
+- `seq -f 'pod-%.0f' -s' ' 3` - prints `pod-1 pod-2 pod-3`
+    - workaround for "Bash doesn't support variables in brace range expansions." 

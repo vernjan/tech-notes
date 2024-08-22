@@ -44,10 +44,21 @@
     - `mount -v -t ext4 /dev/sdx /mnt/foo`
 - `/etc/fstab` - permanent mounts
 
-## Login shell
+## Shells
 
-- **non-login shell** - does not read, and execute, the contents of `/etc/profile` or `.bash_profile files`,
-  but rather reads, and executes, the `.bashrc` file instead.
+- **login shell** - reads, and executes, the contents of `/etc/profile` and `.profile` (alternatively `.bash_profile` or Zsh `.zprofile`)
+    - `bash -l`, `su -l`
+    - usually called just once per session
+    - interactive
+        - ssh login, console login (`ctrl + alt + f1`)
+    - non-interactive
+        - Gnome-shell (?) - parent of desktop processes
+- **non-login shell**
+    - interactive
+        - reads, and executes, the contents of `.bashrc` or `.zshrc`
+        - terminal emulator (anytime you open a terminal)
+    - non-interactive
+        - scripts
 
 ## sudo
 
