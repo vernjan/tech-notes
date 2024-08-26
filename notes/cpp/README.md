@@ -73,6 +73,7 @@
 - `templates` ~ `generics`, templates can do much more (compile-time code generation)
 - `static` ~ `private static` - static objects/functions are not exported outside the CPP file
 - `extern` ~ `public static`
+- `thread_local` modifier ~ `ThreadLocal` class
 - boolean expressions - `0` is `false`, anything else is `true`
     - `nullptr` is `0`, i.e. `false`
 - C++

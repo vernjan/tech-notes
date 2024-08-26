@@ -28,7 +28,7 @@
 ## Wait & notify
 - The **wait** method is exposed on each java object. Each Java object can act as a condition variable. When a thread executes the wait method, it releases the monitor for the object and is placed in the wait queue. Note that the thread
   must be inside a synchronized block of code that synchronizes on the same object as the one on which wait() is being called,or in other words, the thread must hold the monitor of the object on which it'll call wait.If not so, an
-  illegalMonitor exception is raised!
+  `IllegalMonitorStateException` is raised!
 - The **notify** method, will awaken one of the threads in the associated wait queue, i.e., waiting on the thread's monitor.
 
 ## Compare and swap (CAS)
@@ -43,7 +43,7 @@
     - computers with multiple processors can temporarily hold memory values in registers or local memory caches
         - cache coherence
     - **compilers can reorder instructions for maximum throughput**
-- only **volatile long and double are atomic**
+- only **volatile long and double are atomic** (might not be true for 64-bit platforms)
 
 ## Safe publication
 - > Safe publication makes all the values written before the publication visible to all readers that observed the published object.
