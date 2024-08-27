@@ -90,6 +90,8 @@
 3) Terminate - irrecoverable errors
 
 - `noexcept` - function will not throw exceptions
+- `try { .. } catch (std::exception& e) { .. }`
+- `try { .. } catch (...) { .. }` - expression `...` catches all exceptions
 
 ## Namespaces
 
