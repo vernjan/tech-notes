@@ -208,6 +208,8 @@
     - there is no guarantee that the constructor will be called before the reference is returned
     - i.e. the reference might be visible to reader threads before the constructor is called
     - fixed by volatile which guarantees the object is first constructed (see [Safe publication](#safe-publication))
+- if the created object is immutable, double-checked locking is safe even without volatile (because final fields are guaranteed to be
+  visible)
 - resources
     - https://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
     - https://spotcodereviews.com/articles/concurrency/2020/10/08/is-the-java-object-constructor-thread-safe.html
