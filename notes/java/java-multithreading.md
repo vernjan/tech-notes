@@ -94,6 +94,8 @@
 - lock and unlocks of a monitor or other locking constructs
 - start of a thread or detecting a thread’s termination
 - read or write of volatile variables
+- **synchronized write** - flush my caches into main memory
+- **synchronized read** - invalidate my caches
 
 ### Happens-before memory model
 

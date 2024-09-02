@@ -6,6 +6,7 @@
 - [STL](STL.md)
 - [Containers](containers.md)
 - [OOP](OOP.md)
+- [Features](features.md)
 
 ## Reference
 
@@ -303,3 +304,18 @@ https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inli
         - small objects (like ints) are copied directly into child's stack frame
         - large objects (like structs) are first copied on **parent's stack** as a new local variable and then a pointer to the copy is
           passed
+
+## RAII
+
+- **Resource Acquisition Is Initialization**
+- pairing allocation with de-allocation - prevents memory leaks
+
+```c++
+struct Box {
+    Box() { buffer = new char[1024]; }
+    ~Box() { delete[] buffer; }
+
+private:
+    char * buffer;
+}; 
+```
