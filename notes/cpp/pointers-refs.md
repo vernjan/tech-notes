@@ -115,6 +115,7 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
 
 - my understanding - if a function declares it accepts `&& t`, it's telling the caller that it will cripple the argument by riping out and
   taking its internals
+- when an object is moved, it's left in a _moved-from_ state, it should be used only for assignment or destruction
 - functions and constructors usually comes in pairs ("copy and move"):
     - `foo(const T &t)` - "slower", lvalue reference
     - `foo(T &&t)` - "faster", rvalue reference, the idea is to "steal" from the temporary object
