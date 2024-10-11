@@ -184,6 +184,7 @@
 ## Templates
 
 - templates provide a general mechanism for compile-time programming (code generation)
+- templates are compile-time while virtual methods are runtime
 - classes, functions, constructors, variables, ...
 
 ```c++
