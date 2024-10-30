@@ -133,10 +133,21 @@
 
 ## Type casting
 
-- `static_cast` - compile-time cast, no runtime checks, best avoided but sometimes necessary
-- `dynamic_cast` - runtime check, used for polymorphism
+- **static_cast** - compile-time cast
+    - `static_cast <new_type> (expression);`
+    - used to convert between related types (e.g. int to double or inherited classes)
+- **dynamic_cast** - runtime cast - polymorphism
+    - `dynamic_cast <new_type> (expression);`
+    - mainly used to perform _downcasting_ (converting a pointer/reference of a base class to a derived class)
     - dynamic cast to a reference type - if the cast fails, an exception of type `std::bad_cast` is thrown
     - dynamic cast to a pointer type - if the cast fails, the result is a null pointer of the target type
+- **const_cast** - cast away constness
+    - `const_cast <new_type> (expression);`
+    - used to add or remove `const` or `volatile` qualifiers
+- **reinterpret_cast** - low-level cast
+    - `reinterpret_cast <new_type> (expression);`
+    - used to convert the pointer to any other type of pointer
+    - no type checking is performed
 
 ## Snippets
 
@@ -147,9 +158,16 @@
 ## Memory management
 
 - **dynamic memory** (heap, free store) - allocated at runtime
-    - allocation - `new`, `delete`
-    - `new` returns a pointer to the allocated memory
-    - `int* myInt = new int(123);`
+    - option 1 - `new` & `delete` - "C++" style (preferred)
+        - `new` returns a pointer to the allocated memory
+            - `int* myInt = new int(123);`
+        - `delete` frees the memory
+            - `delete myInt;`
+    - option 2 - `malloc` & `free` - "C" style (avoid if possible)
+        - `malloc` returns a pointer to the allocated memory
+            - `int* myInt = (int*) malloc(sizeof(int));`
+        - `free` frees the memory
+            - `free(myInt);`
 - better to use smart pointers (`std::unique_ptr`, `std::shared_ptr`) instead of raw pointers
 
 ### Object lifecycle
@@ -320,3 +338,9 @@ private:
     char * buffer;
 }; 
 ```
+
+## placement new operator
+
+- allows to construct an object in a pre-allocated memory
+- `new (address) Type;`
+- see https://www.geeksforgeeks.org/placement-new-operator-cpp/
