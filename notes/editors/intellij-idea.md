@@ -1,7 +1,9 @@
 # IntelliJ IDEA
+
 - see [IntelliJIDEA_ReferenceCard.pdf](https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf)
 
 ## General
+
 - `ctrl + alt + s` - open Preferences (`cmd + ,`)
 - `ctrl + alt + shift + s` - open Project structure (`cmd + ;`)
 - `alt + f1` - select current file or symbol in any view ⚡
@@ -10,6 +12,7 @@
 - ```ctrl + ` ``` - switch theme, keymap, view mode, ...
 
 ### Tabs & Windows
+
 - `ctrl + tab` - tab & tool switcher ⚡
 - `ctrl + alt + ]/[` - switch to previous/next IntelliJ IDEA window (`-`) ⚡
 - `alt + left/right` - go to previous/next tab (`ctrl + left/right`) ⚡
@@ -21,6 +24,7 @@
 - `ctrl + alt + shift UP/DOWN/LEFT/RIGHT` - resize tool windows
 
 ### Tool windows
+
 - `alt + 0` - commit (`cmd + 0`) ✔
 - `alt + 1` - project (`cmd + 1`) ✔
     - `shift + enter` - open in right split
@@ -36,12 +40,14 @@
 - `alt + 9` - Git (`cmd + 9`) ✔
 
 ### New files
+
 - `alt + insert` - new file, source, diagram, ...  (`cmd + n`)
 - `ctrl + alt + shift + insert` - new scratch file (`cmd + shift + n`)
 
 ## Edit
 
 ### Text selection
+
 - `ctrl + w` - extend selection (`alt + up`) ✔
 - `ctrl + shift + w` - shrink selection (`alt + down`) ✔
 - `ctrl + shift + [ / ]` - select till code block start/end ⚡
@@ -49,6 +55,7 @@
 - `alt + shift + insert` - column selection mode (`cmd + shift + 8`) ✔
 
 ### Text manipulation
+
 - `ctrl + d` - duplicate line (`cmd + d`) ✔
 - `ctrl + y` - delete line (`cmd + backspace`) ✔
 - `ctrl + shift + j` - join lines ✔
@@ -64,6 +71,7 @@
 - `ctrl + shift + u` - toggle word (selected block) case (`cmd + shift + u`) ✔
 
 ### Multi-cursors
+
 - `alt + shift + click` - add new cursor ⚡
 - `alt + shift + drag` - multi-select
 - `ctrl, ctrl + UP/DOWN` - clone cursor up/down
@@ -72,6 +80,7 @@
 - `ctrl + alt + shift + j` - select all occurrences of the current word and add cursors (`ctrl + cmd + g`) ⚡
 
 ## Code
+
 - `alt + enter` - show intention actions and quick-fixes ✔
 - `alt + insert` - generate code (`cmd + n`) ⚡
 - `ctrl + o` - override methods
@@ -84,6 +93,7 @@
 - `ctrl + shift + /` - comment / uncomment with block comment (`cmd + alt + /`) ✔
 
 ### Code completion
+
 - `ctrl + space` - basic code completion ✔
 - `ctrl + shift + space` - smart code completion
     - `enter` - insert
@@ -92,6 +102,7 @@
 - `alt + /` - hippie completion
 
 ### Context info
+
 - `ctrl + p` - parameter info (`cmd + p`) ⚡
 - `ctrl + mouse` - brief info, resolves `var` type (`cmd + mouse`) ✔
 - `ctrl + q` - quick documentation lookup (`ctrl + j`, `F1`)
@@ -102,6 +113,7 @@
     - `alt + shift + enter` - apply suggested fix
 
 ## Live templates
+
 - `ctrl + j` - live templates (`cmd + j`) ⚡
     - `fori` - for loop (use `tab` to complete all live templates)
     - `ifn` - if null
@@ -114,6 +126,7 @@
     - `soutv` - print (last) value
 
 ## Navigation
+
 - `ctrl + b / ctrl + click` - go to declaration ✔
 - `ctrl + shift + b` - go to type declaration ⚡
 - `ctrl + alt + b` - go to implementations (`cmd + shift + b`) ⚡
@@ -129,6 +142,7 @@
 - `ctrl + shift + +/-` - expand/collapse all
 
 ### Recent locations & changes
+
 - `ctrl + alt + left/right` - navigate back/forward (`cmd + alt + left/right`) ✔
 - `ctrl + shift + backspace` - navigate to last edit location (`cmd + shift + backspace`) ⚡
 - `ctrl + e` - recent files popup (`cmd + e`) ⚡
@@ -138,23 +152,27 @@
 - `ctrl + shift + k` - view recent changes (`alt + shift + c`)
 
 ### Usage search
+
 - `alt + f7` - find usages (tool window) ✔
 - `ctrl + f7` - highlight usages in file (`cmd + f7`) ⚡
 - `ctrl + alt + f7` - show usages in file (popup) (`cmd + alt + f7`)
 
 ### Bookmarks ⚡
+
 - `f11` - toggle bookmark (`f3`)
 - `ctrl + f11` - toggle bookmark with mnemonic (`alt + f3`)
 - `shift + f11` - show bookmarks (`cmd + f3`)
 - `ctrl + 0-9` - go to bookmark
 
 ### Hierarchies
+
 - `ctrl + f12` - file structure popup (`cmd + f12`) ✔
 - `ctrl + h` - type hierarchy
 - `ctrl + shift + h` - method hierarchy (`cmd + shift + h`)
 - `ctrl + alt + h` - call hierarchy ✔
 
 ## Search & Replace
+
 - `shift & shift` - search everywhere ✔
     - `/` - limit search for commands
     - `/url/` - limit search for URL mappings (web endpoints) ⚡
@@ -164,6 +182,7 @@
 - `ctrl + shift + a` - search action (`cmd + shift + a`) ✔
 
 ### Fulltext
+
 - `ctrl + f` - find (`cmd + f`) ✔
 - `ctrl + r` - replace (`cmd + r`) ✔
 - `ctrl + shift + f` - global search (`cmd + shift + f`) ✔
@@ -172,6 +191,7 @@
 - `shift + f3` - find previous (`cmd + shift + g`) ✔
 
 ## VCS (Git)
+
 - `ctrl + k` - commit (focus on commit message) (`cmd + k`) ✔
     - `ctrl + m` - commit message history (`ctrl + m`)
 - `alt + 0` - commit (focus on changed files) (`cmd + 0`) ✔
@@ -182,6 +202,7 @@
 - ```ctrl + shift + ` ``` - branches (`-`) ⚡
 
 ## Refactoring
+
 - `ctrl + alt + shift + t` - refactor this (`ctrl + t`)
 - `f5` - copy
 - `f6` - move
@@ -189,6 +210,7 @@
 - `ctrl + f6` - change signature (`cmd + f6`) ✔
 
 ### Extracts
+
 - `ctrl + alt + n` - inline (`cmd + alt + n`) ✔
 - `ctrl + alt + m` - extract method (`cmd + alt + m`) ✔
 - `ctrl + alt + v` - extract variable (`cmd + alt + v`) ✔
@@ -197,6 +219,7 @@
 - `ctrl + alt + p` - extract parameter (`cmd + alt + p`) ✔
 
 ## Compile & Run
+
 - `ctrl + f9` - build project (`cmd + f9`)
 - `ctrl & ctrl` - run anything
 - `shift + f10/f9` - run/debug (`ctrl + r/d`)
@@ -204,6 +227,7 @@
 - `alt + shift + f10/f9` - open run/debug dialog (`ctrl + alt + r/d`)
 
 ## Debugging
+
 - `f7` - step into ✔
 - `f8` - step over ✔
 - `shift + f8` - step out
@@ -214,5 +238,15 @@
 - `ctrl + shift + f8` - view breakpoints (`cmd + shift + f8`)
 
 ## Diagrams
+
 `ctrl + alt + shift + d` - VCS local changes
 `ctrl + alt + shift + u` - UML class diagram (invoke on package)
+
+## GitHub Copilot
+
+- `alt + [` - previous suggestion
+- `alt + ]` - next suggestion
+- `alt + \` - show all suggestions
+- `tab` - accept full suggestion
+- `ctrl + alt + RIGHT` - accept line
+- `ctrl + RIGHT` - accept word
