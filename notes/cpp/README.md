@@ -235,6 +235,15 @@ struct Buffer {
 - `void * operator new(size_t size)` - custom memory allocation
 - `void operator delete(void * p)` - custom memory deallocation
 
+### placement new operator
+
+- `void* operator new(size_t size, void * p);`
+- `void operator delete(size_t size, void * p);`
+- allows to construct an object in a pre-allocated memory
+- constructed object must not be deleted with `delete`, a destructor must be called explicitly
+- `new (address) Type;`
+- see https://www.geeksforgeeks.org/placement-new-operator-cpp/
+
 ## Lambdas
 
 - `[&](int a){ return a<x; }`
@@ -340,9 +349,3 @@ private:
     char * buffer;
 }; 
 ```
-
-## placement new operator
-
-- allows to construct an object in a pre-allocated memory
-- `new (address) Type;`
-- see https://www.geeksforgeeks.org/placement-new-operator-cpp/
