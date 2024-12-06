@@ -232,6 +232,8 @@ struct Buffer {
 - `operator=` **assignment operator**
 - `operator()` **application operator**, also called “function call” or just “call”
 - `operator""` - user-defined literals
+- `void * operator new(size_t size)` - custom memory allocation
+- `void operator delete(void * p)` - custom memory deallocation
 
 ## Lambdas
 
