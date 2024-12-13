@@ -131,7 +131,42 @@
     -
 - `"foo"` literal is `const char[N]`, to make it a string use suffix `s`
 
-## Type casting
+## Conversions
+
+- prefer brace initialization (`int{5}`), it prevents most of the undefined and weird behavior
+- any pointer can be implicitly converted to
+    - `bool` - `nullptr` is `false`, anything else is `true`
+    - `void*` pointer
+- any number can be implicitly converted to
+    - `bool` - `0` is `false`, anything else is `true`
+
+### Type casting
+
+#### Braced initialization
+
+- always type safe and non-narrowing
+
+#### C-style cast
+
+- `(desired-type)object-to-cast` - mostly for compatibility with C, better avoid
+
+#### User-Defined Type Conversions
+
+```c++
+[explicit] operator destination-type() const { }
+```
+
+- if explicit, compiler will not perform implicit conversions, a static cast is required
+
+**Example**
+
+```
+operator bool() const { }
+```
+
+#### C++ casts
+
+- explicit type conversions
 
 - **static_cast** - compile-time cast
     - `static_cast <new_type> (expression);`
@@ -148,15 +183,6 @@
     - `reinterpret_cast <new_type> (expression);`
     - used to convert the pointer to any other type of pointer
     - no type checking is performed
-
-## Conversions
-
-- prefer brace initialization (`int{5}`), it prevents most of the undefined and weird behavior
-- any pointer can be implicitly converted to
-    - `bool` - `nullptr` is `false`, anything else is `true`
-    - `void*` pointer
-- any number can be implicitly converted to
-    - `bool` - `0` is `false`, anything else is `true`
 
 ## Snippets
 
