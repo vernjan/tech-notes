@@ -149,6 +149,15 @@
     - used to convert the pointer to any other type of pointer
     - no type checking is performed
 
+## Conversions
+
+- prefer brace initialization (`int{5}`), it prevents most of the undefined and weird behavior
+- any pointer can be implicitly converted to
+    - `bool` - `nullptr` is `false`, anything else is `true`
+    - `void*` pointer
+- any number can be implicitly converted to
+    - `bool` - `0` is `false`, anything else is `true`
+
 ## Snippets
 
 - `!!err` is the same as `!(!err)` which means `err != nullptr`
