@@ -101,7 +101,8 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
         - can be used to pass expressions
 - **rvalue reference** - `T&& t`
     - right value = "not an lvalue" - temporary value, no name, no memory address/storage
-        - the goal of rvalues is to enable move semantics and perfect forwarding
+        - the goal of rvalues is to enable move semantics - rvalue marks _disposable_ objects (the caller doesn't care about the destiny of
+          the object)
         - literal - `5`
         - expression like - `5 + 1`
         - temporary object - `Foo()`
@@ -110,6 +111,11 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
         - `std::move` - `std::move(x)` - converts `x` to an rvalue
 
 - An lvalue is converted implicitly to an rvalue when necessary, but an rvalue cannot be implicitly converted to an lvalue.
+
+- another quick look:
+    - `foo(X x)` - `x` is a copy
+    - `foo(X &x)` - `x` is an lvalue reference - the caller most likely care about the object
+    - `foo(X &&x)` - `x` is an rvalue reference - the caller doesn't care about the object, I can rip it apart
 
 ### Move semantics
 
@@ -132,12 +138,14 @@ aio_callback is a pointer to a function that takes a pointer to a struct iocb an
     - `T&& &&` -> `T&&`
 - outside of templates, works like `std::move` (?)
 
-### Special type deduction for rvalues
+### "Universal references"
 
 ```
-template <class T>
+template <typename T>
 void func(T&& t) {
 }
+
+auto && foo = ..
 ```
 
 - This is quite different from "class" templates because class templates are resolved during object declaration
