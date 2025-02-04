@@ -103,7 +103,8 @@
 - `using std::cout, std::string` - selective imports - recommended
 - `using foo = unsigned int` - aliases (types, function pointers, ...)
     - `using size_t = unsigned int;` - implementation specific, some compilers use `unsigned long` - dynamic!
-- `using` can be used inside functions to limit the scope
+    - template param partial binding - `template <typename K> using Map<K> = std::Map<K, Foo>;`
+- `using` can be used on the global (namespace) level, in a function, or in a block
 
 ## Features
 
