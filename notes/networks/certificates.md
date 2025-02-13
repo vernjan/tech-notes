@@ -1,7 +1,11 @@
 # Certificates
 
-- decoding cetificates https://www.sslshopper.com/certificate-decoder.html
-    - `openssl x509 -in cert.crt -text -noout`
+- decoding certificates https://www.sslshopper.com/certificate-decoder.html
+    - `openssl x509 -in CERT_FILE -text -noout`
+- decoding bundle certificates (a file with multiple certificates)
+    - `openssl storeutl -noout -text -certs vasaRoot.crt`
+- decoding RSA keys
+    - `openssl rsa -in KEY_FILE -text -noout`
 
 ## CSR - Certificate Signing Request
 
