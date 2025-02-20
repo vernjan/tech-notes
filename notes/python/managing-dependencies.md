@@ -15,14 +15,14 @@
   ```
   $ python2.7 -m pip install
   $ python3.8 -m pip install
-  $ python3.10 -m venv venv
+  $ python3.10 -m venv my-venv
   ```
 - for Python 2, use `virtualenv` module
 
 ## venv
 
 ```
-$ python3.x -m venv venv
+$ python3.x -m venv my-venv
 $ source venv/bin/activate
 $ (venv) ..
 ```

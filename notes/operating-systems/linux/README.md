@@ -71,3 +71,10 @@
     - auditable
 - `/etc/sudoers` - configuration file (use `sudo visudo` to edit it)
 - unlike `su`, `sudo` requires the user's own password, not the target user password
+
+## Packages
+
+- https://pkgs.org/
+- https://launchpad.net/ubuntu
+- search in which packages a file is included
+    - `dpkg -S FILE`
