@@ -76,5 +76,8 @@
 
 - https://pkgs.org/
 - https://launchpad.net/ubuntu
-- search in which packages a file is included
-    - `dpkg -S FILE`
+- https://linux-audit.com/software/package-manager/determine-file-and-related-package/
+    - discover related package
+        - `dpkg -S $(which -a COMMAND)` (`-S` ~ `--search`)
+    - show files installed by package
+        - `dpkg -L PACKAGE` (`-L` ~ `--listfiles`)

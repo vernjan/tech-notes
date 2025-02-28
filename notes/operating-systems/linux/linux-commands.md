@@ -81,4 +81,8 @@ $ iptables -nL --line-numbers
 ## seq
 
 - `seq -f 'pod-%.0f' -s' ' 3` - prints `pod-1 pod-2 pod-3`
-    - workaround for "Bash doesn't support variables in brace range expansions." 
+    - workaround for "Bash doesn't support variables in brace range expansions."
+
+## which
+
+- `which -a` - show all matches
