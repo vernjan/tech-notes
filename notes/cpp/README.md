@@ -350,8 +350,9 @@ while (!myfile.eof()) {
 https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method
 
 - **static**
-    - *internal linkage* - function/variable is only visible in the current file (translation unit)
-    - lifetime is the entire program ("static")
+    - "double-duty"
+        - *internal linkage* - function/variable is only visible in the current file (translation unit)
+        - lifetime is the entire program ("static")
 - **extern**
     - *external linkage* - for global functions/variables, I'm saying it's defined somewhere else
     - implies lifetime is the entire program ("static")
