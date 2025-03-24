@@ -1,33 +1,48 @@
 # Java Language
 
 ## Sources
+
 - 📙 Effective Java by Joshua Bloch
 - [Jagged Array in Java](https://www.geeksforgeeks.org/jagged-array-in-java/) (GeeksForGeeks)
 - [Cglib, Javassist, JDK dynamic proxy](https://programmer.group/cglib-javassist-jdk-dynamic-proxy.html) (Programmer Group)
-- [Method Overloading with Autoboxing and Widening in Java](https://www.geeksforgeeks.org/method-overloading-autoboxing-widening-java/) (GeeksForGeeks)
+- [Method Overloading with Autoboxing and Widening in Java](https://www.geeksforgeeks.org/method-overloading-autoboxing-widening-java/) (
+  GeeksForGeeks)
 - [How to make the most of Java enums](https://blogs.oracle.com/javamagazine/post/how-to-make-the-most-of-java-enums) (Oracle blog)
 
 ## Generics
+
+- PECS - producer-extends, consumer-super
 - **invariant** - default
-- **covariant** (PE - producers _extends_, e.g. reading from collection/box)
+- **covariant** (PE - producers _extends_, e.g. GET from collection/box)
   ```
   List<? extends Number> l = new ArrayList<Integer>();
   Number number = l.get(0);
   l.add(null); // nothing else
   ```
-- **contravariant** (CS - consumer _supers_, e.g. adding values to collection/box)
+- **contravariant** (CS - consumer _super_, e.g. PUT into collection/box)
   ```
   List<? super Number> l = new ArrayList<Object>();
   Object object = l.get(0); // always object
   l.add(5);
   ```
 
+### Method signatures
+
+```
+Function<? super Param1, ? super Param2, ? extends R> // contravariant in params, covariant in R
+```
+
+- method params are contravariant - we put arguments in
+- return type is covariant - we get the result out
+
 ### Arrays and generics
+
 - don't combine - arrays are _covariant_ and _reified_ (type parameter is preserved at runtime)
     - **covariant** - `Object[] objects = new String[10]; // ok compile`
     - **reified** - type safety is checked at runtime (generics are not reified, type is erased at compile time)
 
 ## Arrays
+
 - `Array.equals` compares just the array refs (`arr1 == arr2`)
     - `Arrays.equals` call equals on all elements - use for 1D arrays
     - `Arrays.deepEquals` make deep comparison - use for nested multidimensional arrays
@@ -36,6 +51,7 @@
 - `Arrays.binarySearch(..)` - arrays must be **sorted**
 
 ### Jagged arrays
+
 ```
 Integer[][] array1 = {{1, 4}, null, {9, 7, 8}, {}};
 
@@ -48,6 +64,7 @@ array2[3] = new Integer[] {};
 ```
 
 ## Hashcode & equals
+
 - always override `hashcode` when overriding `equals`
     - otherwise, hash based collections will be broken (`HashSet`, `HashMap`)
     - simply because hashcode will point (most likely) to a different bucket
@@ -65,6 +82,7 @@ array2[3] = new Integer[] {};
     - distinct object may produce same hashcodes
 
 ## Comparator & Comparable
+
 - `Comparable<T>` interface
     - imposes a total ordering (or _natural ordering_) on the objects of each class that implements i
     - `Collections.sort()` and `Arrays.sort()`
@@ -85,6 +103,7 @@ array2[3] = new Integer[] {};
         - `Comparator.nullsFirst(Comparator.comparingInt(String::length))`
 
 ## Reflection
+
 - allows introspecting and executing code
     - code diagrams, method intellisense, framework annotations
     - dynamic proxies, executing tests
@@ -95,6 +114,7 @@ array2[3] = new Integer[] {};
     - `aClass.class` - access to primitives (`void.class`, `int.class`) and arrays (`int[].class`)
 
 ## Dynamic proxy
+
 - creating objects that act like instances of interfaces but allow for customized method invocation
 - proxy class is a class created at runtime that implements a specified list of interfaces, known as proxy interfaces
 - generating bytecode at runtime
@@ -102,6 +122,7 @@ array2[3] = new Integer[] {};
 - **proxy object** - dynamically generated proxy
 
 ### JDK dynamic proxy
+
 - `Proxy` class - factory for creating proxy objects
 - `InvocationHandler` - implements proxy logic
 
@@ -139,7 +160,7 @@ class ProxyExample {
         };
 
         Person proxy = (Person) Proxy.newProxyInstance(Person.class.getClassLoader(),
-                new Class<?>[] {Person.class}, // possibly multiple interfaces
+                new Class<?>[]{Person.class}, // possibly multiple interfaces
                 handler);
 
         proxy.hi();
@@ -149,6 +170,7 @@ class ProxyExample {
 ```
 
 ### Cglib, javassist
+
 - similar to JDK
 - differs in implementation details and some restrictions
 - javassist is more general purpose (byte code manipulation)
@@ -157,6 +179,7 @@ class ProxyExample {
     - no longer maintained, no docs
 
 ## Weak references
+
 - [Package java.lang.ref](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ref/WeakReference.html)
 - [Weak References in Java](https://www.baeldung.com/java-weak-reference) (Baeldung)
 - A weakly referenced object is cleared by the Garbage Collector when it's weakly reachable
@@ -164,6 +187,7 @@ class ProxyExample {
 - `WeakHashMap`
 
 ## Autoboxing
+
 - Rule of thumb - in most operations, **boxed primitives gets unboxed**
     ```
     Integer i1 = 1000;
@@ -173,12 +197,14 @@ class ProxyExample {
 - unboxing can throw NPE
 
 ## Overloading
+
 - priority order for **primitive types**:
     - Same type > Auto Widening > Boxing > Upcasting (Parent Class) > Super Class
 - priority order for **reference types**:
     - Same type > Upcasting (Parent Class) > Super Class > Unboxing
 
 ## String interning
+
 - **Java String Pool** — the special memory region where Strings are stored by the JVM (off heap, since JDK8)
 - `"foo"` - creates the String in the pool, or return the existing one
 - `new String("foo")` - avoid, it creates a new object on the heap which references to the String pool
@@ -187,19 +213,23 @@ class ProxyExample {
 - if the String is known at compile time, it's created in the String pool
 
 ## String concatenation
+
 - `"a" + "b"` - a new StringBuilder is created behind the scenes by the compiler
 
 ## Reference types
+
 - see [Types of References in Java](https://www.geeksforgeeks.org/types-references-java/) (GeeksForGeeks)
 - **strong** - standard reference
 - **weak** - eligible for gc if only referenced by weak references (`WeakHashMap`)
 
 ## Enums
+
 - compiled into a class extending from `java.lang.Enum`
     - inherits `name()`, `ordinal()`, `valufOf(..)`
 - enum constants become anonymous classes - they can implement their own methods
 
 ## Notes
+
 - `Array.length`, `String.length()`, `Collection.size()`
 - `null instanceof Foo` - always false, instance of null-safe (1t operator)
 - avoid `float == float` and `double == double`, use `Float.compare` and `Double.comapre` - reason is `Float.NaN` and `Double.NaN`
