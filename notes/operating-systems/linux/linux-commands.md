@@ -86,3 +86,13 @@ $ iptables -nL --line-numbers
 ## which
 
 - `which -a` - show all matches
+
+## arp
+
+- `arp -n` - show ARP table (mapping of IP to MAC addresses)
+    - useful to see if a host is on the same local network
+    - similar is `ip neigh`
+
+## ip
+
+- `ip a` - show all interfaces
