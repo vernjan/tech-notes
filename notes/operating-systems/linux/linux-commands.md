@@ -20,6 +20,11 @@
 - `dpkg -s/--status PACKAGE` - show package info
 - `dpkg -l/--list [pattern]` - show package info
 
+### dpkg-deb
+
+- `dpkg-deb -c PACKAGE.deb` - list contents of DEB package
+- `dpkg-deb -x PACKAGE.deb TARGET_DIR` - extract DEB package
+
 ## su
 
 - `su - [user]` - `-` mean to use a _login shell_

@@ -4,3 +4,4 @@
 - network interface is identified by a MAC address
 - think which network interface is used for which network
 - `ip -a` - show all network interfaces
+- `tcpdump -n -i [IFACE] host [HOST]` - capture packets on a specific interface
