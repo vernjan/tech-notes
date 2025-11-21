@@ -1,6 +1,8 @@
 # IntelliJ IDEA
 
 - see [IntelliJIDEA_ReferenceCard.pdf](https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf)
+- disable conflicting shortcuts on Ubuntu:
+  - `ctrl + shift + u` - `gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey  "[]"`
 
 ## General
 
