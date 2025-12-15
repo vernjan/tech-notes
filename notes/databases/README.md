@@ -1,6 +1,7 @@
 # Databases
 
 - [Relational databases](relational-databases.md)
+- [Prometheus](prometheus.md)
 - [NoSQL](nosql.md)
 
 ## Character sets and collations

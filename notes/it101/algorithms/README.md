@@ -7,6 +7,7 @@
 - [Greedy algorithms](greedy-algorithms.md)
 - [Dynamic programming](dynamic-programming.md)
 - [NP problems](np-problems.md)
+- [Linear programming]()
 
 ## Approaches
 - **bottom-up** - intuitive, build the solution for one case off of the previous case (iterative fibonacci)
