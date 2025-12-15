@@ -6,5 +6,7 @@
 - [JVM arguments](java-vm-arguments.md)
 - [Multithreading in Java](java-multithreading.md)
 - [Java in containers](java-in-containers.md)
-- [Spring framework](spring.md)
-- [Guice framework](guice.md)
+- Java frameworks
+    - [Spring](spring.md)
+    - [Guice](guice.md)
+    - [Micrometer](micrometer.md)
