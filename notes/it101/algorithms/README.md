@@ -6,6 +6,7 @@
 - [Recursion](recursion.md)
 - [Greedy algorithms](greedy-algorithms.md)
 - [Dynamic programming](dynamic-programming.md)
+- [Linear programming](linear-programming.md)
 - [NP problems](np-problems.md)
 - [Linear programming]()
 

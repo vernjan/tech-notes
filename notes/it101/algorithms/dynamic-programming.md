@@ -1,18 +1,27 @@
 # Dynamic programming
+
 > Those who cannot remember the past are condemned to repeat it.
-- algorithmic paradigm that solves a given complex problem by **breaking it into subproblems**
+
+- general algorithmic paradigm/design that solves a given complex problem by **breaking it into subproblems**
   and **stores the results of subproblems** to avoid computing the same results again
 - optimization technique - reduces exponential to polynomial
+    - finding the minimum/maximum value, finding the longest/shortest paths and exhaustive search
+- "careful brute-force"
+- **challenge** - designing the subproblems
 
 ## Sources
+
 - [Dynamic Programming](https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/?ref=lbp) (GeeksForGeeks)
-- [Grokking Dynamic Programming Patterns for Coding Interviews](https://www.educative.io/courses/grokking-dynamic-programming-patterns-for-coding-interviews) (~18 hours, Educative)
+- [Grokking Dynamic Programming Patterns for Coding Interviews](https://www.educative.io/courses/grokking-dynamic-programming-patterns-for-coding-interviews) (~ 18 hours, Educative)
 - [Introduction to Dynamic Programming 1](https://www.hackerearth.com/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/) (hackerearth.com)
 
 ## Top-down (memoization)
+
 - solve the bigger problem by recursively finding the solution to smaller sub-problems
 - whenever we solve a sub-problem, we cache its result
+
 ### Example - Fibonacci
+
 - reduces runtime from `O(n^2)` to `O(n)`
 
 ![](_img/fib.png)
@@ -36,10 +45,13 @@ private static int nthFibMem(int i, int[] mem) {
 ```
 
 ## Bottom-up (tabulation)
+
 - solve the sub-problems first, then combine into the original problem solution
 - avoids recursion
 - usually done by filling up an **n-dimensional table** (grid)
+
 ### Example - Fibonacci
+
 ```
 private static int nthFibLinear(int n) {
     if (n < 2) {
@@ -58,10 +70,12 @@ private static int nthFibLinear(int n) {
 ``` 
 
 ## Examples
+
 - Kadane's algorithm (find the sum of maximum sum subarray)
 - Levenshtein distance (similarity of strings, used for spellchecks)
 
 ### Knapsack problem
+
 ```
 cell[row][col] = max( 
   1. the previous max (i.e. cell[row - 1, col])  
@@ -70,6 +84,7 @@ cell[row][col] = max(
 ```
 
 ### Longest common substring
+
 ```
 if (word1[i] == word2[j]) {
   cell[i][j] = cell[i-1][j+1] + 1
@@ -80,6 +95,7 @@ else {
 ```
 
 ### Longest common subsequence
+
 ```
 if (word1[i] == word2[j]) {
   cell[i][j] = cell[i-1][j+1] + 1
