@@ -8,4 +8,5 @@
 - [Advanced topics](advanced.md)
 - [Managing dependencies](managing-dependencies.md)
 - [Modules](modules.md)
+- [Python library](pylib.md)
 - [Snippets](snippets.md)
