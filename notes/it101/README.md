@@ -6,3 +6,4 @@
 - [Bit manipulation](bit-manipulation.md)
 - [Regular expressions](regex.md)
 - [Multithreading](multithreading.md)
+- [Testing](testing.md)
