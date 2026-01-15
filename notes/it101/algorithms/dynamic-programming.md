@@ -7,13 +7,18 @@
 - optimization technique - reduces exponential to polynomial
     - finding the minimum/maximum value, finding the longest/shortest paths and exhaustive search
 - "careful brute-force"
-- **challenge** - designing the subproblems
+  - **guessing** - try all guesses and take the best one
+- **challenge** - defining the subproblems
+  - subproblems dependencies must be acyclic - we need to solve in _topological order_
+- top-down vs. bottom-up - same results, just a personal preference
+- for solving string / sequence issues, try first prefixes, postfixes or substrings
 
 ## Sources
 
 - [Dynamic Programming](https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/?ref=lbp) (GeeksForGeeks)
 - [Grokking Dynamic Programming Patterns for Coding Interviews](https://www.educative.io/courses/grokking-dynamic-programming-patterns-for-coding-interviews) (~ 18 hours, Educative)
 - [Introduction to Dynamic Programming 1](https://www.hackerearth.com/practice/algorithms/dynamic-programming/introduction-to-dynamic-programming-1/tutorial/) (hackerearth.com)
+- [MIT Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/video_galleries/lecture-videos/)
 
 ## Top-down (memoization)
 
