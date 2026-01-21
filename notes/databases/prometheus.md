@@ -13,12 +13,22 @@
         - resets only when the process/app restarts
     - **gauges** - fluctuating values (e.g. CPU usage)
         - long scrape intervals can miss spikes
-    - **histograms** - distribution of values into predefined buckets (e.g. request duration)
+    - **histograms** - distribution of values into predefined buckets (e.g. request duration or size)
         - list of buckets (counters) + sum + count
-        - less precise, percentiles are calculated (estimated) on the server side
-    - **summaries** - calculating percentiles of observed values on the client site
-        - precise but cannot be aggregate accords metrics
+        - by default, histogram buckets are preconfigured for time duration (5ms, 10ms, 25ms, 50ms, 100ms, 250ms, 500ms, 1s, ...)
+          but can be changed to e.g. size in bytes
+    - **summaries** - distribution of values into quantiles (percentiles)
+        - list of quantiles (counters) + sum + count
+            - 0.0 quantile is the min
+            - 1.0 quantile is the max
+        - quantiles are configurable and optional, if omitted ten sum & count only
+        - by default, calculated based on the 5-minute moving window
+        - quantiles cannot be aggregated
 - each metrics has a **name** and a set of **labels** (key-value pairs)
+
+In general, you should prefer histograms to summaries. The Prometheus query language has a function `histogram_quantile()` for calculating
+quantiles from histograms. The advantage of query-time quantile calculation is that you can aggregate histograms before calculating the
+quantile. See https://prometheus.io/docs/practices/histograms/#quantiles
 
 ### Example 1: Simple gauge
 
