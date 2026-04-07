@@ -6,6 +6,7 @@
     - [Python](notes/python/README.md)
     - [C](notes/c/README.md)
     - [C++](notes/cpp/README.md)
+    - [Go](notes/go/README.md)
 - Frameworks
     - [Angular](notes/frameworks/angular/README.md)
 - [Databases](notes/databases/README.md)
