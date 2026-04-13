@@ -14,7 +14,7 @@ Creates `go.mod` file. Don't edit it manually, use `go get` to add dependencies.
 
 All programs start in the `main` package. The `main` function is the entry point of the program.
 
-```
+```go
 package main
 
 func main() {
@@ -56,3 +56,42 @@ go fmt ./...
     - immutable sequence of _runes_
     - default value is `""`
     - use `==` for comparison (also `>`, `<`, ...)
+
+## Variables
+
+- Unused variables cause compilation error, use `_` to ignore them
+
+### Declaration
+
+```go
+var x int // default value is 0, use explicit type declaration for 0s
+var x byte = 20
+var x = 10
+x := 10  // only inside functions
+```
+
+In general, it's not recommended to declare variables outside of functions, use constants instead.
+
+### Multiple variables
+
+```go
+var x, y = 10, "hello" // mostly used for assigning multiple return values from functions
+```
+
+## Constants
+
+```go
+const x int64 = 10
+
+const (
+    idKey   = "id"
+    nameKey = "name"
+)
+```
+
+### Typed vs untyped constants
+
+```go
+const x = 10 // can be assigned to any numeric type (int, int64, float64, ...)
+const y int = 10
+```
