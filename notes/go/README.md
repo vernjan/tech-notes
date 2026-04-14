@@ -1,6 +1,8 @@
 # Go
 
-## Modules
+## 1) Basics
+
+### Modules
 
 ```
 go mod init <module-name>
@@ -8,9 +10,9 @@ go mod init <module-name>
 
 Creates `go.mod` file. Don't edit it manually, use `go get` to add dependencies.
 
-## Packages
+### Packages
 
-### Main package
+#### Main package
 
 All programs start in the `main` package. The `main` function is the entry point of the program.
 
@@ -22,7 +24,7 @@ func main() {
 }
 ```
 
-### Imports
+#### Imports
 
 ```
 import "fmt"
@@ -30,7 +32,7 @@ import "fmt"
 
 Go always imports the full package.
 
-## Formatting
+### Formatting
 
 Go has a built-in tool for formatting code: `go fmt`. It enforces a consistent style across all Go code.
 Incorrectly formatted code will not compile.
@@ -41,7 +43,7 @@ To reformat all Go files in the current directory and its subdirectories:
 go fmt ./...
 ```
 
-## Types
+## 2) Predeclared Types And Declarations
 
 - strict explicit type conversion (no implicit conversions, e.g. from `int` to `float64`)
 
@@ -57,41 +59,46 @@ go fmt ./...
     - default value is `""`
     - use `==` for comparison (also `>`, `<`, ...)
 
-## Variables
+### Variables
 
-- Unused variables cause compilation error, use `_` to ignore them
+- unused variables cause compilation error, use `_` to ignore them
+- camel case convention
 
-### Declaration
+#### Declaration
 
 ```go
 var x int // default value is 0, use explicit type declaration for 0s
 var x byte = 20
 var x = 10
-x := 10  // only inside functions
+x := 10 // only inside functions
 ```
 
 In general, it's not recommended to declare variables outside of functions, use constants instead.
 
-### Multiple variables
+#### Multiple variables
 
 ```go
 var x, y = 10, "hello" // mostly used for assigning multiple return values from functions
 ```
 
-## Constants
+### Constants
+
+- don't use UPPER_SNAKE_CASE, use camelCase instead
 
 ```go
 const x int64 = 10
 
 const (
-    idKey   = "id"
-    nameKey = "name"
+idKey = "id"
+nameKey = "name"
 )
 ```
 
-### Typed vs untyped constants
+#### Typed vs untyped constants
 
 ```go
 const x = 10 // can be assigned to any numeric type (int, int64, float64, ...)
 const y int = 10
 ```
+
+## 3) Composite Types
