@@ -2,7 +2,9 @@
 
 ## 1) Basics
 
-- pass by value
+- pass by value (by default)
+- garbage collected
+- Go runtime is compiled into every binary (hello world is ~ 2 MB)
 
 ### Modules
 
@@ -125,20 +127,65 @@ var x [2][3]int // 2D array (array of arrays)
 - slices can grow and shrink
 - can't be compared with `==` (only with `nil`), use `slices.Equal` or `slices.EqualFunc` instead
     - avoid using `reflect.DeepEqual` for slices in new code
+- len vs capacity, slice is copied to new location when appending and capacity is exceeded
 
 ```go
 var x []int // empty slice, default value is nil
 var x = []int{10, 20, 30} // size is not specified: [...] is array, [] is slice
 ```
 
-#### Common functions
+#### Slicing Slices
 
+- similar to Python `[:]`
+- Doesn't return a copy! Modifying slices is very confusing, better avoid!
+
+```go
+x := []string{"a", "b", "c", "d"}
+y := x[:2]
+y = append(y, "z")
+fmt.Println("x:", x) // [a b z d]
+fmt.Println("y:", y) // [a b z]
 ```
+
+### Array - Slice Conversions
+
+```go
+// array to slice
+xArray := [4]int{5, 6, 7, 8}
+xSlice := xArray[:] // nothing is copied
+
+// slice to aray
+xSlice := []int{1, 2, 3, 4}
+xArray := [4]int(xSlice) // this is a copy!
+```
+
+### Strings and Runes and Bytes
+
+### Built-in Functions
+
+```go
+// len
 len(x) // len(nil) is 0
-var x []int
+
+// append
+var x []int // nil slice
+var x = []int{}   // empty slice, not nil, but len is also 0, e.g. for json serialization
 x = append(x, 10) // appending to empty (nil) slice is fine, append doesn't modify the original slice
 y = append(x, 1, 2, 3)
 z = append(x, y...) // append all elements of y to x
- 
- 
+
+// cap
+cap(x) // max capacity, for arrays alwayst the same as len
+
+// make
+x := make([]int, 5) // creates a slice of length 5 and capacity 5, initialized with zero values: [0, 0, 0, 0, 0]
+x := make([]int, 5, 10) // creates a slice of length 5 and capacity 10
+
+// clear
+clear(x) // sets all elements to zero value, doesn't change the length or capacity of the slice
+
+// copy
+x := []int{1, 2, 3, 4}
+y := make([]int, 4) // len and cap is 4
+num := copy(y, x) // dest, source (if dest < smaller then only a subset is copied)
 ```

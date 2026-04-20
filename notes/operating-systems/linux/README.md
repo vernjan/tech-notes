@@ -7,6 +7,7 @@
 - [less](less.md)
 - [Zsh](zsh.md)
 - [Disks & partitions](disks-partitions.md)
+- PAM(pam.md)
 
 ## Source
 
