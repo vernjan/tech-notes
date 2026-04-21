@@ -7,3 +7,4 @@
 - [Regular expressions](regex.md)
 - [Multithreading](multithreading.md)
 - [Testing](testing.md)
+- [Unicode](unicode.md)

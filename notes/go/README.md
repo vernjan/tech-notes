@@ -59,7 +59,7 @@ go fmt ./...
   floating point: `float32`, `float64`
     - prefer `float64` for better precision
 - `strings`
-    - immutable sequence of _runes_
+    - immutable sequence of bytes (not runes)
     - default value is `""` (not `nil`)
     - use `==` for comparison (also `>`, `<`, ...)
 
@@ -160,6 +160,28 @@ xArray := [4]int(xSlice) // this is a copy!
 ```
 
 ### Strings and Runes and Bytes
+
+- immutable sequence of bytes
+- slicing is supported but be careful with multi-byte characters (e.g. emojis)
+- `len()` returns the number of bytes, not the number of characters (runes)!
+
+```
+// len
+var s string = "Hello 😀"
+fmt.Println(len(s)) // 10
+
+// conversions
+var a rune    = 'x'
+var s string  = string(a)
+var b byte    = 'y'
+var s2 string = string(b)
+
+var s string = "Hello, 😀"
+var bs []byte = []byte(s) // [72 101 108 108 111 44 32 240 159 140 158]
+var rs []rune = []rune(s) // [72 101 108 108 111 44 32 127774]
+``` 
+
+### Maps
 
 ### Built-in Functions
 
