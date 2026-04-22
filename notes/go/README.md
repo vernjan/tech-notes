@@ -183,6 +183,44 @@ var rs []rune = []rune(s) // [72 101 108 108 111 44 32 127774]
 
 ### Maps
 
+- keys must be comparable (e.g. can't use slices as keys)
+    - Go doesn’t require (or even allow) you to define your own hash algorithm or equality definition
+- hash maps
+- if the key doesn't exist, the zero value of the value type is returned (e.g. 0 for int, "" for string, nil for slices and maps)
+- comparing: `maps.Equal` or `maps.EqualFunc` (same as for slices)
+- there is no set type in Go, but you can use a map with empty struct values or boolean values to represent a set
+    - union, intersection, and subtraction are not part of the standard
+
+```go
+var nilMap map[string]int
+emptyMap := map[string]int{}
+
+teams := map[string][]string { // map of strings to string slices
+"Orcas": []string{"Fred", "Ralph", "Bijou"},
+"Lions": []string{"Sarah", "Peter", "Billie"},
+"Kittens": []string{"Waldo", "Raul", "Ze"},
+}
+
+delete(m, "Orcas") // delete a key from the map (doesn't return anything, doesn't cause an error if the key doesn't exist)
+
+emptyMapOfSize10 := make(map[int][]string, 10)
+```
+
+#### The comma ok Idiom
+
+```go
+m := map[string]int{
+"foo": 5,
+}
+v, ok := m["foo"]
+fmt.Println(v, ok) // Output: 5 true
+
+v, ok = m["bar"]
+fmt.Println(v, ok) // Output: 0 false
+```
+
+### Structs
+
 ### Built-in Functions
 
 ```go
