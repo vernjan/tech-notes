@@ -71,3 +71,36 @@ fmt.Println("Zero")
         - For strings, it iterates over Unicode code points (runes), not bytes
 
 - labels are supported
+
+## switch
+
+- As for `if`, variables can be scoped to the `switch` statement and no parentheses around the condition
+- No fallthrough by default, but can be enabled with `fallthrough` statement
+
+```go
+switch size := len(word); size {
+    case 1, 2, 3, 4:
+        fmt.Println(word, "is a short word!")
+    case 5:
+        wordLen := len(word)
+        fmt.Println(word, "is exactly the right length:", wordLen)
+    case 6, 7, 8, 9: // no action
+    default:
+        fmt.Println(word, "is a long word!")
+}
+```
+
+### Blank switch
+
+```go
+switch wordLen := len(word); { // no variable here
+    case wordLen < 5: // boolean expressions here
+        fmt.Println(word, "is a short word!")
+    case wordLen > 10:
+        fmt.Println(word, "is a long word!")
+    default:
+        fmt.Println(word, "is exactly the right length.")
+}
+```
+
+## goto
