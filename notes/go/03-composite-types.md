@@ -58,7 +58,7 @@ xArray := [4]int(xSlice) // this is a copy!
 - slicing is supported but be careful with multi-byte characters (e.g. emojis)
 - `len()` returns the number of bytes, not the number of characters (runes)!
 
-```
+```go
 // len
 var s string = "Hello 😀"
 fmt.Println(len(s)) // 10
