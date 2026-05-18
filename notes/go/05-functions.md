@@ -1,12 +1,17 @@
 # Functions
 
+- functions are first-class citizens
+- typed based on the signature (parameter types and return types)
+
 ```go
 func add(a int, b int) int {
     return a + b
 }
 ```
 
-## Named and Optional Parameters
+## Function Basics
+
+### Named and Optional Parameters
 
 - no direct support
 - use structs
@@ -34,7 +39,7 @@ func main() {
 }
 ```
 
-## Variadic Parameters
+### Variadic Parameters
 
 - supported, treated as slices
 
@@ -57,7 +62,7 @@ func main() {
 }
 ```
 
-## Multiple Return Values
+### Multiple Return Values
 
 - convention is to return `error` as the last return value
 
@@ -67,5 +72,36 @@ func divAndRemainder(num, denom int) (int, int, error) {  // num, denom int is a
         return 0, 0, errors.New("cannot divide by zero")
     }
     return num / denom, num % denom, nil
+}
+```
+
+### Named Return Values
+
+- not commonly used, but can be useful for documentation and readability
+- doesn't force the name outside the function, they are only scoped to the function body
+- preinitialized to zero values
+- **blank returns** - can return without specifying the return values, but only if they are named, avoid
+
+```go
+func divAndRemainder(num, denom int) (result int, remainder int, err error) {
+    if denom == 0 {
+        err = errors.New("cannot divide by zero")
+        return result, remainder, err
+    }
+    result, remainder = num/denom, num%denom
+    return result, remainder, err
+}
+```
+
+## Functions as Types
+
+- map of string keys to functions of type `func(int, int) int`
+
+```go
+var opMap = map[string]func(int, int) int{
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": div,
 }
 ```
