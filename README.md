@@ -20,5 +20,6 @@
     - [IntelliJ IDEA](notes/editors/intellij-idea.md)
     - [Vim](notes/editors/vim/README.md)
 - [Math](notes/math.md)
+- [Microsoft Azure](azure/README.md)
 - [Editorconfig](notes/editorconfig.md)
 - [CTFs](notes/ctf/README.md)
