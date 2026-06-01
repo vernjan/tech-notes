@@ -10,6 +10,7 @@
 - Frameworks
     - [Angular](notes/frameworks/angular/README.md)
 - [Databases](notes/databases/README.md)
+- [AI - Claude](notes/ai/claude.md)
 - [Design](notes/design/README.md)
 - [Software](notes/software/README.md)
 - [Networks](notes/networks/README.md)

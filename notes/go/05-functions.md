@@ -96,12 +96,40 @@ func divAndRemainder(num, denom int) (result int, remainder int, err error) {
 ## Functions as Types
 
 - map of string keys to functions of type `func(int, int) int`
+- use `type` to create a named function type for better readability (e.g. `type BinaryOp func(int, int) int`)
 
 ```go
-var opMap = map[string]func(int, int) int{
+var opMap = map[string]func(int, int) int{ // map[string]BinaryOp
     "+": add,
     "-": sub,
     "*": mul,
     "/": div,
+}
+```
+
+```go
+var (
+    add = func(i, j int) int { return i + j }
+    sub = func(i, j int) int { return i - j }
+    mul = func(i, j int) int { return i * j }
+    div = func(i, j int) int { return i / j }
+)
+
+func main() {
+    x := add(2, 3)
+    fmt.Println(x)
+}
+```
+
+## Anonymous Functions
+
+```go
+func main() {
+    f := func(j int) {
+        fmt.Println("printing", j, "from inside of an anonymous function")
+    }
+    for i := 0; i < 5; i++ {
+        f(i)
+    }
 }
 ```
