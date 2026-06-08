@@ -133,3 +133,73 @@ func main() {
     }
 }
 ```
+
+## Closures
+
+- can be passed to other functions or returned
+- capture by reference (so unlike Java lambdas, can modify the captured variables)
+
+```go
+func main() {
+    a := 20
+    f := func() {
+        fmt.Println(a)
+        a = 30 // a := 30 would shadow the variable
+    }
+    f()
+    fmt.Println(a)
+}
+```
+
+```go
+func getFile(name string) (*os.File, func(), error) {
+    file, err := os.Open(name)
+    if err != nil {
+        return nil, nil, err
+    }
+    return file, func() { // cleanup function a caller can call at will
+        file.Close()
+    }, nil
+}
+```
+
+## `defer`
+
+- for cleanup - `defer` delays the invocation until the surrounding function exits
+- runs after function **return**
+- multiple defers allowed, executed as LIFO
+
+```go
+f, err := os.Open(os.Args[1])
+if err != nil {
+    log.Fatal(err)
+}
+defer f.Close() // function, method or closure
+// do someting useful  
+```
+
+```go
+func DoSomeInserts(ctx context.Context, db *sql.DB, value1, value2 string)
+                  (err error) {
+    tx, err := db.BeginTx(ctx, nil)
+    if err != nil {
+        return err
+    }
+    defer func() { // runs a closure
+        if err == nil {
+            err = tx.Commit() // modifies the original err, i.e. returns err from tx.Commit()
+        }
+        if err != nil {
+            tx.Rollback()
+        }
+    }()
+    _, err = tx.ExecContext(ctx, "INSERT INTO FOO (val) values $1", value1)
+    if err != nil {
+        return err
+    }
+    // use tx to do more database inserts here
+    return nil
+}
+```
+
+## Call by Value
