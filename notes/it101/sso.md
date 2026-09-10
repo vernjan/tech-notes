@@ -1,5 +1,9 @@
 # SSO
 
+- IdP - Identity provider (e.g. Google, Microsoft Azure Entra ID, Okta, ...)
+
+## For Humans
+
 - single-sign on
 - 2 main protocols
     - **SAML**
@@ -12,4 +16,8 @@
         - uses **JWT** (JSON Web Token)
         - extension of OAuth
             - **OAuth** - authorization
-            - **OIDC** - authentication
+            - **OIDC** - authentication\
+
+## For Machines
+
+- OAuth 2
